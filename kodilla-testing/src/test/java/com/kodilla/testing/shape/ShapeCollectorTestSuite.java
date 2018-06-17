@@ -43,8 +43,10 @@ public class ShapeCollectorTestSuite {
 
         //Given
         Shape testShape = new Square(4);
+        Shape testShape2 = new Triangle(2.00,3.00, 4.50);
         List<Shape> testList = new ArrayList<Shape>();
         testList.add(0,testShape);
+        testList.add(testShape2);
 
         //When
         testList.remove(0);
