@@ -3,23 +3,28 @@ package com.kodilla.testing;
 import com.kodilla.testing.calculator.Calculator;
 import com.kodilla.testing.collection.OddNumbersExterminator;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class TestingMain {
 
     private final static Random generator = new Random();
+    private final static int MAX_LOOP_REPEAT = 50;
 
-    public final static List<Integer> initNumbers() {
-        return Arrays.asList(
-                generator.nextInt(), generator.nextInt(), generator.nextInt(), generator.nextInt(), generator.nextInt(), generator.nextInt(),
-                generator.nextInt(), generator.nextInt(), generator.nextInt(), generator.nextInt(), generator.nextInt());
+    public final static ArrayList<Integer> initNumbers() {
+
+        ArrayList<Integer> initList = new ArrayList<Integer>();
+
+        for ( int i = 0; i < generator.nextInt(MAX_LOOP_REPEAT); i++) {
+            initList.add(generator.nextInt());
+        }
+    return initList;
     }
 
     public static void main (String[] args){
 
-        //calculator test - task 6_1
+        //calculator test - task 6_2
         int add = new Calculator().runAdd(3,4);
         int substraction = new Calculator().runSubstraction(3,4);
 
@@ -31,10 +36,11 @@ public class TestingMain {
 
         //collection without odd numbers - task 6_3
 
-        List<Integer> resultList = new OddNumbersExterminator(initNumbers()).exterminateOdd();
+        List<Integer> resultList = new OddNumbersExterminator().exterminate(initNumbers());
 
         for (int result : resultList) {
             System.out.println(result);
         }
     }
+
 }

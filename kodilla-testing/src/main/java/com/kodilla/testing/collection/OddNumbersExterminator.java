@@ -1,21 +1,18 @@
 package com.kodilla.testing.collection;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class OddNumbersExterminator {
 
-    private final List<Integer> numberList;
+    public OddNumbersExterminator() {
 
-    public OddNumbersExterminator(List<Integer> numberList) {
-        this.numberList = numberList;
     }
 
-    public List<Integer> exterminateOdd() {
+    public ArrayList<Integer> exterminate(ArrayList <Integer> numbers) {
 
-        List<Integer> evenList = new ArrayList<Integer>();
+        ArrayList<Integer> evenList = new ArrayList<Integer>();
 
-        for (int number : numberList) {
+        for (int number : numbers) {
             System.out.println(number);
             if (number % 2 == 0) {
                     evenList.add(number);
@@ -25,4 +22,16 @@ public class OddNumbersExterminator {
         return evenList;
     }
 
+   public int checkList(ArrayList <Integer> tempNumbers) {
+
+        int checksum = 0;
+
+        for(int tempNumber : tempNumbers ) {
+            checksum += tempNumber;
+        }
+        System.out.println(checksum);
+        return checksum;
+   }
+
 }
+
