@@ -19,7 +19,7 @@ public class TestingMain {
 
     public static void main (String[] args){
 
-        //calculator test - task 6_1
+        //calculator test - task 6_2
         int add = new Calculator().runAdd(3,4);
         int substraction = new Calculator().runSubstraction(3,4);
 
