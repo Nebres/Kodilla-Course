@@ -13,12 +13,10 @@ public class OddNumbersExterminator {
         ArrayList<Integer> evenList = new ArrayList<Integer>();
 
         for (int number : numbers) {
-            System.out.println(number);
             if (number % 2 == 0) {
                     evenList.add(number);
             }
         }
-        System.out.println("\n");
         return evenList;
     }
 
@@ -29,7 +27,6 @@ public class OddNumbersExterminator {
         for(int tempNumber : tempNumbers ) {
             checksum += tempNumber;
         }
-        System.out.println(checksum);
         return checksum;
    }
 
