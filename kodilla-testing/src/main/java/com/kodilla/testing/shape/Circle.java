@@ -8,10 +8,12 @@ public class Circle implements Shape{
         this.diameterOfTheWheel = diameterOfTheWheel;
     }
 
+    @Override
     public String getShapeName(){
         return "Circle";
     }
 
+    @Override
     public double getField() {
         return Math.PI * Math.pow(diameterOfTheWheel, 2.00);
     }

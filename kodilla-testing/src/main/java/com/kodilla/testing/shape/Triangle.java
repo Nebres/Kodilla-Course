@@ -12,14 +12,22 @@ public class Triangle implements Shape {
         this.sideC = sideC;
     }
 
-    public String getShapeName(){
+    @Override
+    public String getShapeName() {
         return "Triangle";
     }
 
+    @Override
     public double getField() {
 
-        double s = (sideA + sideB + sideC) * (sideA + sideB - sideC) * (sideA - sideB + sideC) * ( 0 - sideA + sideB + sideC);
+        if (sideA + sideB > sideC || sideA + sideC > sideB || sideB + sideA > sideC || sideA + sideB == 2 * sideC) {
+            double s = (sideA + sideB + sideC) * (sideA + sideB - sideC) * (sideA - sideB + sideC) * (0 - sideA + sideB + sideC);
 
-        return Math.sqrt(s) / 4;
+            return Math.sqrt(s) / 4;
+
+        } else {
+
+            return 0;
+        }
     }
 }
