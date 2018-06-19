@@ -1,5 +1,7 @@
 package com.kodilla.testing.collection;
 
+import org.assertj.core.util.VisibleForTesting;
+
 import java.util.ArrayList;
 
 public class OddNumbersExterminator {
@@ -20,14 +22,17 @@ public class OddNumbersExterminator {
         return evenList;
     }
 
-   public int checkList(ArrayList <Integer> tempNumbers) {
+    @VisibleForTesting
+   public boolean isEven(ArrayList <Integer> tempNumbers) {
 
-        int checksum = 0;
+        boolean evenValidator = true;
 
         for(int tempNumber : tempNumbers ) {
-            checksum += tempNumber;
+            if (tempNumber % 2 != 0) {
+            evenValidator = false;
+            }
         }
-        return checksum;
+        return evenValidator;
    }
 
 }

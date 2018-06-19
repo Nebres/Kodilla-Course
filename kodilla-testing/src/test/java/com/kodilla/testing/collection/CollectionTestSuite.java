@@ -47,9 +47,9 @@ public class CollectionTestSuite {
         ArrayList<Integer> list = TestingMain.initNumbers();
         ArrayList<Integer> resultList = new OddNumbersExterminator().exterminate(list);
         //When
-        Integer checksum = new OddNumbersExterminator().checkList(resultList);
+        boolean evenValidator = new OddNumbersExterminator().isEven(resultList);
        //Then
-        Assert.assertTrue(checksum % 2 == 0);
+        Assert.assertEquals(true, evenValidator);
     }
 
 }
