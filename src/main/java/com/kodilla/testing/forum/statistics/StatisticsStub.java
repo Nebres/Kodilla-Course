@@ -28,9 +28,10 @@ public class StatisticsStub implements Statistics {
     @Override
     public List<String> usersNames() {
 
-        List<String> tempList = new ArrayList<String>()
+        List<String> tempList = new ArrayList<String>();
 
         for(String user : usersList) {
+            tempList.add(user);
             tempList.add(user);
         }
         return tempList;

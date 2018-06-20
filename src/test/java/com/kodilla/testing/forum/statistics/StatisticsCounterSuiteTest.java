@@ -1,11 +1,8 @@
-package com.kodilla.testing.forum.statistics.
-
-import com.kodilla.testing.forum.statistics;
-
+package com.kodilla.testing.forum.statistics;
 
 import org.junit.*;
+
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class StatisticsCounterSuiteTest {
 

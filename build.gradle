@@ -28,5 +28,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     //Test dependencies
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('org.mockito:mockito-all:jar:2.0.2-beta')
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.19.0'
+
 }
