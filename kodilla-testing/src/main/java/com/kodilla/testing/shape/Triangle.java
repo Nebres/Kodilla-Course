@@ -20,14 +20,8 @@ public class Triangle implements Shape {
     @Override
     public double getField() {
 
-        if (sideA + sideB > sideC || sideA + sideC > sideB || sideB + sideA > sideC || sideA + sideB == 2 * sideC) {
-            double s = (sideA + sideB + sideC) * (sideA + sideB - sideC) * (sideA - sideB + sideC) * (0 - sideA + sideB + sideC);
-
-            return Math.sqrt(s) / 4;
-
-        } else {
-
-            return 0;
-        }
+        double s = (sideA + sideB + sideC) * (sideA + sideB - sideC) * (sideA - sideB + sideC) * (0 - sideA + sideB + sideC);
+        return Math.sqrt(s) / 4;
     }
+
 }

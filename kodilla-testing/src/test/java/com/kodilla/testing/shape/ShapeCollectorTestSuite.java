@@ -28,101 +28,151 @@ public class ShapeCollectorTestSuite {
 
     @Test
     public void testAddFigure() {
-
         //Given
-        Shape testShape = new Square(4);
+        Shape expected = new Square(4);
         List<Shape> testList = new ArrayList<Shape>();
+        testList.add(expected);
         //When
-        testList.add(testShape);
+        Shape actual = testList.get(0);
         //Then
-        Assert.assertEquals(testList.get(0), testShape);
+        Assert.assertEquals(actual, expected);
     }
 
     @Test
     public void testRemoveFigure() {
-
         //Given
-        Shape testShape = new Square(4);
-        Shape testShape2 = new Triangle(2.00,3.00, 4.50);
+        Shape shapeToRemove = new Square(4);
+        Shape expected = new Triangle(2.00,3.00, 4.50);
         List<Shape> testList = new ArrayList<Shape>();
-        testList.add(0,testShape);
-        testList.add(testShape2);
-
+        testList.add(0,shapeToRemove);
+        testList.add(expected);
+        Shape actual = testList.get(0);
         //When
         testList.remove(0);
-
         //Then
-        Assert.assertNotEquals(testList.get(0), testShape);
+        Assert.assertNotEquals(actual, expected);
     }
 
     @Test
     public void testGetFigure() {
-
         //Given
-        Shape testShape = new Square(4);
+        Shape expected = new Square(4);
         List<Shape> testList = new ArrayList<Shape>();
-
+        testList.add(0,expected);
         //When
-        testList.add(0,testShape);
-
+        Shape actual = testList.get(0);
         //Then
-        Assert.assertEquals(testList.get(0),testShape );
+        Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void testShowFigures() {
+    public void testShowFiguresSquare() {
         //Given
-        Shape testShape = new Square(4);
-        Shape testShape2 = new Circle(1.0);
-        Shape testShape3 = new Triangle(13.0, 13.0, 24.0);
+        Shape addedShape = new Square(4);
         ArrayList<Shape> testList = new ArrayList<Shape>();
-
+        String expected = "Square";
+        testList.add(addedShape);
         //When
-        testList.add(testShape);
-        testList.add(testShape2);
-        testList.add(testShape3);
-
+        String actual = testList.get(0).getShapeName();
         //Then
-        Assert.assertEquals(testList.get(0).getShapeName(), "Square");
-        Assert.assertEquals(testList.get(1).getShapeName(), "Circle");
-        Assert.assertEquals(testList.get(2).getShapeName(), "Triangle");
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testGetShapeName() {
-
-
+    public void testShowFiguresTriangle() {
         //Given
-        Shape testShape = new Square(4);
-        Shape testShape2 = new Circle(1.0);
-        Shape testShape3 = new Triangle(13.0,13.0,24.0);
-
+        Shape addedShape = new Triangle(13.0, 13.0, 24.0);
+        ArrayList<Shape> testList = new ArrayList<Shape>();
+        String expected = "Triangle";
+        testList.add(addedShape);
         //When
-        String result = testShape.getShapeName();
-        String result2 = testShape2.getShapeName();
-        String result3 = testShape3.getShapeName();
-
+        String actual = testList.get(0).getShapeName();
         //Then
-        Assert.assertEquals(result,"Square");
-        Assert.assertEquals(result2,"Circle");
-        Assert.assertEquals(result3,"Triangle");
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testGetFiled() {
+    public void testShowFiguresCircle() {
+        //Given
+        Shape addedShape = new Circle(1.0);
+        ArrayList<Shape> testList = new ArrayList<Shape>();
+        String expected = "Circle";
+        testList.add(addedShape);
+        //When
+        String actual = testList.get(0).getShapeName();
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetShapeNameForSquare() {
+        //Given
+        Shape addedShape = new Square(4);
+        String expected = "Square";
+        //When
+        String actual = addedShape.getShapeName();
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetShapeNameForTriangle() {
+        //Given
+        Shape addedShape = new Triangle(13.0, 13.0, 24.0);
+        String expected = "Triangle";
+        //When
+        String actual = addedShape.getShapeName();
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetShapeNameForCircle() {
+        //Given
+        Shape addedShape = new Circle(1.0);
+        String expected = "Circle";
+        //When
+        String actual = addedShape.getShapeName();
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetFiledForSquare() {
+        //Given
+        final double DELTA = 1e-2;
+        double expected = 16.00;
+        Shape addedShape = new Square(4.0);
+        //When
+        double actual = addedShape.getField();
+        //Then
+        Assert.assertEquals(expected, actual, DELTA);
+    }
+
+    @Test
+    public void testGetFiledForTriangle() {
+        //Given
+        final double DELTA = 1e-2;
+        double expected = 60.00;
+        Shape addedShape = new Triangle(13.0,13.0,24.0);
+        //When
+        double actual = addedShape.getField();
+        //Then
+        Assert.assertEquals(expected, actual, DELTA);
+    }
+
+    @Test
+    public void testGetFiledForCircle() {
 
         //Given
-        Shape testShape = new Square(4.0);
-        Shape testShape2 = new Circle(1.0);
-        Shape testShape3 = new Triangle(13.0,13.0,24.0);
-
+        final double DELTA = 1e-2;
+        double expected = 3.14;
+        Shape addedShape = new Circle(1.0);
         //When
-        double result = testShape.getField();
-        double result2 = testShape2.getField();
-        double result3 = testShape3.getField();
-
+        double actual = addedShape.getField();
         //Then
-        Assert.assertTrue(result == 16.0 && result2 == 3.141592653589793 && result3 == 60.0);
+        Assert.assertEquals(expected, actual, DELTA);
     }
+
 }
 

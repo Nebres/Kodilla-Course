@@ -6,5 +6,4 @@ public interface Shape {
 
     double getField();
 
-
 }

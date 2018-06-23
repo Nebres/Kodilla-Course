@@ -17,4 +17,5 @@ public class Square implements Shape {
     public double getField() {
         return Math.pow(sideOfTheSquare, 2.00);
     }
+
 }
