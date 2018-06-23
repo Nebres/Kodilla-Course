@@ -22,5 +22,6 @@ public class StatisticsStub implements Statistics {
     public int commentsCount() {
         return 500;
     }
+
 }
 
