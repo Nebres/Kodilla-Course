@@ -2,7 +2,7 @@ package com.kodilla.testing.forum.statistics;
 
 public class StatisticsCounter {
 
-    Statistics statistics;
+    private final Statistics statistics;
     private final static String OUTPUT_COMMUNICATE = "Forum statistics: \n Number of users = %d \n Number of posts = %d \n " +
             "Number of comments %d \n Number of posts per user = %s \n Number of comments per user = %s \n Number of comments per post = %s";
     private int numberOfUsers;
@@ -21,25 +21,9 @@ public class StatisticsCounter {
         this.numberOfUsers = statistics.usersNames().size();
         this.numberOfPosts = statistics.postsCount();
         this.numberOfComments = statistics.commentsCount();
-
-        if (numberOfUsers != 0) {
-            this.numberOfPostsPerUser = numberOfPosts / numberOfUsers;
-        } else {
-            this.numberOfPostsPerUser = 0;
-        }
-
-        if (numberOfUsers != 0) {
-            this.numberOfCommentsPerUser =  numberOfComments / numberOfUsers;
-        } else {
-            this.numberOfCommentsPerUser = 0;
-        }
-
-        if (numberOfPosts != 0) {
-            double numberOfCommentsChangedToDouble = (double)numberOfComments;
-            this.numberOfCommentsPerPost = numberOfCommentsChangedToDouble / numberOfPosts;
-        } else {
-            this.numberOfCommentsPerPost = 0;
-        }
+        this.numberOfPostsPerUser = numberOfUsers == 0 ? 0 : numberOfPosts / numberOfUsers;
+        this.numberOfCommentsPerUser = numberOfUsers == 0 ? 0 : numberOfComments / numberOfUsers;
+        this.numberOfCommentsPerPost = numberOfPosts == 0 ? 0.00 : (double)numberOfComments / numberOfPosts;
     }
 
     public int getNumberOfUsers() {
