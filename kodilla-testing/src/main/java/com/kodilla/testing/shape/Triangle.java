@@ -3,12 +3,12 @@ package com.kodilla.testing.shape;
 public class Triangle implements Shape {
 
     private double baseOfTriangle;
-    private double hightOfTriangle;
+    private double heightOfTriangle;
 
 
-    public Triangle(double baseOfTriangle, double hightOfTriangle) {
+    public Triangle(double baseOfTriangle, double heightOfTriangle) {
         this.baseOfTriangle = baseOfTriangle;
-        this.hightOfTriangle = hightOfTriangle;
+        this.heightOfTriangle = heightOfTriangle;
     }
 
     @Override
@@ -21,8 +21,8 @@ public class Triangle implements Shape {
 
         double result = 0.00;
 
-        if (baseOfTriangle > 0 && hightOfTriangle > 0 ) {
-           result = 0.5 * baseOfTriangle * hightOfTriangle;
+        if (baseOfTriangle > 0 && heightOfTriangle > 0 ) {
+           result = 0.5 * baseOfTriangle * heightOfTriangle;
         }
         return result;
     }

@@ -45,7 +45,7 @@ public class ShapeCollectorTestSuite {
         Shape shapeToRemove = new Square(4);
         Shape expected = new Triangle(2.00,3.00);
         List<Shape> testList = new ArrayList<Shape>();
-        testList.add(0,shapeToRemove);
+        testList.add(0, shapeToRemove);
         testList.add(expected);
         Shape actual = testList.get(0);
         //When
@@ -59,7 +59,7 @@ public class ShapeCollectorTestSuite {
         //Given
         Shape expected = new Square(4);
         List<Shape> testList = new ArrayList<Shape>();
-        testList.add(0,expected);
+        testList.add(0, expected);
         //When
         Shape actual = testList.get(0);
         //Then
