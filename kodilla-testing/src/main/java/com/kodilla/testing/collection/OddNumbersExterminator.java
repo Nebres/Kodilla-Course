@@ -1,7 +1,5 @@
 package com.kodilla.testing.collection;
 
-import org.assertj.core.util.VisibleForTesting;
-
 import java.util.ArrayList;
 import java.util.List;
 

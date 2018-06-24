@@ -1,7 +1,5 @@
 package com.kodilla.testing.collection;
-
-
-import com.kodilla.testing.TestingMain;
+ ""
 import org.junit.*;
 
 import java.util.ArrayList;
