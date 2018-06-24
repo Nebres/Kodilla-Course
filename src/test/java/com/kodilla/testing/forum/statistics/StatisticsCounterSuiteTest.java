@@ -10,10 +10,7 @@ import static org.mockito.Mockito.when;
 
 public class StatisticsCounterSuiteTest {
 
-    private final static int CASE_EQUAL_TO_0 = 0;
-    private final static int CASE_EQUAL_TO_1000 = 1000;
-    private final static int COMMENTS_EQUAL_TO_500 = 500;
-    private static int TEST_NUMBER  = 1;
+    private static int testNumber  = 1;
 
     private List<String> createEmptyUserList() {
 
@@ -36,8 +33,8 @@ public class StatisticsCounterSuiteTest {
 
     @Before
     public void before(){
-        System.out.println("Test Case: begin test number: " + TEST_NUMBER);
-        TEST_NUMBER ++;
+        System.out.println("Test Case: begin test number: " + testNumber);
+        testNumber ++;
     }
     @After
     public void after(){
@@ -54,9 +51,9 @@ public class StatisticsCounterSuiteTest {
     }
 
     @Test
-    public void testStatisticsCounterNumberOfUserCase1() {
+    public void testStatisticsCounterNumberOfUserEqual00() {
 
-        //CASE 1 ( users = 100 )
+        //CASE ( users = 100 )
         //Given
         int expectedUser = 100;
         Statistics statisticsMock = mock(Statistics.class);
@@ -70,9 +67,9 @@ public class StatisticsCounterSuiteTest {
     }
 
     @Test
-    public void testStatisticsCounterNumberOfUserCase2() {
+    public void testStatisticsCounterNumberOfUserEqual0() {
 
-        //CASE 2 ( users = 0 )
+        //CASE ( users = 0 )
         //Given
         int expectedUser = 0;
         Statistics statisticsMock = mock(Statistics.class);
@@ -86,13 +83,13 @@ public class StatisticsCounterSuiteTest {
     }
 
     @Test
-    public void testStatisticsCounterNumberOfPostsCase1() {
+    public void testStatisticsCounterNumberOfPostsEqual1000() {
 
         //CASE 1 ( posts = 1000 )
         //Given
         int expectedPost = 1000;
         Statistics statisticsMock = mock(Statistics.class);
-        when(statisticsMock.postsCount()).thenReturn(CASE_EQUAL_TO_1000);
+        when(statisticsMock.postsCount()).thenReturn(1000);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
@@ -102,13 +99,13 @@ public class StatisticsCounterSuiteTest {
     }
 
     @Test
-    public void testStatisticsCounterNumberOfPostsCase2() {
+    public void testStatisticsCounterNumberOfPostsEqual0() {
 
-        //CASE 1 ( posts = 0 )
+        //CASE ( posts = 0 )
         //Given
         int expectedPost = 0;
         Statistics statisticsMock = mock(Statistics.class);
-        when(statisticsMock.postsCount()).thenReturn(CASE_EQUAL_TO_0);
+        when(statisticsMock.postsCount()).thenReturn(0);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
@@ -118,13 +115,13 @@ public class StatisticsCounterSuiteTest {
     }
 
     @Test
-    public void testStatisticsCounterNumberOfCommentsCase1() {
+    public void testStatisticsCounterNumberOfCommentsEqual500() {
 
-        //CASE 1 ( comments = 500)
+        //CASE ( comments = 500)
         //Given
         int expectedComments = 500;
         Statistics statisticsMock = mock(Statistics.class);
-        when(statisticsMock.commentsCount()).thenReturn(COMMENTS_EQUAL_TO_500);
+        when(statisticsMock.commentsCount()).thenReturn(500);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
@@ -134,13 +131,13 @@ public class StatisticsCounterSuiteTest {
     }
 
     @Test
-    public void testStatisticsCounterNumberOfCommentsCase2() {
+    public void testStatisticsCounterNumberOfCommentsEqual0() {
 
-        //CASE 1 ( comments = 0)
+        //CASE ( comments = 0)
         //Given
         int expectedComments = 0;
         Statistics statisticsMock = mock(Statistics.class);
-        when(statisticsMock.commentsCount()).thenReturn(CASE_EQUAL_TO_0);
+        when(statisticsMock.commentsCount()).thenReturn(0);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
@@ -150,120 +147,113 @@ public class StatisticsCounterSuiteTest {
     }
 
     @Test
-    public void testStatisticsCounterPostPerUserCase1() {
+    public void testStatisticsCounterPostPerUserWhenUsersEqual100AndPostsEqual1000() {
 
-        //CASE 1 ( users = 100, posts = 1000)
+        //CASE ( users = 100, posts = 1000)
         //Given
-        final double DELTA = 1e-2;
         double expectedNumberOfPostsPerUser = 10.00;
         Statistics statisticsMock = mock(Statistics.class);
         when(statisticsMock.usersNames()).thenReturn(create100UsersList());
-        when(statisticsMock.postsCount()).thenReturn(CASE_EQUAL_TO_1000);
+        when(statisticsMock.postsCount()).thenReturn(1000);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
         double actualNumberOfPostsPerUser = statistics.getNumberOfPostsPerUser();
         //Then
-        Assert.assertEquals(expectedNumberOfPostsPerUser, actualNumberOfPostsPerUser, DELTA);
+        Assert.assertEquals(expectedNumberOfPostsPerUser, actualNumberOfPostsPerUser, 1e-2);
 
     }
 
     @Test
-    public void testStatisticsCounterPostPerUserCase2() {
+    public void testStatisticsCounterPostPerUserWhenUsersEqual0AndPostsEqual0() {
 
-        //CASE 2 ( users = 0, posts = 0 )
+        //CASE ( users = 0, posts = 0 )
         //Given
-        final double DELTA = 1e-2;
         double expectedNumberOfPostsPerUser = 0;
         Statistics statisticsMock = mock(Statistics.class);
         when(statisticsMock.usersNames()).thenReturn(createEmptyUserList());
-        when(statisticsMock.postsCount()).thenReturn(CASE_EQUAL_TO_0);
+        when(statisticsMock.postsCount()).thenReturn(0);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
         double actualNumberOfPostsPerUser = statistics.getNumberOfPostsPerUser();
         //Then
-        Assert.assertEquals(expectedNumberOfPostsPerUser, actualNumberOfPostsPerUser, DELTA);
+        Assert.assertEquals(expectedNumberOfPostsPerUser, actualNumberOfPostsPerUser, 1e-2);
     }
 
     @Test
-    public void testStatisticsCounterCommentsPerUserCase1() {
+    public void testStatisticsCounterCommentsPerUserWhenUsersEqual100AndCommentsEqual500() {
 
-        //CASE 1 ( users = 100, comments = 500 )
+        //CASE ( users = 100, comments = 500 )
         //Given
-        final double DELTA = 1e-2;
         double expectedNumberOfCommentsPerUser = 5.00;
         Statistics statisticsMock = mock(Statistics.class);
         when(statisticsMock.usersNames()).thenReturn(create100UsersList());
-        when(statisticsMock.commentsCount()).thenReturn(COMMENTS_EQUAL_TO_500);
+        when(statisticsMock.commentsCount()).thenReturn(500);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
         double actualNumberOfCommentsPerUser = statistics.getNumberOfCommentsPerUser();
         //Then
-        Assert.assertEquals(expectedNumberOfCommentsPerUser, actualNumberOfCommentsPerUser, DELTA);
+        Assert.assertEquals(expectedNumberOfCommentsPerUser, actualNumberOfCommentsPerUser, 1e-2);
     }
 
     @Test
-    public void testStatisticsCounterCommentsPerUserCase2() {
+    public void testStatisticsCounterCommentsPerUserWhenUsersEqual0AndCommentsEqual0() {
 
-        //CASE 1 ( users = 0, comments = 0)
+        //CASE ( users = 0, comments = 0)
         //Given
-        final double DELTA = 1e-2;
         double expectedNumberOfCommentsPerUser = 0.00;
         Statistics statisticsMock = mock(Statistics.class);
         when(statisticsMock.usersNames()).thenReturn(create100UsersList());
-        when(statisticsMock.commentsCount()).thenReturn(CASE_EQUAL_TO_0);
+        when(statisticsMock.commentsCount()).thenReturn(0);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
         double actualNumberOfCommentsPerUser = statistics.getNumberOfCommentsPerUser();
         //Then
-        Assert.assertEquals(expectedNumberOfCommentsPerUser, actualNumberOfCommentsPerUser, DELTA);
+        Assert.assertEquals(expectedNumberOfCommentsPerUser, actualNumberOfCommentsPerUser, 1e-2);
     }
 
     @Test
-    public void testStatisticsCounterCommentsPerPostCase1() {
+    public void testStatisticsCounterCommentsPerPostWhenPostsEqual1000AndCommentsEqual500() {
 
-        //CASE 1 ( posts = 1000, comments = 500 )
+        //CASE ( posts = 1000, comments = 500 )
         //Given
-        final double DELTA = 1e-2;
         double expectedNumberOfCommentsPerPost = 0.50;
         Statistics statisticsMock = mock(Statistics.class);
-        when(statisticsMock.postsCount()).thenReturn(CASE_EQUAL_TO_1000);
-        when(statisticsMock.commentsCount()).thenReturn(COMMENTS_EQUAL_TO_500);
+        when(statisticsMock.postsCount()).thenReturn(1000);
+        when(statisticsMock.commentsCount()).thenReturn(500);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
         double actualNumberOfCommentsPerPost = statistics.getNumberOfCommentsPerPost();
         //Then
-        Assert.assertEquals(expectedNumberOfCommentsPerPost, actualNumberOfCommentsPerPost, DELTA);
+        Assert.assertEquals(expectedNumberOfCommentsPerPost, actualNumberOfCommentsPerPost, 1e-2);
     }
 
     @Test
-    public void testStatisticsCounterCommentsPerPostCase2() {
+    public void testStatisticsCounterCommentsPerPostWhenPostsEqual0AndCommentsEqual500() {
 
-        //CASE 1 ( posts = 0, comments = 500 )
+        //CASE ( posts = 0, comments = 500 )
         //Given
-        final double DELTA = 1e-2;
         double expectedNumberOfCommentsPerPost = 0.00;
         Statistics statisticsMock = mock(Statistics.class);
-        when(statisticsMock.postsCount()).thenReturn(CASE_EQUAL_TO_0);
-        when(statisticsMock.commentsCount()).thenReturn(COMMENTS_EQUAL_TO_500);
+        when(statisticsMock.postsCount()).thenReturn(0);
+        when(statisticsMock.commentsCount()).thenReturn(500);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
         double actualNumberOfCommentsPerPost = statistics.getNumberOfCommentsPerPost();
         //Then
-        Assert.assertEquals(expectedNumberOfCommentsPerPost, actualNumberOfCommentsPerPost, DELTA);
+        Assert.assertEquals(expectedNumberOfCommentsPerPost, actualNumberOfCommentsPerPost, 1e-2);
     }
 
     @Test
-    public void testStatisticsCounterAllCase1() {
+    public void testStatisticsCounterAllMethodCase1() {
 
-        //CASE 1 ( users = 100, posts = 1000, comments = 500, comments < posts )
+        //CASE ( users = 100, posts = 1000, comments = 500, comments < posts )
         //Given
-        final double DELTA = 1e-2;
         int expectedUser = 100;
         int expectedPost = 1000;
         int expectedComments = 500;
@@ -272,8 +262,8 @@ public class StatisticsCounterSuiteTest {
         double expectedNumberOfCommentsPerPost = 0.50;
         Statistics statisticsMock = mock(Statistics.class);
         when(statisticsMock.usersNames()).thenReturn(create100UsersList());
-        when(statisticsMock.postsCount()).thenReturn(CASE_EQUAL_TO_1000);
-        when(statisticsMock.commentsCount()).thenReturn(COMMENTS_EQUAL_TO_500);
+        when(statisticsMock.postsCount()).thenReturn(1000);
+        when(statisticsMock.commentsCount()).thenReturn(500);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
@@ -287,17 +277,16 @@ public class StatisticsCounterSuiteTest {
         Assert.assertEquals(expectedUser, actualUser);
         Assert.assertEquals(expectedPost, actualPost);
         Assert.assertEquals(expectedComments, actualComments);
-        Assert.assertEquals(expectedNumberOfPostsPerUser, actualNumberOfPostsPerUser, DELTA);
-        Assert.assertEquals(expectedNumberOfCommentsPerUser, actualNumberOfCommentsPerUser, DELTA);
-        Assert.assertEquals(expectedNumberOfCommentsPerPost, actualNumberOfCommentsPerPost, DELTA);
+        Assert.assertEquals(expectedNumberOfPostsPerUser, actualNumberOfPostsPerUser, 1e-2);
+        Assert.assertEquals(expectedNumberOfCommentsPerUser, actualNumberOfCommentsPerUser, 1e-2);
+        Assert.assertEquals(expectedNumberOfCommentsPerPost, actualNumberOfCommentsPerPost, 1e-2);
     }
 
     @Test
-    public void testStatisticsCounterAllCase2() {
+    public void testStatisticsCounterAllMethodCase2() {
 
-        //CASE 1 ( users = 0, posts = 0, comments = 500, comments > posts )
+        //CASE ( users = 0, posts = 0, comments = 500, comments > posts )
         //Given
-        final double DELTA = 1e-2;
         int expectedUser = 0;
         int expectedPost = 0;
         int expectedComments = 500;
@@ -306,8 +295,8 @@ public class StatisticsCounterSuiteTest {
         double expectedNumberOfCommentsPerPost = 0.00;
         Statistics statisticsMock = mock(Statistics.class);
         when(statisticsMock.usersNames()).thenReturn(createEmptyUserList());
-        when(statisticsMock.postsCount()).thenReturn(CASE_EQUAL_TO_0);
-        when(statisticsMock.commentsCount()).thenReturn(COMMENTS_EQUAL_TO_500);
+        when(statisticsMock.postsCount()).thenReturn(0);
+        when(statisticsMock.commentsCount()).thenReturn(500);
         StatisticsCounter statistics = new StatisticsCounter(statisticsMock);
         //When
         statistics.calculateAdvStatistics(statisticsMock);
@@ -321,9 +310,9 @@ public class StatisticsCounterSuiteTest {
         Assert.assertEquals(expectedUser, actualUser);
         Assert.assertEquals(expectedPost, actualPost);
         Assert.assertEquals(expectedComments, actualComments);
-        Assert.assertEquals(expectedNumberOfPostsPerUser, actualNumberOfPostsPerUser, DELTA);
-        Assert.assertEquals(expectedNumberOfCommentsPerUser, actualNumberOfCommentsPerUser, DELTA);
-        Assert.assertEquals(expectedNumberOfCommentsPerPost, actualNumberOfCommentsPerPost, DELTA);
+        Assert.assertEquals(expectedNumberOfPostsPerUser, actualNumberOfPostsPerUser, 1e-2);
+        Assert.assertEquals(expectedNumberOfCommentsPerUser, actualNumberOfCommentsPerUser, 1e-2);
+        Assert.assertEquals(expectedNumberOfCommentsPerPost, actualNumberOfCommentsPerPost, 1e-2);
     }
 
 }
