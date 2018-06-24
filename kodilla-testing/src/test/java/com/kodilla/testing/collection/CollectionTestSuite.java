@@ -5,6 +5,7 @@ import com.kodilla.testing.TestingMain;
 import org.junit.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CollectionTestSuite {
@@ -31,7 +32,6 @@ public class CollectionTestSuite {
 
     @Test
     public void testOddNumbersExterminatorEmptyList(){
-
         //Given
         ArrayList<Integer> list = new ArrayList<>();
         //When
@@ -42,14 +42,13 @@ public class CollectionTestSuite {
 
     @Test
     public void testOddNumbersExterminatorNormalList() {
-
         //Given
-        ArrayList<Integer> list = TestingMain.initNumbers();
-        ArrayList<Integer> resultList = new OddNumbersExterminator().exterminate(list);
+        List<Integer> list = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7);
+        List<Integer> expected = Arrays.asList(0, 2, 4, 6);
         //When
-        boolean evenValidator = new OddNumbersExterminator().isEven(resultList);
+        List<Integer> actual = new OddNumbersExterminator().exterminate(list);
        //Then
-        Assert.assertEquals(true, evenValidator);
+        Assert.assertEquals(actual, expected);
     }
 
 }

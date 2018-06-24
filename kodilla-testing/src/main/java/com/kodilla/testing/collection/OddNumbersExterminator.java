@@ -3,6 +3,7 @@ package com.kodilla.testing.collection;
 import org.assertj.core.util.VisibleForTesting;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OddNumbersExterminator {
 
@@ -10,7 +11,7 @@ public class OddNumbersExterminator {
 
     }
 
-    public ArrayList<Integer> exterminate(ArrayList <Integer> numbers) {
+    public ArrayList<Integer> exterminate(List<Integer> numbers) {
 
         ArrayList<Integer> evenList = new ArrayList<Integer>();
 
@@ -21,19 +22,6 @@ public class OddNumbersExterminator {
         }
         return evenList;
     }
-
-    @VisibleForTesting
-   public boolean isEven(ArrayList <Integer> tempNumbers) {
-
-        boolean evenValidator = true;
-
-        for(int tempNumber : tempNumbers ) {
-            if (tempNumber % 2 != 0) {
-            evenValidator = false;
-            }
-        }
-        return evenValidator;
-   }
 
 }
 
