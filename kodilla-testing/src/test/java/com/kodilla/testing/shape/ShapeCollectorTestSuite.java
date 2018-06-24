@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShapeCollectorTestSuite {
+
     @Before
     public void before(){
         System.out.println("Test Case: Begin of Shape Collector Test");
@@ -42,7 +43,7 @@ public class ShapeCollectorTestSuite {
     public void testRemoveFigure() {
         //Given
         Shape shapeToRemove = new Square(4);
-        Shape expected = new Triangle(2.00,3.00, 4.50);
+        Shape expected = new Triangle(2.00,3.00);
         List<Shape> testList = new ArrayList<Shape>();
         testList.add(0,shapeToRemove);
         testList.add(expected);
@@ -66,47 +67,31 @@ public class ShapeCollectorTestSuite {
     }
 
     @Test
-    public void testShowFiguresSquare() {
+    public void testShowFigures() {
         //Given
         Shape addedShape = new Square(4);
-        ArrayList<Shape> testList = new ArrayList<Shape>();
-        String expected = "Square";
-        testList.add(addedShape);
+        Shape addedShape2 = new Triangle(13.0, 13.0);
+        Shape addedShape3 = new Circle(1.0);
+        List<Shape> shapeList = new ArrayList<Shape>();
+        shapeList.add(addedShape);
+        shapeList.add(addedShape2);
+        shapeList.add(addedShape3);
+        List<String> expected = new ArrayList<String>();
+        expected.add("Square");
+        expected.add("Triangle");
+        expected.add("Circle");
         //When
-        String actual = testList.get(0).getShapeName();
-        //Then
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testShowFiguresTriangle() {
-        //Given
-        Shape addedShape = new Triangle(13.0, 13.0, 24.0);
-        ArrayList<Shape> testList = new ArrayList<Shape>();
-        String expected = "Triangle";
-        testList.add(addedShape);
-        //When
-        String actual = testList.get(0).getShapeName();
-        //Then
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testShowFiguresCircle() {
-        //Given
-        Shape addedShape = new Circle(1.0);
-        ArrayList<Shape> testList = new ArrayList<Shape>();
-        String expected = "Circle";
-        testList.add(addedShape);
-        //When
-        String actual = testList.get(0).getShapeName();
+        List<String> actual = new ArrayList<String>();
+        for ( Shape shape : shapeList) {
+            actual.add(shape.getShapeName());
+        }
         //Then
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void testGetShapeNameForSquare() {
-        //Given
+         //Given
         Shape addedShape = new Square(4);
         String expected = "Square";
         //When
@@ -118,7 +103,7 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testGetShapeNameForTriangle() {
         //Given
-        Shape addedShape = new Triangle(13.0, 13.0, 24.0);
+        Shape addedShape = new Triangle(13.0, 13.0);
         String expected = "Triangle";
         //When
         String actual = addedShape.getShapeName();
@@ -140,38 +125,35 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testGetFiledForSquare() {
         //Given
-        final double DELTA = 1e-2;
         double expected = 16.00;
         Shape addedShape = new Square(4.0);
         //When
         double actual = addedShape.getField();
         //Then
-        Assert.assertEquals(expected, actual, DELTA);
+        Assert.assertEquals(expected, actual, 1e-2);
     }
 
     @Test
     public void testGetFiledForTriangle() {
         //Given
-        final double DELTA = 1e-2;
-        double expected = 60.00;
-        Shape addedShape = new Triangle(13.0,13.0,24.0);
+        double expected = 4.00;
+        Shape addedShape = new Triangle(4.0,2.0);
         //When
         double actual = addedShape.getField();
         //Then
-        Assert.assertEquals(expected, actual, DELTA);
+        Assert.assertEquals(expected, actual, 1e-2);
     }
 
     @Test
     public void testGetFiledForCircle() {
 
         //Given
-        final double DELTA = 1e-2;
         double expected = 3.14;
         Shape addedShape = new Circle(1.0);
         //When
         double actual = addedShape.getField();
         //Then
-        Assert.assertEquals(expected, actual, DELTA);
+        Assert.assertEquals(expected, actual, 1e-2);
     }
 
 }

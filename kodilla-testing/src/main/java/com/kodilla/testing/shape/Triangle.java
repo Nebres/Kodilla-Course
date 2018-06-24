@@ -2,14 +2,13 @@ package com.kodilla.testing.shape;
 
 public class Triangle implements Shape {
 
-    private double sideA;
-    private double sideB;
-    private double sideC;
+    private double baseOfTriangle;
+    private double hightOfTriangle;
 
-    public Triangle(double sideA, double sideB, double sideC) {
-        this.sideA = sideA;
-        this.sideB = sideB;
-        this.sideC = sideC;
+
+    public Triangle(double baseOfTriangle, double hightOfTriangle) {
+        this.baseOfTriangle = baseOfTriangle;
+        this.hightOfTriangle = hightOfTriangle;
     }
 
     @Override
@@ -20,8 +19,13 @@ public class Triangle implements Shape {
     @Override
     public double getField() {
 
-        double s = (sideA + sideB + sideC) * (sideA + sideB - sideC) * (sideA - sideB + sideC) * (0 - sideA + sideB + sideC);
-        return Math.sqrt(s) / 4;
+        double result = 0.00;
+
+        if (baseOfTriangle > 0 && hightOfTriangle > 0 ) {
+           result = 0.5 * baseOfTriangle * hightOfTriangle;
+        }
+        return result;
     }
 
 }
+
