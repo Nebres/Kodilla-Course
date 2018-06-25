@@ -1,19 +1,29 @@
 package com.kodilla.testing;
 
 
-import com.kodilla.testing.calculator.Calculator;
+import com.kodilla.testing.collection.OddNumbersExterminator;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TestingMain {
-    public static void main(String[] args){
 
-        int add = new Calculator().runAdd(3,4);
-        int substraction = new Calculator().runSubstraction(3,4);
+    private final static Random generator = new Random();
 
-        if (add == 7 && substraction == -1) {
-            System.out.println("All ok");
-        } else {
-            System.out.println("error");
+    public final static ArrayList<Integer> initNumbers() {
+
+        ArrayList<Integer> initList = new ArrayList<Integer>();
+
+        for ( int i = 0; i < generator.nextInt(); i++) {
+            initList.add(generator.nextInt());
         }
-
+    return initList;
     }
+
+    public static void main (String[] args){
+
+        new OddNumbersExterminator().exterminate(initNumbers());
+    }
+
 }
+
