@@ -9,9 +9,9 @@ public class OddNumbersExterminator {
 
     }
 
-    public ArrayList<Integer> exterminate(List<Integer> numbers) {
+    public List<Integer> exterminate(List<Integer> numbers) {
 
-        ArrayList<Integer> evenList = new ArrayList<Integer>();
+        List<Integer> evenList = new ArrayList<Integer>();
 
         for (int number : numbers) {
             if (number % 2 == 0) {
