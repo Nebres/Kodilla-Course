@@ -3,9 +3,11 @@ package com.kodilla.testing.shape;
 import org.junit.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShapeCollectorTestSuite {
+
 
     @Before
     public void before(){
@@ -36,7 +38,7 @@ public class ShapeCollectorTestSuite {
         //When
         Shape actual = testList.get(0);
         //Then
-        Assert.assertEquals(actual, expected);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class ShapeCollectorTestSuite {
         //When
         testList.remove(0);
         //Then
-        Assert.assertNotEquals(actual, expected);
+        Assert.assertNotEquals(expected, actual);
     }
 
     @Test
@@ -63,28 +65,23 @@ public class ShapeCollectorTestSuite {
         //When
         Shape actual = testList.get(0);
         //Then
-        Assert.assertEquals(actual, expected);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void testShowFigures() {
         //Given
-        Shape addedShape = new Square(4);
-        Shape addedShape2 = new Triangle(13.0, 13.0);
-        Shape addedShape3 = new Circle(1.0);
+        Shape square = new Square(4);
+        Shape triangle = new Triangle(13.0, 13.0);
+        Shape circle = new Circle(1.0);
         List<Shape> shapeList = new ArrayList<Shape>();
-        shapeList.add(addedShape);
-        shapeList.add(addedShape2);
-        shapeList.add(addedShape3);
-        List<String> expected = new ArrayList<String>();
-        expected.add("Square");
-        expected.add("Triangle");
-        expected.add("Circle");
+        shapeList.add(square);
+        shapeList.add(triangle);
+        shapeList.add(circle);
+        ShapeCollector shapeCollector = new ShapeCollector(shapeList);
+        String expected = "Square | Triangle | Circle | ";
         //When
-        List<String> actual = new ArrayList<String>();
-        for ( Shape shape : shapeList) {
-            actual.add(shape.getShapeName());
-        }
+        String actual = shapeCollector.showFigures();
         //Then
         Assert.assertEquals(expected, actual);
     }
