@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class StreamMain {
 
-     public final static List<ForumUser> initList() {
+    public final static List<ForumUser> initList() {
 
         List<ForumUser> users = new ArrayList<>();
 
@@ -39,17 +39,17 @@ public class StreamMain {
 
     public static void main(String[] args) {
 
-       Forum forum = new Forum(initList());
+        Forum forum = new Forum(initList());
 
-       Map<Integer, ForumUser> theResultOfFilteringForumUsers = forum.getUsersList().stream()
-               .filter(forumUser -> forumUser.getSex() == 'M' && forumUser.getPublicatedPosts() >= 1 &&
-                       forumUser.getBirthDate().isBefore(LocalDate.now().minus(20, ChronoUnit.YEARS)))
-               .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser));
+        Map<Integer, ForumUser> theResultOfFilteringForumUsers = forum.getUsersList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M' && forumUser.getPublicatedPosts() >= 1 &&
+                        forumUser.getBirthDate().isBefore(LocalDate.now().minus(20, ChronoUnit.YEARS)))
+                .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser));
 
-       System.out.println("# elements: " + theResultOfFilteringForumUsers.size());
-       theResultOfFilteringForumUsers.entrySet().stream()
-               .map(entry -> entry.getKey() + ": " + entry.getValue())
-               .forEach(System.out::println);
+        System.out.println("# elements: " + theResultOfFilteringForumUsers.size());
+        theResultOfFilteringForumUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
     }
 
 }
