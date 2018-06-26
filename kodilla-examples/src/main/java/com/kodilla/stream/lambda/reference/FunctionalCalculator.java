@@ -1,4 +1,4 @@
-package com.kodilla.stream.reference;
+package com.kodilla.stream.lambda.reference;
 
 public class FunctionalCalculator {
 
