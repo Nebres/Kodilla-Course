@@ -4,34 +4,32 @@ import java.util.List;
 
 public class ShapeCollector {
 
-    private List<Shape> shapeList;
+    private List<Shape> shapes;
 
     public ShapeCollector(List<Shape> shapeList) {
-        this.shapeList = shapeList;
+        this.shapes = shapeList;
     }
 
     public void addFigure(Shape shape) {
-        this.shapeList.add(shape);
+        this.shapes.add(shape);
     }
 
     public void removeFigure(Shape shape) {
-        this.shapeList.remove(shape);
+        this.shapes.remove(shape);
     }
 
     public Shape getFigure(int i) {
-        return this.shapeList.get(i);
+        return this.shapes.get(i);
     }
+
 
     public String showFigures() {
 
         StringBuilder builder = new StringBuilder();
-        String allShape = "";
-
-        for ( Shape shape : this.shapeList) {
-            String temp = shape.getShapeName();
-            allShape = builder.append(temp + " | ").toString();
+        for (Shape shape : shapes) {
+            builder.append(shape.getShapeName()).append(" | ");
         }
-        return allShape;
+        return builder.toString();
     }
 
 }
