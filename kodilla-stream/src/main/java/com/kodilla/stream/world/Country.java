@@ -19,7 +19,6 @@ public final class Country {
 
     public BigDecimal getPeopleQuantity() {
         return quantityOfPeople;
-
     }
 
     @Override
@@ -33,7 +32,6 @@ public final class Country {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getCountryName(), quantityOfPeople);
     }
 

@@ -25,7 +25,6 @@ public final class Continent {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getCountryList());
     }
 
