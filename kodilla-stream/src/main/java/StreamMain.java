@@ -1,5 +1,7 @@
 import com.kodilla.stream.forumuser.ForumUser;
 import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.beautifier.PoemBeautifier;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -39,6 +41,14 @@ public class StreamMain {
 
     public static void main(String[] args) {
 
+        // task 7.1
+        PoemBeautifier beautifier = new PoemBeautifier();
+
+        beautifier.beautify("example text", text -> text.toUpperCase());
+        beautifier.beautify("another text", text -> text.substring(text.length() < 3 ? 0 : text.length()/ 2 + 2).replace('t', 'T'));
+        beautifier.beautify("one more time", text -> "".concat("..::||" ).concat(text).concat("||::.."));
+
+        // task 7.4
         Forum forum = new Forum(initList());
 
         Map<Integer, ForumUser> theResultOfFilteringForumUsers = forum.getUsersList().stream()
