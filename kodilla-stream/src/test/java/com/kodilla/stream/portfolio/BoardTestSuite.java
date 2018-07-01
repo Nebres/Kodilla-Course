@@ -2,12 +2,14 @@ package com.kodilla.stream.portfolio;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.stream.Collectors.toList;
 
 public class BoardTestSuite {
@@ -146,26 +148,17 @@ public class BoardTestSuite {
         //When
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
-        List<Integer> listOfNumberOfDayFromDayWhenTaskWasCreate = project.getTaskLists().stream()
+        List<Long> listOfNumberOfDayFromDayWhenTaskWasCreate = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(t -> t.getTasks().stream())
-                .map(d -> LocalDate.now().getDayOfMonth() - (d.getCreated().getDayOfMonth()))
+                .map(s -> DAYS.between(s.getCreated(), LocalDate.now()))
                 .collect(Collectors.toList());
 
         double actual = IntStream.range(0,listOfNumberOfDayFromDayWhenTaskWasCreate.size())
-                .map(s -> listOfNumberOfDayFromDayWhenTaskWasCreate.get(s))
+                .map(s -> listOfNumberOfDayFromDayWhenTaskWasCreate.get(s).intValue())
                 .average()
                 .getAsDouble();
 
-        //another method to count actual
-        //replace: List<Integer> listOfNumberOfDayFromDayWhenTaskWasCreate with:
-        //int sumOfNumberOfDayFromDayWhenTaskWasCreate
-        //replace: collect(...) with:
-        //.reduce(0, (result ,current) -> result = result + current);
-        //then: double actual = sumOfNumberOfDayFromDayWhenTaskWasCreate / project.getTaskLists().size();
-        //end
-
-        //Then
         Assert.assertEquals(expected, actual, 1e-2 );
     }
 
