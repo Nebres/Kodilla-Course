@@ -84,7 +84,7 @@ public class BookDirectoryTestSuite {
     }
 
     @Test
-    public void testListBooksInHandsOfWhenUserHave0Book() {
+    public void testListBooksInHandsOfWhenUserHaveNoBooks() {
         //Given
         LibraryUser libraryUserJan = new LibraryUser("Jan", "Kowalczyk", "123345679");
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
