@@ -1,6 +1,7 @@
 package com.kodilla.testing.library;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BookLibrary {
@@ -24,8 +25,8 @@ public class BookLibrary {
         return bookList;
     }
 
-   // public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
-
-   //}
+   public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
+       return null;
+   }
 
 }
