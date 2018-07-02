@@ -25,9 +25,7 @@ public class BookLibrary {
     }
 
    public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
-
        return null;
-
    }
 
 }
