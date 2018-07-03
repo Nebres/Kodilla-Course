@@ -23,6 +23,7 @@ public class Flight {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if (o == null) return false;
         if (!(o instanceof Flight)) return false;
         Flight flight = (Flight) o;
         return Objects.equals(getDepartureAirport(), flight.getDepartureAirport()) &&

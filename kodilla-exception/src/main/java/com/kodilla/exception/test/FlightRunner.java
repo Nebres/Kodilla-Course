@@ -14,7 +14,7 @@ public class FlightRunner {
            boolean result = new FlightFinder().isPossibleToGetIntoSpecifiedAirport(flightMap, "xzzzx");
            System.out.println(result);
        } catch (Exception e) {
-           System.out.println(e);
+           e.printStackTrace();
        }
     }
 

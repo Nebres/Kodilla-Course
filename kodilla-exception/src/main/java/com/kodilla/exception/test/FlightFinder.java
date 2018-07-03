@@ -15,11 +15,11 @@ public class FlightFinder {
        return flightMap;
    }
 
-   public boolean isPossibleToGetIntoSpecifiedAirport(Map<String,Boolean> flightMap, String airportName)  throws RouteNotFoundException {
+   public boolean isPossibleToGetIntoSpecifiedAirport(Map<String,Boolean> flightMap, String airportName) throws RouteNotFoundException {
        if (!flightMap.containsKey(airportName)) {
-           throw new RouteNotFoundException("Wrong Airport Name");}
-
-          return flightMap.get(airportName);
+           throw new RouteNotFoundException("Wrong Airport Name");
+       }
+       return flightMap.get(airportName);
    }
 
 }
