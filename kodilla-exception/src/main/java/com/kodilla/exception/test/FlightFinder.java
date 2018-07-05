@@ -1,25 +1,20 @@
 package com.kodilla.exception.test;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class FlightFinder {
 
-   private final static Random RANDOM = new Random();
+    private final Map<String, Boolean> mapOfFlights;
 
-   public Map findFlight(Flight flight) {
+    public FlightFinder(Map<String, Boolean> mapOfFlights) {
+        this.mapOfFlights = mapOfFlights;
+    }
 
-       Map<String, Boolean> flightMap = new HashMap<>();
-       flightMap.put(flight.getArrivalAirport(),RANDOM.nextBoolean());
-       return flightMap;
-   }
-
-   public boolean isPossibleToGetIntoSpecifiedAirport(Map<String,Boolean> flightMap, String airportName) throws RouteNotFoundException {
-       if (!flightMap.containsKey(airportName)) {
-           throw new RouteNotFoundException("Wrong Airport Name");
-       }
-       return flightMap.get(airportName);
+    public void findFlight(Flight flight) throws RouteNotFoundException {
+        if (!mapOfFlights.containsKey(flight.getDepartureAirport())) {
+            throw new RouteNotFoundException("Wrong Airport Name");
+        }
+        System.out.println(flight.getDepartureAirport().concat(" | ").concat(mapOfFlights.get(flight.getDepartureAirport()).toString()));
    }
 
 }
