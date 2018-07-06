@@ -1,5 +1,6 @@
 package com.kodilla.testing.library;
 
+import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import static org.mockito.Mockito.*;
 
 public class BookDirectoryTestSuite {
 
-    private LibraryDatabase libraryDatabaseMock;
+    private  LibraryDatabase libraryDatabaseMock;
     private BookLibrary bookLibrary;
     private LibraryUser libraryUser;
 
@@ -21,7 +22,8 @@ public class BookDirectoryTestSuite {
         return resultList;
     }
 
-    private void initializeGivenData() {
+    @Before
+    public void initializeGivenData() {
         libraryDatabaseMock = mock(LibraryDatabase.class);
         bookLibrary = new BookLibrary(libraryDatabaseMock);
         libraryUser = new LibraryUser("Jan", "Kowalczyk", "123345679)");
