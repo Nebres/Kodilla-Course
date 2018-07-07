@@ -17,7 +17,7 @@ public class FlightRunner {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (RouteNotFoundException r) {
-            r.printStackTrace();
+            System.err.println(r);
         }
     }
 
