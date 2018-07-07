@@ -50,4 +50,5 @@ public class LibraryUser {
         result = 31 * result + pesel.hashCode();
         return result;
     }
+
 }
