@@ -11,23 +11,26 @@ public class SellValidator {
     }
 
     public boolean isThereEnoughThatItem() {
-        return order.getSeller().getItmesForSell().get(order.getItem().getItemId()).getItemQuantity() >= order.getQuantity();
+        return order.getSeller().getItmesForSell().get(order.getItem().getItemId()).getItemQuantity()
+                <= order.getQuantity();
     }
 
     public boolean isQuantityInOrderIsMoreThan0() {
         return order.getQuantity() > 0 ;
     }
-    public boolean IsItemIsSaleable() {
+
+    public boolean isItemIsSaleable() {
 
     boolean itemToSell = true;
 
         if (!isQuantityInOrderIsMoreThan0()) {
             System.out.println(ORDER_EQUAL_TO_0_COMMUNICATE);
             return itemToSell = false;
-        } else if (!new SellValidator(order).isThereEnoughThatItem()) {
+        } else if (isThereEnoughThatItem()) {
             System.out.println(ORDER_IS_MORE_THAN_SELLER_HAVE_ON_STOCK);
             return itemToSell = false;
-        } else if (new SellValidator(order).isThereEnoughThatItem() && new SellValidator(order).isQuantityInOrderIsMoreThan0()) {
+        } else if (isThereEnoughThatItem()
+                && isQuantityInOrderIsMoreThan0()) {
             return itemToSell = true;
         }
         return itemToSell;

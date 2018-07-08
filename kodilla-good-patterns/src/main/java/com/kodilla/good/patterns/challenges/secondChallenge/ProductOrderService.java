@@ -12,17 +12,18 @@ public class ProductOrderService {
     }
 
     public String printCommunicateForBuyer() {
-        return String.format(INFO_FOR_BUYER, order.getSeller().getUserNick(), order.getQuantity(), order.getItem().getItemName(),
-                order.getSeller().getUserRealName(), order.getSeller().getUserAddress());
+        return String.format(INFO_FOR_BUYER, order.getSeller().getUserNick(), order.getQuantity(), order.getItem()
+                        .getItemName(),order.getSeller().getUserRealName(), order.getSeller().getUserAddress());
     }
 
     public String printCommunicateForSeller() {
-        return String.format(INFO_FOR_SELLER, order.getBuyer().getUserNick(), order.getQuantity(), order.getItem().getItemName(),
-                order.getBuyer().getUserRealName(), order.getBuyer().getUserAddress());
+        return String.format(INFO_FOR_SELLER, order.getBuyer().getUserNick(), order.getQuantity(), order.getItem()
+                        .getItemName(),order.getBuyer().getUserRealName(), order.getBuyer().getUserAddress());
     }
 
     public void sellProcess() {
-        if (new SellValidator(order).IsItemIsSaleable()) {
+
+        if (new SellValidator(order).isItemIsSaleable()) {
             System.out.println(printCommunicateForBuyer());
             System.out.println(printCommunicateForSeller());
         } else {
