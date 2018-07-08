@@ -2,9 +2,9 @@ package com.kodilla.testing.library;
 
 public class LibraryUser {
 
-    String firstName;
-    String lastName;
-    String pesel;
+    private String firstName;
+    private String lastName;
+    private final String pesel;
 
     public LibraryUser(String firstName, String lastName, String pesel) {
         this.firstName = this.firstName;
