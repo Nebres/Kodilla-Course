@@ -15,8 +15,9 @@ public final class BookLibrary {
     public List<Book> listBooksWithCondition(String titleFragment) {
 
         List<Book> bookList = new ArrayList<Book>();
+
         if (titleFragment.length() < 3) {
-            return bookList;
+            return Collections.emptyList();
         }
 
         List<Book> resultList = libraryDatabase

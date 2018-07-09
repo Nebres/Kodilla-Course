@@ -44,10 +44,12 @@ public class BookDirectoryTestSuite {
         resultListOfBooks.add(book4);
         when(libraryDatabaseMock.listBooksWithCondition("Secret"))
                 .thenReturn(resultListOfBooks);
+        int expected = 4;
         // When
         List<Book> theListOfBooks = bookLibrary.listBooksWithCondition("Secret");
+        int actual = theListOfBooks.size();
         // Then
-        assertEquals(4, theListOfBooks.size());
+        assertEquals(expected, actual);
     }
 
     @Test
