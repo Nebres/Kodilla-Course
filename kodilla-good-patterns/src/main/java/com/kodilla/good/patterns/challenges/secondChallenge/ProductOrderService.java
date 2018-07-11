@@ -11,14 +11,24 @@ public class ProductOrderService {
         this.order = order;
     }
 
-    public String printCommunicateForBuyer() {
-        return String.format(INFO_FOR_BUYER, order.getSeller().getUserNick(), order.getQuantity(), order.getItem()
-                        .getItemName(),order.getSeller().getUserRealName(), order.getSeller().getUserAddress());
+    private String printCommunicateForBuyer() {
+        return String.format(INFO_FOR_BUYER,
+                order.getSeller().getUserNick(),
+                order.getQuantity(),
+                order.getItem().getItemName(),
+                order.getSeller().getUserRealName(),
+                order.getSeller().getUserAddress()
+        );
     }
 
-    public String printCommunicateForSeller() {
-        return String.format(INFO_FOR_SELLER, order.getBuyer().getUserNick(), order.getQuantity(), order.getItem()
-                        .getItemName(),order.getBuyer().getUserRealName(), order.getBuyer().getUserAddress());
+    private String printCommunicateForSeller() {
+        return String.format(INFO_FOR_SELLER,
+                order.getBuyer().getUserNick(),
+                order.getQuantity(),
+                order.getItem().getItemName(),
+                order.getBuyer().getUserRealName(),
+                order.getBuyer().getUserAddress()
+        );
     }
 
     public void sellProcess() {

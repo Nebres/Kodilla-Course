@@ -1,5 +1,7 @@
 package com.kodilla.good.patterns.challenges.secondChallenge;
 
+import java.util.Map;
+
 public class SellValidator {
 
     private static final String ORDER_EQUAL_TO_0_COMMUNICATE = "\n Change order quantity to more than 0";
@@ -11,11 +13,15 @@ public class SellValidator {
     }
 
     public boolean isThereEnoughThatItem() {
-        return order.getSeller().getItmesForSell().get(order.getItem().getItemId()).getItemQuantity()
+
+        int orderedId = order.getItem().getItemId();
+        Map<Integer, Item> itemsToSellByChosenSeller = order.getSeller().getItmesForSell();
+
+        return itemsToSellByChosenSeller.get(orderedId).getItemQuantity()
                 <= order.getQuantity();
     }
 
-    public boolean isQuantityInOrderIsMoreThan0() {
+    public boolean isForSell() {
         return order.getQuantity() > 0 ;
     }
 
@@ -23,14 +29,14 @@ public class SellValidator {
 
     boolean itemToSell = true;
 
-        if (!isQuantityInOrderIsMoreThan0()) {
+        if (!isForSell()) {
             System.out.println(ORDER_EQUAL_TO_0_COMMUNICATE);
             return itemToSell = false;
         } else if (isThereEnoughThatItem()) {
             System.out.println(ORDER_IS_MORE_THAN_SELLER_HAVE_ON_STOCK);
             return itemToSell = false;
         } else if (isThereEnoughThatItem()
-                && isQuantityInOrderIsMoreThan0()) {
+                && isForSell()) {
             return itemToSell = true;
         }
         return itemToSell;

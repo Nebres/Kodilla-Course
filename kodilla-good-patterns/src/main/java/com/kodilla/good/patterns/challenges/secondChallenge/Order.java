@@ -1,7 +1,5 @@
 package com.kodilla.good.patterns.challenges.secondChallenge;
 
-import java.time.LocalDate;
-
 public class Order {
 
     private final Item item;
