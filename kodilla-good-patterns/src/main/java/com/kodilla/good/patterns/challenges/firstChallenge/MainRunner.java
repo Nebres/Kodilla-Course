@@ -1,9 +1,9 @@
-import com.kodilla.good.patterns.challenges.MovieStore;
+package com.kodilla.good.patterns.challenges.firstChallenge;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 
 public class MainRunner {
 
@@ -15,7 +15,7 @@ public class MainRunner {
 
        String result = listMap.values()
                .stream()
-               .flatMap(s -> s.stream())
+               .flatMap(Collection::stream)
                .collect(Collectors.joining(SEPARATOR));
 
        System.out.println(result);
