@@ -36,14 +36,23 @@ public class Supplier {
 
         String result = "";
         for (Map.Entry<String, Double> entry : productsList.entrySet()) {
-           result = result.concat(entry.getKey()).concat(" | ").concat(entry.getValue().toString().concat("\n"));
+           result = result
+                   .concat(entry.getKey())
+                   .concat(" | ")
+                   .concat("\n".concat(entry.getValue().toString()));
         }
         return result;
     }
 
     public String getInformationAboutCompany() {
-        return String.format("\nCompany Name: ".concat(getCompanyName()).concat("\nAddress: ")
-                .concat(getCompanyAddress()).concat("\nNIP:").concat(getCompanyNIP()).concat("\nProducts: \n").concat(printProductsList()));
+        return "\nCompany Name: "
+                .concat(getCompanyName())
+                .concat("\nAddress: ")
+                .concat(getCompanyAddress())
+                .concat("\nNIP:")
+                .concat(getCompanyNIP())
+                .concat("\nProducts: \n")
+                .concat(printProductsList());
     }
 
 }
