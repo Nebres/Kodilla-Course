@@ -17,8 +17,7 @@ public class SellValidator {
         int orderedId = order.getItem().getItemId();
         Map<Integer, Item> itemsToSellByChosenSeller = order.getSeller().getItmesForSell();
 
-        return itemsToSellByChosenSeller.get(orderedId).getItemQuantity()
-                <= order.getQuantity();
+        return itemsToSellByChosenSeller.get(orderedId).getItemQuantity() <= order.getQuantity();
     }
 
     public boolean isForSell() {

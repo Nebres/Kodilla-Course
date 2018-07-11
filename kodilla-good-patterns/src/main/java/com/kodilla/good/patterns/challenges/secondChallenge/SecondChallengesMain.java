@@ -1,8 +1,4 @@
-package com.kodilla.good.patterns.challenges;
-
-import com.kodilla.good.patterns.challenges.secondChallenge.DataBase;
-import com.kodilla.good.patterns.challenges.secondChallenge.Order;
-import com.kodilla.good.patterns.challenges.secondChallenge.ProductOrderService;
+package com.kodilla.good.patterns.challenges.secondChallenge;
 
 public class SecondChallengesMain {
 

@@ -4,7 +4,7 @@ public class ProductOrderService {
 
     private static final String INFO_FOR_BUYER = "\n You buy From %s %s %s \n Address and real name: %s \n %s \n";
     private static final String INFO_FOR_SELLER = " %s buy form You %s %s \n Address and real name: %s \n %s";
-    private static final String TERMINATED_INFO= "Process Terminated";
+    private static final String TERMINATED_INFO = "Process Terminated";
     private final Order order;
 
     public ProductOrderService(Order order) {
