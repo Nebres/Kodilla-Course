@@ -2,14 +2,14 @@ package com.kodilla.good.patterns.challenges.thirdChallenge;
 
 import java.util.Map;
 
-public class Supplier {
+public class FoodProducer {
 
     private final String companyName;
     private final String companyAddress;
     private final String companyNIP;
     private final Map<String, Double> productsList;
 
-    public Supplier(String companyName, String companyAddress, String companyNIP, Map<String, Double> productsList) {
+    public FoodProducer(String companyName, String companyAddress, String companyNIP, Map<String, Double> productsList) {
         this.companyName = companyName;
         this.companyAddress = companyAddress;
         this.companyNIP = companyNIP;
@@ -35,24 +35,14 @@ public class Supplier {
     public String printProductsList() {
 
         String result = "";
+
         for (Map.Entry<String, Double> entry : productsList.entrySet()) {
            result = result
                    .concat(entry.getKey())
                    .concat(" | ")
-                   .concat("\n".concat(entry.getValue().toString()));
+                   .concat(entry.getValue().toString()).concat("\n");
         }
         return result;
-    }
-
-    public String getInformationAboutCompany() {
-        return "\nCompany Name: "
-                .concat(getCompanyName())
-                .concat("\nAddress: ")
-                .concat(getCompanyAddress())
-                .concat("\nNIP:")
-                .concat(getCompanyNIP())
-                .concat("\nProducts: \n")
-                .concat(printProductsList());
     }
 
 }

@@ -4,12 +4,17 @@ public class ThirdChallengeMain {
 
     public static void main(String[] args){
 
-        new OrderProcessor(new SuplliersDataBase().initializeExtraFoodShop()).printOffer();
-        new OrderProcessor(new SuplliersDataBase().initializeExtraFoodShop()).process("BIO Carrot", 10.0);
-        new OrderProcessor(new SuplliersDataBase().initializeHealthyShop()).printOffer();
-        new OrderProcessor(new SuplliersDataBase().initializeHealthyShop()).process("Tofu", 1000.0);
-        new OrderProcessor(new SuplliersDataBase().initializeGlutenFreeShop()).printOffer();
-        new OrderProcessor(new SuplliersDataBase().initializeGlutenFreeShop()).process("Bread", 00.0);
+        String info1 = new ExtraFoodShop( new FoodProducerDB().initializeExtraFoodShop()).getInformationAboutCompany();
+        String info2 = new HealthyShop( new FoodProducerDB().initializeHealthyShop()).getInformationAboutCompany();
+        String info3 =  new GlutenFreeShop(new FoodProducerDB().initializeGlutenFreeShop()).getInformationAboutCompany();
+
+        System.out.println(info1);
+        System.out.println(info2);
+        System.out.println(info3);
+
+        new ExtraFoodShop( new FoodProducerDB().initializeExtraFoodShop()).process("BIO Carrot", 20.21);
+        new HealthyShop( new FoodProducerDB().initializeHealthyShop()).process("Tofu", 1000.0);
+        new GlutenFreeShop(new FoodProducerDB().initializeGlutenFreeShop()).process("Bread", 00.0);
 
     }
 
