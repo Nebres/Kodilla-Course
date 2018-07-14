@@ -3,46 +3,27 @@ package com.kodilla.good.patterns.challenges.thirdChallenge;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.stream.*;
+import java.util.stream.Collectors;
 
-public class FlightFinder implements Communications {
+public class FlightFinder {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
     private final Map<Integer, Flight> mapOfAllFlights;
+    private final SearchChecker searchChecker = new SearchChecker();
 
     public FlightFinder(Map<Integer, Flight> mapOfAllFlights) {
         this.mapOfAllFlights = mapOfAllFlights;
     }
 
-    private Set<String> createSetOfStartAirport() {
 
-      return mapOfAllFlights.values()
-                .stream()
-                .map(flight -> flight.getStartAirport())
-                .collect(Collectors.toSet());
+    public void printAirportsInUse(Map<Integer, Flight> mapOfAllFlights) {
+        new InformationOfAirports().printListOfStartAirports(mapOfAllFlights);
+        new InformationOfAirports().printListOfEndAirports(mapOfAllFlights);
     }
 
-    private Set<String> createSetOfSEndAirport() {
-        return mapOfAllFlights.values()
-                .stream()
-                .map(flight -> flight.getEndAirport())
-                .collect(Collectors.toSet());
-    }
+    public void scanFlightsFromAirport(String startAirport) {
 
-    private void scanFlightsFromAirport() {
+        if (searchChecker.isFlightStartFromThisAirport(mapOfAllFlights, startAirport)) {
 
-        System.out.println(LIST_OF_START_AIRPORT);
-        Set<String> startAirports = createSetOfStartAirport();
-        for (String airport: startAirports) {
-            System.out.println(airport);
-        }
-
-        System.out.println(START_AIRPORT);
-        String startAirport = SCANNER.next();
-
-        if (startAirports.contains(startAirport)) {
             List<Flight> flightsFormChosenAirport = mapOfAllFlights
                     .values()
                     .stream()
@@ -51,26 +32,16 @@ public class FlightFinder implements Communications {
 
             flightsFormChosenAirport
                     .stream()
-                    .map(result -> result.toString())
+                    .map(Flight::toString)
                     .forEach(System.out::println);
         } else {
-            System.out.println(WRONG_AIRPORT);
-            scanFlightsFromAirport();
+            System.out.println(FlightFinderCommunicates.WRONG_AIRPORT);
         }
     }
 
-    private void scanFlightsToAirport() {
+    public void scanFlightsToAirport(String endAirport) {
 
-        System.out.println(LIST_OF_END_AIRPORT);
-        Set<String> endAirports = createSetOfSEndAirport();
-        for (String airport: endAirports) {
-            System.out.println(airport);
-        }
-
-        System.out.println(END_AIRPORT);
-        String endAirport = SCANNER.next();
-
-        if (endAirports.contains(endAirport)) {
+        if (searchChecker.isFlightEndInThisAirport(mapOfAllFlights, endAirport)) {
             List<Flight> flightsToChosenAirport = mapOfAllFlights
                     .values()
                     .stream()
@@ -79,39 +50,16 @@ public class FlightFinder implements Communications {
 
             flightsToChosenAirport
                     .stream()
-                    .map(result -> result.toString())
+                    .map(Flight::toString)
                     .forEach(System.out::println);
         } else {
-            System.out.println(WRONG_AIRPORT);
-            scanFlightsToAirport();
+            System.out.println(FlightFinderCommunicates.WRONG_AIRPORT);
         }
     }
 
-    private void scanFlightsToAirportWithAnotherAirport() {
+    public void scanFlightsToAirportWithAnotherAirport(String startAirport, String endAirport, String interAirport) {
 
-        System.out.println(LIST_OF_START_AIRPORT);
-        Set<String> startAirports = createSetOfStartAirport();
-        for (String airport: startAirports) {
-            System.out.println(airport);
-        }
-
-        System.out.println(START_AIRPORT);
-        String startAirport = SCANNER.next();
-
-        System.out.println(LIST_OF_END_AIRPORT);
-        Set<String> endAirports = createSetOfSEndAirport();
-        for (String airport: endAirports) {
-            System.out.println(airport);
-        }
-
-        System.out.println(END_AIRPORT);
-        String endAirport = SCANNER.next();
-
-        System.out.println(INTERLANDING_AIRPORT);
-        String interAirport = SCANNER.next();
-
-        if (startAirports.contains(startAirport) && endAirports.contains(endAirport)
-                && endAirports.contains(interAirport)) {
+        if (searchChecker.isFlightIsPossible(mapOfAllFlights, startAirport, endAirport, interAirport)) {
 
             List<Flight> flightsFormSpecifiedToSpecifiedAirport = mapOfAllFlights
                     .values()
@@ -127,42 +75,21 @@ public class FlightFinder implements Communications {
                             && interAirport.equals(flight.getStartAirport()))
                     .collect(Collectors.toList());
 
-            if (flightsFormSpecifiedToSpecifiedAirport.size() > 0 && flightsWithInterlanding.size() > 0) {
+            flightsFormSpecifiedToSpecifiedAirport
+                    .stream()
+                    .map(Flight::toString)
+                    .forEach(System.out::println);
 
-                flightsFormSpecifiedToSpecifiedAirport
-                        .stream()
-                        .map(result -> result.toString())
-                        .forEach(System.out::println);
+            flightsWithInterlanding
+                    .stream()
+                    .map(Flight::toString)
+                    .forEach(System.out::println);
 
-                flightsWithInterlanding
-                        .stream()
-                        .map(result -> result.toString())
-                        .forEach(System.out::println);
-            } else {
-                System.out.println(String.format(WRONG_FLIGHT_WITH_INTERLADNING, startAirport, endAirport, interAirport));
-            }
         } else {
-            System.out.println(WRONG_AIRPORT);
-            scanFlightsToAirportWithAnotherAirport();
+                System.out.println(String
+                        .format(FlightFinderCommunicates.WRONG_FLIGHT_WITH_INTERLADNING,
+                                startAirport, endAirport, interAirport));
         }
     }
 
-    public void chooseOperation() {
-
-        System.out.println(MENU);
-        int chosenNumber = SCANNER.nextInt();
-
-        if (chosenNumber == 1) {
-            scanFlightsFromAirport();
-        } else if (chosenNumber == 2 ) {
-            scanFlightsToAirport();
-        } else if (chosenNumber == 3) {
-
-            scanFlightsToAirportWithAnotherAirport();
-        } else {
-            System.out.println(WRONG_NUMBER);
-            chooseOperation();
-        }
-    }
-    
 }

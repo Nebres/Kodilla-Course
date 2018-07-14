@@ -1,34 +1,32 @@
-package ThirdChallenge;
+package com.kodilla.good.patterns.challenges.thirdChallenge;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.time.LocalDate.now;
-
-public class DataBase {
+public class FlightDB {
 
     private Flight initflight1() {
-        return new Flight("Szymany", "Warszawa", now().plusDays(3L), "09:00");
+        return new Flight("Szymany", "Warszawa");
     }
 
     private Flight initflight2() {
-        return new Flight("Berlin", "Londyn", now().plusDays(2L), "10:00");
+        return new Flight("Berlin", "Londyn");
     }
 
     private Flight initflight3() {
-        return new Flight("Londyn","Berlin", now().plusDays(10L), "13:00");
+        return new Flight("Londyn","Berlin");
     }
 
     private Flight initflight4() {
-        return new Flight("Warszawa", "Berlin", now().plusDays(5L), "19:00");
+        return new Flight("Warszawa", "Berlin");
     }
 
     private Flight initflight5() {
-        return new Flight("Berlin", "Warszawa", now().plusDays(12L), "12:00");
+        return new Flight("Berlin", "Warszawa");
     }
 
     private Flight initflight6() {
-       return new Flight("Warszawa", "Szymany", now().plusDays(4L), "20:00");
+       return new Flight("Warszawa", "Szymany");
     }
 
     public Map<Integer, Flight> initMap() {
