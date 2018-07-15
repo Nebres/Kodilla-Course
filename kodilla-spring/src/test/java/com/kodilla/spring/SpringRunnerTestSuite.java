@@ -15,7 +15,6 @@ public class SpringRunnerTestSuite {
 
     @Test
     public void testUserLoadedIntoContainer() {
-
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
