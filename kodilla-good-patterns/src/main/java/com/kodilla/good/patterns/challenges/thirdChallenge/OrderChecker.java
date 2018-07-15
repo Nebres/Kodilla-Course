@@ -4,15 +4,15 @@ import java.util.Map;
 
 public class OrderChecker {
 
-    public boolean IsThereIsNamedProduct(String productName, Map<String, Double> productList) {
+    private boolean IsThereIsNamedProduct(String productName, Map<String, Double> productList) {
         return productList.containsKey(productName);
     }
 
-    public boolean IsOrderIsMoreThen0(double quantity) {
+    private boolean IsOrderIsMoreThen0(double quantity) {
         return quantity > 0;
     }
 
-    public boolean IsThereIsEnoughQuantityOfProduct(String productName, double quantity, Map<String, Double> productList) {
+    private boolean IsThereIsEnoughQuantityOfProduct(String productName, double quantity, Map<String, Double> productList) {
         return productList.get(productName) >= quantity;
     }
 
