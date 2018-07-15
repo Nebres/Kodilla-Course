@@ -19,15 +19,15 @@ public class OrderChecker {
     public boolean checkTheOrder(String productName, double quantity, Map<String, Double> productList ) {
 
         if (!IsThereIsNamedProduct(productName, productList)) {
-            System.out.println("\nWrong product Name");
+            System.out.println(ShopComunicates.NEW_LINE.concat(ShopComunicates.WRONG_PRODUCT_NAME));
         }
 
         if (!IsOrderIsMoreThen0(quantity)) {
-            System.out.println("\nValue must be more than 0");
+            System.out.println(ShopComunicates.NEW_LINE.concat(ShopComunicates.NOT_ENOUGH_PRODUCT_NUMBER));
         }
 
         if (!IsThereIsEnoughQuantityOfProduct(productName, quantity, productList)){
-            System.out.println("\nYour supplier hasn't have so much product on stock");
+            System.out.println(ShopComunicates.NEW_LINE.concat(ShopComunicates.VALUE_INFORMATION));
         }
 
         return IsThereIsNamedProduct(productName, productList) && IsOrderIsMoreThen0(quantity)

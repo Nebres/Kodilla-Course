@@ -13,7 +13,8 @@ public class FoodProducerDB {
         extraFoodShopProducts.put("Natural Apple", 21.21);
         extraFoodShopProducts.put("Bonny clabber", 120.00);
 
-        return new FoodProducer("Extra Food Shop", "Klewki, ul. Wiejska 17", "739739739",extraFoodShopProducts );
+        return new FoodProducer("Extra Food Shop", "Klewki, ul. Wiejska 17",
+                "739739739", extraFoodShopProducts );
     }
 
     public FoodProducer initializeHealthyShop() {
@@ -24,7 +25,8 @@ public class FoodProducerDB {
         healthyShopProducts.put("Tofu", 21.21);
         healthyShopProducts.put("Soybean", 22.00);
 
-        return new FoodProducer("Healthy Shop", "Warszawa, ul. Ekologów 12", "123439739",healthyShopProducts );
+        return new FoodProducer("Healthy Shop", "Warszawa, ul. Ekologów 12",
+                "123439739", healthyShopProducts );
     }
 
     public FoodProducer initializeGlutenFreeShop() {
@@ -35,7 +37,8 @@ public class FoodProducerDB {
         glutenFreeShopProducts.put("Bread", 12.00);
         glutenFreeShopProducts.put("Soybean Milk", 10.00);
 
-        return new FoodProducer("Gluten Free Shop", "Pcimć Dolny, ul. Rolna 12", "743453219",glutenFreeShopProducts );
+        return new FoodProducer("Gluten Free Shop", "Pcimć Dolny, ul. Rolna 12",
+                "743453219", glutenFreeShopProducts );
     }
 
 }
