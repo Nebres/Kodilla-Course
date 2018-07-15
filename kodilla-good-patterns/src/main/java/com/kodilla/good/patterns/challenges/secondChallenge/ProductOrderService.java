@@ -39,7 +39,7 @@ public class ProductOrderService {
             new OrdersRepository().addPositionToAcceptedList(order);
         } else {
             System.out.println(TERMINATED_INFO);
-            new OrdersRepository().addPositionToReactedList(order);
+            new OrdersRepository().addPositionToRejectedList(order);
         }
     }
 

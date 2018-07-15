@@ -14,7 +14,7 @@ public class OrdersRepository {
         acceptedOrders.add(order);
     }
 
-    public void addPositionToReactedList(Order order) {
+    public void addPositionToRejectedList(Order order) {
         rejectedOrders.add(order);
     }
 
