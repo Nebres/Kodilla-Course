@@ -39,8 +39,8 @@ public class FoodProducer {
         for (Map.Entry<String, Double> entry : productsList.entrySet()) {
            result = result
                    .concat(entry.getKey())
-                   .concat(" | ")
-                   .concat(entry.getValue().toString()).concat("\n");
+                   .concat(ShopComunicates.SEPARATOR)
+                   .concat(entry.getValue().toString()).concat(ShopComunicates.NEW_LINE);
         }
         return result;
     }
