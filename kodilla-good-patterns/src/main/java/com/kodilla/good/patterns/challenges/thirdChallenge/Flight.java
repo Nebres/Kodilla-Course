@@ -1,6 +1,5 @@
 package com.kodilla.good.patterns.challenges.thirdChallenge;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public final class Flight {
@@ -30,7 +29,6 @@ public final class Flight {
         Flight flight = (Flight) o;
         return Objects.equals(getEndAirport(), flight.getEndAirport()) &&
                 Objects.equals(getStartAirport(), flight.getStartAirport());
-
     }
 
     @Override
