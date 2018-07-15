@@ -28,4 +28,5 @@ public class InformationOfAirports {
         endAirports.forEach(System.out::println);
 
    }
+
 }
