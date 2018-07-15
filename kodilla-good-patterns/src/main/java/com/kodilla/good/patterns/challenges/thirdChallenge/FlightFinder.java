@@ -1,33 +1,23 @@
 package com.kodilla.good.patterns.challenges.thirdChallenge;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
+import static com.kodilla.good.patterns.challenges.thirdChallenge.InformationOfAirports.printListOfEndAirports;
+import static com.kodilla.good.patterns.challenges.thirdChallenge.InformationOfAirports.printListOfStartAirports;
 
 public class FlightFinder {
 
-    private final Map<Integer, Flight> mapOfAllFlights;
-    private final SearchChecker searchChecker = new SearchChecker();
-
-    public FlightFinder(Map<Integer, Flight> mapOfAllFlights) {
-        this.mapOfAllFlights = mapOfAllFlights;
-    }
-
-
-    public void printAirportsInUse(Map<Integer, Flight> mapOfAllFlights) {
-        new InformationOfAirports().printListOfStartAirports(mapOfAllFlights);
-        new InformationOfAirports().printListOfEndAirports(mapOfAllFlights);
+    public void printAirportsInUse() {
+        printListOfStartAirports(FlightDB.initMap());
+        printListOfEndAirports(FlightDB.initMap());
     }
 
     public void scanFlightsFromAirport(String startAirport) {
 
-        if (searchChecker.isFlightStartFromThisAirport(mapOfAllFlights, startAirport)) {
+        if (SearchChecker.isFlightStartFromThisAirport(startAirport).size() > 0) {
 
-            List<Flight> flightsFormChosenAirport = mapOfAllFlights
-                    .values()
-                    .stream()
-                    .filter(flight -> startAirport.equals(flight.getStartAirport()))
-                    .collect(Collectors.toList());
+            List<Flight> flightsFormChosenAirport = SearchChecker
+                    .isFlightStartFromThisAirport(startAirport);
 
             flightsFormChosenAirport
                     .stream()
@@ -40,17 +30,16 @@ public class FlightFinder {
 
     public void scanFlightsToAirport(String endAirport) {
 
-        if (searchChecker.isFlightEndInThisAirport(mapOfAllFlights, endAirport)) {
-            List<Flight> flightsToChosenAirport = mapOfAllFlights
-                    .values()
-                    .stream()
-                    .filter(flight -> endAirport.equals(flight.getEndAirport()))
-                    .collect(Collectors.toList());
+        if (SearchChecker.isFlightEndInThisAirport(endAirport).size() > 0) {
 
-            flightsToChosenAirport
+            List<Flight> flightsFormChosenAirport = SearchChecker
+                    .isFlightEndInThisAirport(endAirport);
+
+            flightsFormChosenAirport
                     .stream()
                     .map(Flight::toString)
                     .forEach(System.out::println);
+
         } else {
             System.out.println(FlightFinderCommunicates.WRONG_AIRPORT);
         }
@@ -58,31 +47,16 @@ public class FlightFinder {
 
     public void scanFlightsToAirportWithAnotherAirport(String startAirport, String endAirport, String interAirport) {
 
-        if (searchChecker.isFlightIsPossible(mapOfAllFlights, startAirport, endAirport, interAirport)) {
+        if (SearchChecker.isFlightIsPossible(startAirport, endAirport, interAirport).size() > 0) {
 
-            List<Flight> flightsFormSpecifiedToSpecifiedAirport = mapOfAllFlights
-                    .values()
-                    .stream()
-                    .filter(flight -> startAirport.equals(flight.getStartAirport())
-                            && interAirport.equals(flight.getEndAirport()))
-                    .collect(Collectors.toList());
+            List<Flight> flightsFormSpecifiedToSpecifiedAirport =
+                    SearchChecker.isFlightFromSpecifiedToSpecifiedAirportIsPossible(startAirport, interAirport);
 
-            List<Flight> flightsWithInterlanding = mapOfAllFlights
-                    .values()
-                    .stream()
-                    .filter(flight -> endAirport.equals(flight.getEndAirport())
-                            && interAirport.equals(flight.getStartAirport()))
-                    .collect(Collectors.toList());
+            List<Flight> flightsWithInterlanding = SearchChecker
+                    .isFlightIsPossible(startAirport, endAirport, interAirport);
 
-            flightsFormSpecifiedToSpecifiedAirport
-                    .stream()
-                    .map(Flight::toString)
-                    .forEach(System.out::println);
-
-            flightsWithInterlanding
-                    .stream()
-                    .map(Flight::toString)
-                    .forEach(System.out::println);
+            flightsFormSpecifiedToSpecifiedAirport.forEach(System.out::println);
+            flightsWithInterlanding.forEach(System.out::println);
 
         } else {
                 System.out.println(String

@@ -1,46 +1,58 @@
 package com.kodilla.good.patterns.challenges.thirdChallenge;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class SearchChecker {
 
-    public boolean isFlightStartFromThisAirport(Map<Integer, Flight> mapOfAllFlights, String startAirport) {
+    private static Map<Integer, Flight> mapOfAllFlights = FlightDB.initMap();
+
+    public static List<Flight> isFlightStartFromThisAirport(String startAirport) {
 
         return mapOfAllFlights
                 .values()
                 .stream()
-                .anyMatch(flight -> flight.getStartAirport().equals(startAirport));
-
+                .filter(flight -> flight.getStartAirport().equals(startAirport))
+                .collect(Collectors.toList());
     }
 
-    public boolean isFlightEndInThisAirport(Map<Integer, Flight> mapOfAllFlights, String endAirport) {
+    public static List<Flight> isFlightEndInThisAirport(String endAirport) {
 
         return mapOfAllFlights
                 .values()
                 .stream()
-                .anyMatch(flight -> flight.getEndAirport().equals(endAirport));
+                .filter(flight -> flight.getStartAirport().equals(endAirport))
+                .collect(Collectors.toList());
     }
 
-    public boolean isFlightIsPossible (Map<Integer, Flight> mapOfAllFlights, String startAirport,
-                                       String endAirport, String interAirport) {
+    public static List<Flight> isFlightFromSpecifiedToSpecifiedAirportIsPossible(String startAirport, String endAirport) {
 
-        List<Flight> flightsFormSpecifiedToSpecifiedAirport = mapOfAllFlights
+        return mapOfAllFlights
                 .values()
                 .stream()
-                .filter(flight -> startAirport.equals(flight.getStartAirport())
-                        && interAirport.equals(flight.getEndAirport()))
+                .filter(flight -> flight.getStartAirport().equals(startAirport)
+                        && flight.getEndAirport().equals(endAirport))
                 .collect(Collectors.toList());
+    }
 
-        List<Flight> flightsWithInterlanding = mapOfAllFlights
-                .values()
-                .stream()
-                .filter(flight -> endAirport.equals(flight.getEndAirport())
-                        && interAirport.equals(flight.getStartAirport()))
-                .collect(Collectors.toList());
+    public static List<Flight> isFlightIsPossible (String startAirport, String endAirport, String interAirport) {
 
-        return flightsFormSpecifiedToSpecifiedAirport.size() > 0 && flightsWithInterlanding.size() > 0;
+        List<Flight> flightsWithInterlanding = new ArrayList<>();
+
+        if (isFlightFromSpecifiedToSpecifiedAirportIsPossible(startAirport, interAirport).size() > 0) {
+             flightsWithInterlanding = mapOfAllFlights
+                    .values()
+                    .stream()
+                    .filter(flight -> endAirport.equals(flight.getEndAirport())
+                            && interAirport.equals(flight.getStartAirport()))
+                    .collect(Collectors.toList());
+
+             return flightsWithInterlanding;
+        } else {
+            return flightsWithInterlanding;
+        }
     }
 
 }

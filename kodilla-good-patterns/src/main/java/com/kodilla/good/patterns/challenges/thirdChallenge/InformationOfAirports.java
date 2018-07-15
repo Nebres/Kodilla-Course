@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class InformationOfAirports {
 
-   public void printListOfStartAirports(Map<Integer, Flight> mapOfAllFlights) {
+   public static void printListOfStartAirports(Map<Integer, Flight> mapOfAllFlights) {
 
        Set<String> startAirports = mapOfAllFlights.values()
                .stream()
@@ -17,7 +17,7 @@ public class InformationOfAirports {
        startAirports.forEach(System.out::println);
    }
 
-   public void printListOfEndAirports(Map<Integer, Flight> mapOfAllFlights) {
+   public static void printListOfEndAirports(Map<Integer, Flight> mapOfAllFlights) {
 
         Set<String> endAirports = mapOfAllFlights.values()
                 .stream()
@@ -26,7 +26,6 @@ public class InformationOfAirports {
 
         System.out.println(FlightFinderCommunicates.LIST_OF_END_AIRPORT);
         endAirports.forEach(System.out::println);
-
    }
 
 }
