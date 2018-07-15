@@ -8,7 +8,6 @@ public class Buyer implements User {
     private final String realName;
     private final String address;
 
-
     public Buyer(String nick, String realName, String address) {
         this.nick = nick;
         this.realName = realName;

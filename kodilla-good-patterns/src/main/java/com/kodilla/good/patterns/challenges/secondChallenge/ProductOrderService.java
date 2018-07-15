@@ -36,8 +36,10 @@ public class ProductOrderService {
         if (new SellValidator(order).isItemIsSaleable()) {
             System.out.println(printCommunicateForBuyer());
             System.out.println(printCommunicateForSeller());
+            new OrdersRepository().addPositionToAcceptedList(order);
         } else {
             System.out.println(TERMINATED_INFO);
+            new OrdersRepository().addPositionToReactedList(order);
         }
     }
 

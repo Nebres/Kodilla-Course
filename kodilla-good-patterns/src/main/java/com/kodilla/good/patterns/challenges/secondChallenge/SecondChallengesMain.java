@@ -4,17 +4,30 @@ public class SecondChallengesMain {
 
     public static void main(String[] args) {
 
-        Order order1 = new DataBase().initializeOrder1();
-        Order order2 = new DataBase().initializeOrder2();
-        Order order3 = new DataBase().initializeOrder3();
-        Order order4 = new DataBase().initializeOrder4();
-        Order order5 = new DataBase().initializeOrder5();
+        DataBase db = new DataBase();
+        OrdersRepository orders = new OrdersRepository();
 
-        new ProductOrderService(order1).sellProcess();
-        new ProductOrderService(order2).sellProcess();
-        new ProductOrderService(order3).sellProcess();
-        new ProductOrderService(order4).sellProcess();
-        new ProductOrderService(order5).sellProcess();
+        new ProductOrderService(new Order(db.initializeItem1(), db.initializeSeller1(),
+                db.initializeBuyer1(),2))
+                .sellProcess();
+
+        new ProductOrderService(new Order(db.initializeItem2(), db.initializeSeller1(),
+                db.initializeBuyer2(),0.4))
+                .sellProcess();
+
+        new ProductOrderService(new Order(db.initializeItem3(), db.initializeSeller2(),
+                db.initializeBuyer1(),23.4))
+                .sellProcess();
+
+        new ProductOrderService(new Order(db.initializeItem1(), db.initializeSeller1(),
+                db.initializeBuyer2(),100.0))
+                .sellProcess();
+
+        new ProductOrderService(new Order(db.initializeItem1(), db.initializeSeller1(),
+                db.initializeBuyer2(),0.0))
+                .sellProcess();
+
+        orders.printLists();
     }
 
 }

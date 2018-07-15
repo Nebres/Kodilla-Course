@@ -30,4 +30,14 @@ public class Order {
         return buyer;
     }
 
+    @Override
+    public String toString() {
+        return "\nOrder{" +
+                "item=" + item.getItemName() +
+                ", seller=" + seller.getUserRealName() +
+                ", buyer=" + buyer.getUserRealName() +
+                ", quantity=" + quantity +
+                "}\n";
+    }
+
 }
