@@ -9,27 +9,27 @@ abstract class AbstractShop implements Shop {
     }
 
     public String getInformationAboutCompany() {
-        return ShopComunicates.NEW_LINE
-                .concat(ShopComunicates.COMAPNY_NAME)
-                .concat(foodProducer.getCompanyName())
-                .concat(ShopComunicates.NEW_LINE)
-                .concat(ShopComunicates.COMAPNY_ADDRESS)
-                .concat(foodProducer.getCompanyAddress())
-                .concat(ShopComunicates.NEW_LINE)
-                .concat(ShopComunicates.COMAPNY_NIP)
+        return ShopCommunicates.NEW_LINE
+                .concat(ShopCommunicates.COMPANY_NAME)
+                .concat(foodProducer.getName())
+                .concat(ShopCommunicates.NEW_LINE)
+                .concat(ShopCommunicates.COMPANY_ADDRESS)
+                .concat(foodProducer.getAddress())
+                .concat(ShopCommunicates.NEW_LINE)
+                .concat(ShopCommunicates.COMPANY_NIP)
                 .concat(foodProducer.getCompanyNIP())
-                .concat(ShopComunicates.NEW_LINE)
-                .concat(ShopComunicates.COMAPNY_PRODUCTS)
+                .concat(ShopCommunicates.NEW_LINE)
+                .concat(ShopCommunicates.COMPANY_PRODUCTS)
                 .concat(foodProducer.printProductsList()
-                .concat(ShopComunicates.NEW_LINE));
+                .concat(ShopCommunicates.NEW_LINE));
     }
 
     public void process(String productName, double quantity) {
 
-        if(new OrderChecker().checkTheOrder(productName, quantity, foodProducer.getProductsList())) {
-            System.out.println(ShopComunicates.ORDER_ACCEPTED.concat(ShopComunicates.NEW_LINE));
+        if (OrderChecker.checkTheOrder(productName, quantity, foodProducer.getProductsList())) {
+            System.out.println(ShopCommunicates.ORDER_ACCEPTED.concat(ShopCommunicates.NEW_LINE));
         } else {
-            System.out.println(ShopComunicates.ORDER_REJECTED.concat(ShopComunicates.NEW_LINE));
+            System.out.println(ShopCommunicates.ORDER_REJECTED.concat(ShopCommunicates.NEW_LINE));
         }
     }
 
