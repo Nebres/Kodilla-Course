@@ -21,7 +21,7 @@ public class CalculatorTestSuite {
         Calculator calculator = context.getBean(Calculator.class);
         double expected = 1.00;
         //When
-        double actual = calculator.add(0.50,0.50);
+        double actual = calculator.add(0.50, 0.50);
         //Than
         Assert.assertEquals(expected, actual, 1e-2);
     }
@@ -34,7 +34,8 @@ public class CalculatorTestSuite {
         Calculator calculator = context.getBean(Calculator.class);
         double expected = 0.00;
         //When
-        double actual = calculator.sub(0.50,0.50);
+        double actual = calculator.sub(0.50, 0.50);
+        //Than
         Assert.assertEquals(expected, actual, 1e-2);
     }
 
@@ -46,7 +47,8 @@ public class CalculatorTestSuite {
         Calculator calculator = context.getBean(Calculator.class);
         double expected = 0.25;
         //When
-        double actual = calculator.mul(0.50,0.50);
+        double actual = calculator.mul(0.50, 0.50);
+        //Than
         Assert.assertEquals(expected, actual, 1e-2);
     }
 
@@ -58,7 +60,8 @@ public class CalculatorTestSuite {
         Calculator calculator = context.getBean(Calculator.class);
         double expected = 1.00;
         //When
-        double actual = calculator.div(0.50,0.50);
+        double actual = calculator.div(0.50, 0.50);
+        //Than
         Assert.assertEquals(expected, actual, 1e-2);
     }
 
