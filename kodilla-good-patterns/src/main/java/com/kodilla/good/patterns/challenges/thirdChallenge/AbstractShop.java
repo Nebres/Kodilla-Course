@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges.thirdChallenge;
 
 abstract class AbstractShop implements Shop {
 
-    public final FoodProducer foodProducer;
+    protected final FoodProducer foodProducer;
 
     public AbstractShop(FoodProducer foodProducer) {
         this.foodProducer = foodProducer;
@@ -20,8 +20,8 @@ abstract class AbstractShop implements Shop {
                 .concat(foodProducer.getCompanyNIP())
                 .concat(ShopCommunicates.NEW_LINE)
                 .concat(ShopCommunicates.COMPANY_PRODUCTS)
-                .concat(foodProducer.printProductsList()
-                .concat(ShopCommunicates.NEW_LINE));
+                .concat(ShopCommunicates.NEW_LINE)
+                .concat(foodProducer.printProductsList());
     }
 
     public void process(String productName, double quantity) {

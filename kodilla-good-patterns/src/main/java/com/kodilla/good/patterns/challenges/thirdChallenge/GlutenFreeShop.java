@@ -12,10 +12,9 @@ public class GlutenFreeShop extends AbstractShop {
         if (OrderChecker.checkTheOrder(productName, quantity, foodProducer.getProductsList())) {
             System.out.println(ShopCommunicates.ORDER_ACCEPTED
                     .concat(ShopCommunicates.NEW_LINE)
-                    .concat(ShopCommunicates.NEW_DISCOUNT_INFORMATION)
-                    .concat(ShopCommunicates.NEW_LINE));
+                    .concat(ShopCommunicates.NEW_DISCOUNT_INFORMATION));
         } else {
-            System.out.println(ShopCommunicates.ORDER_REJECTED.concat(ShopCommunicates.NEW_LINE));
+            System.out.println(ShopCommunicates.ORDER_REJECTED);
         }
     }
 

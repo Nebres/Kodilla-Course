@@ -21,8 +21,7 @@ public class ExtraFoodShop extends AbstractShop {
                 .concat(ShopCommunicates.NEW_LINE)
                 .concat(ShopCommunicates.COMPANY_PRODUCTS)
                 .concat(foodProducer.printProductsList()
-                .concat(ShopCommunicates.PROMOTION_INFO)
-                .concat(ShopCommunicates.NEW_LINE));
+                .concat(ShopCommunicates.PROMOTION_INFO));
     }
 
     @Override
@@ -32,24 +31,21 @@ public class ExtraFoodShop extends AbstractShop {
                 foodProducer.getProductsList()) && quantity >= 10) {
             System.out.println(ShopCommunicates.ORDER_ACCEPTED
                     .concat(ShopCommunicates.NEW_LINE)
-                    .concat(ShopCommunicates.PROMOTION_GRANTED)
-                    .concat(ShopCommunicates.NEW_LINE));
+                    .concat(ShopCommunicates.PROMOTION_GRANTED));
 
         } else if (OrderChecker.checkTheOrder(productName, quantity , foodProducer.getProductsList())&& quantity < 10) {
             System.out.println(ShopCommunicates.ORDER_ACCEPTED
                     .concat(ShopCommunicates.NEW_LINE)
                     .concat(ShopCommunicates.PROMOTION_NOT_GRANTED)
-                    .concat(ShopCommunicates.PROMOTION_NOT_GRANTED_BECOUSE_QUANTITI_LESS_THAN_10)
-                    .concat(ShopCommunicates.NEW_LINE));
+                    .concat(ShopCommunicates.PROMOTION_NOT_GRANTED_BECAUSE_QUANTITY_LESS_THAN_10));
 
         } else if (OrderChecker.checkTheOrder(productName, quantity , foodProducer.getProductsList())) {
             System.out.println(ShopCommunicates.ORDER_ACCEPTED
                     .concat(ShopCommunicates.NEW_LINE)
                     .concat(ShopCommunicates.PROMOTION_NOT_GRANTED)
-                    .concat(ShopCommunicates.PROMOTION_NOT_GRANTED_BECOUSE_NOT_ENOUGH_ON_STOCK)
-                    .concat(ShopCommunicates.NEW_LINE));
+                    .concat(ShopCommunicates.PROMOTION_NOT_GRANTED_BECAUSE_NOT_ENOUGH_ON_STOCK));
         } else {
-            System.out.println(ShopCommunicates.ORDER_REJECTED.concat(ShopCommunicates.NEW_LINE));
+            System.out.println(ShopCommunicates.ORDER_REJECTED);
         }
     }
 

@@ -20,7 +20,7 @@ public interface ShopCommunicates {
             "more for free ( only if we have enough product on stock)";
     String PROMOTION_GRANTED = "Promotion is granted. You get extra 10%";
     String PROMOTION_NOT_GRANTED = "Promotion is not granted.";
-    String PROMOTION_NOT_GRANTED_BECOUSE_NOT_ENOUGH_ON_STOCK = " We don't have enough products on stock";
-    String PROMOTION_NOT_GRANTED_BECOUSE_QUANTITI_LESS_THAN_10 = " You Order less than 10 unit.";
+    String PROMOTION_NOT_GRANTED_BECAUSE_NOT_ENOUGH_ON_STOCK = " We don't have enough products on stock";
+    String PROMOTION_NOT_GRANTED_BECAUSE_QUANTITY_LESS_THAN_10 = " You Order less than 10 unit.";
 
 }
