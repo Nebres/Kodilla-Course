@@ -1,16 +1,19 @@
 package com.kodilla.good.patterns.challenges.thirdChallenge;
 
+import java.util.Map;
+
 public class MainThirdChallenge {
 
     public static void main(String[] args) {
 
-        new FlightFinder().printAirportsInUse();
-        new FlightFinder().scanFlightsToAirportWithAnotherAirport("Szymany",
-                "Berlin", "Warszawa");
-        new FlightFinder().scanFlightsToAirportWithAnotherAirport("Szymany",
-                "Warszawa", "Berlin");
-        new FlightFinder().scanFlightsToAirport("Warszawa");
-        new FlightFinder().scanFlightsFromAirport("Londyn");
+        Map<Integer, Flight> mapOfFlights = FlightDB.initMap();
+        FlightFinder finder = new FlightFinder(mapOfFlights);
+
+        finder.printAirportsInUse();
+        finder.findFromToVia("Szymany","Berlin", "Warszawa");
+        finder.findFromToVia("Szymany","Warszawa", "Berlin");
+        finder.findTo("Warszawa");
+        finder.findFrom("Londyn");
     }
 
 }

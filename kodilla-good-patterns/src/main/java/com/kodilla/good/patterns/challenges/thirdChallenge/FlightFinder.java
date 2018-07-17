@@ -1,18 +1,25 @@
 package com.kodilla.good.patterns.challenges.thirdChallenge;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.kodilla.good.patterns.challenges.thirdChallenge.InformationOfAirports.printListOfEndAirports;
 import static com.kodilla.good.patterns.challenges.thirdChallenge.InformationOfAirports.printListOfStartAirports;
 
 public class FlightFinder {
 
-    public void printAirportsInUse() {
-        printListOfStartAirports(FlightDB.initMap());
-        printListOfEndAirports(FlightDB.initMap());
+    private final Map<Integer, Flight> mapOfFlights;
+
+    public FlightFinder(Map<Integer, Flight> mapOfFlights) {
+        this.mapOfFlights = mapOfFlights;
     }
 
-    public void scanFlightsFromAirport(String startAirport) {
+    public void printAirportsInUse() {
+        printListOfStartAirports(mapOfFlights);
+        printListOfEndAirports(mapOfFlights);
+    }
+
+    public void findFrom(String startAirport) {
 
         if (SearchChecker.isFlightStartFromThisAirport(startAirport).size() > 0) {
 
@@ -28,7 +35,7 @@ public class FlightFinder {
         }
     }
 
-    public void scanFlightsToAirport(String endAirport) {
+    public void findTo(String endAirport) {
 
         if (SearchChecker.isFlightEndInThisAirport(endAirport).size() > 0) {
 
@@ -45,15 +52,15 @@ public class FlightFinder {
         }
     }
 
-    public void scanFlightsToAirportWithAnotherAirport(String startAirport, String endAirport, String interAirport) {
+    public void findFromToVia(String startAirport, String endAirport, String interAirport) {
 
-        if (SearchChecker.isFlightIsPossible(startAirport, endAirport, interAirport).size() > 0) {
+        if (SearchChecker.isFlightPossible(startAirport, endAirport, interAirport).size() > 0) {
 
             List<Flight> flightsFormSpecifiedToSpecifiedAirport =
-                    SearchChecker.isFlightFromSpecifiedToSpecifiedAirportIsPossible(startAirport, interAirport);
+                    SearchChecker.isPossibleFlightFromTo(startAirport, interAirport);
 
             List<Flight> flightsWithInterlanding = SearchChecker
-                    .isFlightIsPossible(startAirport, endAirport, interAirport);
+                    .isFlightPossible(startAirport, endAirport, interAirport);
 
             flightsFormSpecifiedToSpecifiedAirport.forEach(System.out::println);
             flightsWithInterlanding.forEach(System.out::println);

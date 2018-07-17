@@ -27,7 +27,7 @@ public class SearchChecker {
                 .collect(Collectors.toList());
     }
 
-    public static List<Flight> isFlightFromSpecifiedToSpecifiedAirportIsPossible(String startAirport, String endAirport) {
+    public static List<Flight> isPossibleFlightFromTo(String startAirport, String endAirport) {
 
         return mapOfAllFlights
                 .values()
@@ -37,11 +37,11 @@ public class SearchChecker {
                 .collect(Collectors.toList());
     }
 
-    public static List<Flight> isFlightIsPossible (String startAirport, String endAirport, String interAirport) {
+    public static List<Flight> isFlightPossible(String startAirport, String endAirport, String interAirport) {
 
         List<Flight> flightsWithInterlanding = new ArrayList<>();
 
-        if (isFlightFromSpecifiedToSpecifiedAirportIsPossible(startAirport, interAirport).size() > 0) {
+        if (isPossibleFlightFromTo(startAirport, interAirport).size() > 0) {
              flightsWithInterlanding = mapOfAllFlights
                     .values()
                     .stream()
