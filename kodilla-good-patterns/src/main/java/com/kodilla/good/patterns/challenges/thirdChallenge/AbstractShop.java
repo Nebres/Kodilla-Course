@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges.thirdChallenge;
 
 abstract class AbstractShop implements Shop {
 
-    private final FoodProducer foodProducer;
+    public final FoodProducer foodProducer;
 
     public AbstractShop(FoodProducer foodProducer) {
         this.foodProducer = foodProducer;

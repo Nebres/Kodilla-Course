@@ -22,11 +22,11 @@ public class OrderChecker {
         }
 
         if (!isOrderedMoreThen0(quantity)) {
-            System.out.println(ShopCommunicates.NEW_LINE.concat(ShopCommunicates.NOT_ENOUGH_PRODUCT_NUMBER));
+            System.out.println(ShopCommunicates.NEW_LINE.concat(ShopCommunicates.VALUE_INFORMATION));
         }
 
         if (!isThereEnoughSpecifiedProduct(productName, quantity, productList)){
-            System.out.println(ShopCommunicates.NEW_LINE.concat(ShopCommunicates.VALUE_INFORMATION));
+            System.out.println(ShopCommunicates.NEW_LINE.concat(ShopCommunicates.NOT_ENOUGH_PRODUCT_NUMBER));
         }
 
         return isThereNamedProduct(productName, productList) && isOrderedMoreThen0(quantity)

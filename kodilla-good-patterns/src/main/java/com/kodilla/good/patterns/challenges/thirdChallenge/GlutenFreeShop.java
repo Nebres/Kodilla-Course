@@ -6,5 +6,18 @@ public class GlutenFreeShop extends AbstractShop {
         super(foodProducer);
     }
 
+    @Override
+    public void process(String productName, double quantity) {
+
+        if (OrderChecker.checkTheOrder(productName, quantity, foodProducer.getProductsList())) {
+            System.out.println(ShopCommunicates.ORDER_ACCEPTED
+                    .concat(ShopCommunicates.NEW_LINE)
+                    .concat(ShopCommunicates.NEW_DISCOUNT_INFORMATION)
+                    .concat(ShopCommunicates.NEW_LINE));
+        } else {
+            System.out.println(ShopCommunicates.ORDER_REJECTED.concat(ShopCommunicates.NEW_LINE));
+        }
+    }
+
 }
 

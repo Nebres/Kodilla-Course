@@ -14,13 +14,13 @@ public class ThirdChallengeMain {
 
         new ExtraFoodShop( new FoodProducerDB()
                 .initializeExtraFoodShop())
-                .process("BIO Carrot", 20.21);
+                .process("BIO Carrot", 21.21);
         new HealthyShop( new FoodProducerDB()
                 .initializeHealthyShop())
-                .process("Tofu", 1000.0);
+                .process("Tofu", 0);
         new GlutenFreeShop(new FoodProducerDB()
                 .initializeGlutenFreeShop())
-                .process("Bread", 00.0);
+                .process("Bread", 2.0);
     }
 
 }
