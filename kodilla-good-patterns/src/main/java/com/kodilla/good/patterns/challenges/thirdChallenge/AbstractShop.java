@@ -24,15 +24,4 @@ abstract class AbstractShop implements Shop {
                 .concat(foodProducer.printProductsList());
     }
 
-    public void process(){}
-
-    public void process(String productName, double quantity) {
-
-        if (OrderChecker.checkTheOrder(productName, quantity, foodProducer.getProductsList())) {
-            System.out.println(ShopCommunicates.ORDER_ACCEPTED.concat(ShopCommunicates.NEW_LINE));
-        } else {
-            System.out.println(ShopCommunicates.ORDER_REJECTED.concat(ShopCommunicates.NEW_LINE));
-        }
-    }
-
 }

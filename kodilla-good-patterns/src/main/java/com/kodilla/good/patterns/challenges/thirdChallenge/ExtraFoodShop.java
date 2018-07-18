@@ -25,21 +25,21 @@ public class ExtraFoodShop extends AbstractShop {
     }
 
     @Override
-    public void process(String productName, double quantity) {
+    public void process(String productName, double quality) {
 
-        if (OrderChecker.checkTheOrder(productName, quantity * MULTIPLE_PROMOTION,
-                foodProducer.getProductsList()) && quantity >= 10) {
+        if (OrderChecker.checkTheOrder(productName, quality * MULTIPLE_PROMOTION,
+                foodProducer.getProductsList()) && quality >= 10) {
             System.out.println(ShopCommunicates.ORDER_ACCEPTED
                     .concat(ShopCommunicates.NEW_LINE)
                     .concat(ShopCommunicates.PROMOTION_GRANTED));
 
-        } else if (OrderChecker.checkTheOrder(productName, quantity , foodProducer.getProductsList())&& quantity < 10) {
+        } else if (OrderChecker.checkTheOrder(productName, quality, foodProducer.getProductsList())&& quality < 10) {
             System.out.println(ShopCommunicates.ORDER_ACCEPTED
                     .concat(ShopCommunicates.NEW_LINE)
                     .concat(ShopCommunicates.PROMOTION_NOT_GRANTED)
                     .concat(ShopCommunicates.PROMOTION_NOT_GRANTED_BECAUSE_QUANTITY_LESS_THAN_10));
 
-        } else if (OrderChecker.checkTheOrder(productName, quantity , foodProducer.getProductsList())) {
+        } else if (OrderChecker.checkTheOrder(productName, quality, foodProducer.getProductsList())) {
             System.out.println(ShopCommunicates.ORDER_ACCEPTED
                     .concat(ShopCommunicates.NEW_LINE)
                     .concat(ShopCommunicates.PROMOTION_NOT_GRANTED)
