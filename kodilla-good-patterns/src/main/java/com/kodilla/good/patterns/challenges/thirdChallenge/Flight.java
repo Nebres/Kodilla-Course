@@ -10,7 +10,6 @@ public final class Flight {
     public Flight(String startAirport, String endAirport) {
         this.endAirport = endAirport;
         this.startAirport = startAirport;
-
     }
 
     public String getEndAirport() {
@@ -39,10 +38,7 @@ public final class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" +
-                "endAirport='" + endAirport + '\'' +
-                ", startAirport='" + startAirport + '\'' +
-                '}';
+        return "[ start Airport: " + startAirport + " | end Airport: " + endAirport + " ]";
     }
 
 }

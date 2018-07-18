@@ -19,13 +19,13 @@ public class InformationOfAirports {
 
    public static void printListOfEndAirports(Map<Integer, Flight> mapOfAllFlights) {
 
-        Set<String> endAirports = mapOfAllFlights.values()
+       Set<String> endAirports = mapOfAllFlights.values()
                 .stream()
                 .map(Flight::getEndAirport)
                 .collect(Collectors.toSet());
 
-        System.out.println(FlightFinderCommunicates.LIST_OF_END_AIRPORT);
-        endAirports.forEach(System.out::println);
+       System.out.println(FlightFinderCommunicates.LIST_OF_END_AIRPORT);
+       endAirports.forEach(System.out::println);
    }
 
 }
