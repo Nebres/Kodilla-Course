@@ -32,7 +32,6 @@ public final class Flight {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getEndAirport(), getStartAirport());
     }
 
