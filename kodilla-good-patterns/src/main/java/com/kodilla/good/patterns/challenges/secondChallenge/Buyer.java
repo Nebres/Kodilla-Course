@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges.secondChallenge;
 
 import java.util.Objects;
 
-public class Buyer implements User {
+public class Buyer {
 
     private final String nick;
     private final String realName;
@@ -13,18 +13,6 @@ public class Buyer implements User {
         this.realName = realName;
         this.address = address;
 
-    }
-
-    public String getUserNick() {
-        return nick;
-    }
-
-    public String getUserRealName() {
-        return realName;
-    }
-
-    public String getUserAddress() {
-        return address;
     }
 
     @Override

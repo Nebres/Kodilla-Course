@@ -6,12 +6,11 @@ public class Item {
 
     private final String id;
     private final double quantity;
-    private final int itemUniqueId;
 
-    public Item(String id,double quantity, int itemUniqueId) {
+
+    public Item(String id,double quantity) {
         this.id = id;
         this.quantity = quantity;
-        this.itemUniqueId = itemUniqueId;
     }
 
     public String getItemName() {
@@ -20,10 +19,6 @@ public class Item {
 
     public double getItemQuantity() {
         return quantity;
-    }
-
-    public int getItemId() {
-        return itemUniqueId;
     }
 
     @Override

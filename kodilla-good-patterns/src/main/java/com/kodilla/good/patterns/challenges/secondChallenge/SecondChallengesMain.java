@@ -1,49 +1,22 @@
 package com.kodilla.good.patterns.challenges.secondChallenge;
 
+import static com.kodilla.good.patterns.challenges.secondChallenge.DataBase.*;
+
 public class SecondChallengesMain {
 
     public static void main(String[] args) {
 
-        DataBase db = new DataBase();
-        OrdersRepository orders = new OrdersRepository();
+        InformationService information = new InformationService();
+        OrderService orderService = new OrderService();
+        new RepositoryService();
 
-        new ProductOrderService(new Order(
-                db.initializeItem1(),
-                db.initializeSeller1(),
-                db.initializeBuyer1(),
-                2))
-                .sellProcess();
+        Order order = new Order(initializeItem1(), initializeBuyer1(), 2);
+        Order order2 = new Order(initializeItem1(), initializeBuyer2(), 2);
+        Order order3 = new Order(initializeItem1(), initializeBuyer2(), 0);
 
-        new ProductOrderService(new Order(
-                db.initializeItem2(),
-                db.initializeSeller1(),
-                db.initializeBuyer2(),
-                0.4))
-                .sellProcess();
-
-        new ProductOrderService(new Order(
-                db.initializeItem3(),
-                db.initializeSeller2(),
-                db.initializeBuyer1(),
-                23.4)
-        )
-                .sellProcess();
-
-        new ProductOrderService(new Order(
-                db.initializeItem1(),
-                db.initializeSeller1(),
-                db.initializeBuyer2(),
-                100.0))
-                .sellProcess();
-
-        new ProductOrderService(new Order(
-                db.initializeItem1(),
-                db.initializeSeller1(),
-                db.initializeBuyer2(),
-                0.0))
-                .sellProcess();
-
-        orders.printLists();
+        new ProductOrderService(information, orderService, order).process();
+        new ProductOrderService(information, orderService, order2).process();
+        new ProductOrderService(information, orderService, order3).process();
     }
 
 }

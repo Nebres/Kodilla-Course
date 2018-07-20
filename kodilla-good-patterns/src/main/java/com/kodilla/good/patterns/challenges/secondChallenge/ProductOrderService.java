@@ -2,45 +2,27 @@ package com.kodilla.good.patterns.challenges.secondChallenge;
 
 public class ProductOrderService {
 
-    private static final String INFO_FOR_BUYER = "\n You buy From %s %s %s \n Address and real name: %s \n %s \n";
-    private static final String INFO_FOR_SELLER = " %s buy form You %s %s \n Address and real name: %s \n %s";
-    private static final String TERMINATED_INFO = "Process Terminated";
-    private final Order order;
+    private InformationService informationService;
+    private OrderService orderService;
 
-    public ProductOrderService(Order order) {
+    private Order order;
+
+    public ProductOrderService(InformationService informationService, OrderService orderService, Order order) {
+        this.informationService = informationService;
+        this.orderService = orderService;
         this.order = order;
     }
 
-    private String printCommunicateForBuyer() {
-        return String.format(INFO_FOR_BUYER,
-                order.getSeller().getUserNick(),
-                order.getQuantity(),
-                order.getItem().getItemName(),
-                order.getSeller().getUserRealName(),
-                order.getSeller().getUserAddress()
-        );
-    }
+    public void process() {
+        boolean isAccepted = orderService.isAccepted(order);
 
-    private String printCommunicateForSeller() {
-        return String.format(INFO_FOR_SELLER,
-                order.getBuyer().getUserNick(),
-                order.getQuantity(),
-                order.getItem().getItemName(),
-                order.getBuyer().getUserRealName(),
-                order.getBuyer().getUserAddress()
-        );
-    }
-
-    public void sellProcess() {
-
-        if (new SellValidator(order).isItemIsSaleable()) {
-            System.out.println(printCommunicateForBuyer());
-            System.out.println(printCommunicateForSeller());
-            new OrdersRepository().addPositionToAcceptedList(order);
+        if (isAccepted) {
+            informationService.printInfoAboutBuyer(order);
+            RepositoryService.changeQuantity(order.getItem(), order.getQuantity());
         } else {
-            System.out.println(TERMINATED_INFO);
-            new OrdersRepository().addPositionToRejectedList(order);
+            System.out.println(OrderCommunicates.ORDER_REJECTED);
         }
     }
 
 }
+
