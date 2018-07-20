@@ -6,11 +6,12 @@ import java.util.List;
 public class TaskList {
 
     private final List<String> tasks;
-    private final String name;
 
-    public TaskList(String name) {
-        this.name = name;
+    public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    public List<String> getTasks() {
+        return tasks;
+    }
 }
