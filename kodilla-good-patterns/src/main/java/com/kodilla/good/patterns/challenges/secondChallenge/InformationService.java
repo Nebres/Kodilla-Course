@@ -6,13 +6,12 @@ import static com.kodilla.good.patterns.challenges.secondChallenge.OrderCommunic
 
 public class InformationService {
 
-    public void printInfoAboutBuyer(Order order) {
+    public void printInfoAboutBuyer(Order order, Set<Item> itemsSet) {
         System.out.println(order.getBuyer().toString());
 
         String theItem = order.getItem().getItemName();
-        Set<Item> theSet = RepositoryService.getItems();
 
-        double actualOnStock = theSet
+        double actualOnStock = itemsSet
                 .stream()
                 .filter(item -> item.equals(order.getItem()))
                 .mapToDouble(Item::getItemQuantity)

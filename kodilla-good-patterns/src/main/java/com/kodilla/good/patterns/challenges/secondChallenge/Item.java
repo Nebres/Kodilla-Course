@@ -7,8 +7,7 @@ public class Item {
     private final String id;
     private final double quantity;
 
-
-    public Item(String id,double quantity) {
+    public Item(String id, double quantity) {
         this.id = id;
         this.quantity = quantity;
     }

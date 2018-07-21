@@ -1,19 +1,36 @@
 package com.kodilla.good.patterns.challenges.secondChallenge;
 
-import java.util.Set;
+import java.util.*;
 
 public class RepositoryService {
 
-    private static Set<Item> items = DataBase.createItemsSet();
+    private Set<Item> itemsBase;
 
-    public static void changeQuantity(Item theItem, double theQuantity) {
-
-            Item itemAfterChange = new Item(theItem.getItemName(), theItem.getItemQuantity() - theQuantity);
-            items.add(itemAfterChange);
+    public RepositoryService(Set<Item> itemsBase) {
+        this.itemsBase = itemsBase;
     }
 
-    public static Set<Item> getItems() {
-        return items;
+    public Set<Item> getItemBase() {
+        return itemsBase;
+    }
+
+    public void changeItemsInDataBase(Order order) {
+
+        double baseNumber = itemsBase
+                .stream()
+                .filter(item -> item.equals(order.getItem()))
+                .mapToDouble(Item::getItemQuantity)
+                .sum();
+
+        double quantityToSub = order.getItem().getItemQuantity();
+
+        double actualQuantity = baseNumber - quantityToSub;
+        String actualId = order.getItem().getItemName();
+
+        Item theItem = new Item(actualId, actualQuantity);
+
+        this.itemsBase.add(theItem);
     }
 
 }
+

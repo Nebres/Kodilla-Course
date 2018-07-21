@@ -4,6 +4,7 @@ public class ProductOrderService {
 
     private InformationService informationService;
     private OrderService orderService;
+    private static RepositoryService repositoryService = new RepositoryService(SecondChallengesMain.createItemsSet());
 
     private Order order;
 
@@ -14,11 +15,11 @@ public class ProductOrderService {
     }
 
     public void process() {
-        boolean isAccepted = orderService.isAccepted(order);
+        boolean isAccepted = orderService.isAccepted(order, repositoryService.getItemBase());
 
         if (isAccepted) {
-            informationService.printInfoAboutBuyer(order);
-            RepositoryService.changeQuantity(order.getItem(), order.getQuantity());
+            informationService.printInfoAboutBuyer(order, repositoryService.getItemBase());
+            repositoryService.changeItemsInDataBase(order);
         } else {
             System.out.println(OrderCommunicates.ORDER_REJECTED);
         }
