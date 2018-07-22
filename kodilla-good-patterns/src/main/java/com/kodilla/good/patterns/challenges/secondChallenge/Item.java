@@ -5,19 +5,13 @@ import java.util.Objects;
 public class Item {
 
     private final String id;
-    private final double quantity;
 
-    public Item(String id, double quantity) {
+    public Item(String id) {
         this.id = id;
-        this.quantity = quantity;
     }
 
     public String getItemName() {
         return id;
-    }
-
-    public double getItemQuantity() {
-        return quantity;
     }
 
     @Override

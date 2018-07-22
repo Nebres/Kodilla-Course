@@ -1,49 +1,28 @@
 package com.kodilla.good.patterns.challenges.secondChallenge;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class SecondChallengesMain {
 
-    public static Item initializeItem1() {
-        return new Item("TV",4.0);
-    }
-
-    private static Item initializeItem2() {
-        return new Item ("Cabele in coil", 12.6);
-    }
-
-    private static Item initializeItem3() {
-        return new Item ("T-shirt sell by weight", 88.3);
-    }
-
-    public static Buyer initializeBuyer1() {
-        return new Buyer("Jan89", "Janusz Korczak", "Warszawa 02-200");
-    }
-
-    public static Set<Item> createItemsSet() {
-        Set<Item> items = new HashSet<>();
-        items.add(initializeItem1());
-        items.add(initializeItem2());
-        items.add(initializeItem3());
-
-        return items;
+    private static void initRepository(ProductRepository productRepository) {
+        productRepository.add(new Item("TV"), 4);
+        productRepository.add(new Item("Fan"), 21);
+        productRepository.add(new Item("T-Shirt"), 56);
     }
 
     public static void main(String[] args) {
 
-        InformationService information = new InformationService();
-        OrderService orderService = new OrderService();
+        ProductRepository productRepository = new ProductRepository();
+        initRepository(productRepository);
+        InformationService informationService = new InformationService();
+        OrderService orderService = new OrderService(productRepository);
+        OrderProcessor orderProcessor = new OrderProcessor(orderService, informationService);
+        Buyer buyer = new Buyer("Jan89", "Janusz Korczak", "Warszawa 02-200");
+        Order order = new Order(new Item("TV"), buyer, 2);
+        Order order1 = new Order(new Item ("Fan"), buyer, 21);
 
-        Order order = new Order(initializeItem1(), initializeBuyer1(), 2);
-
-        ProductOrderService productOrderService = new ProductOrderService(information, orderService, order);
-        productOrderService.process();
-
-        Order order2 = new Order(initializeItem1(), initializeBuyer1(), 5);
-
-        ProductOrderService productOrderService2 = new ProductOrderService(information, orderService, order2);
-        productOrderService2.process();
+        orderProcessor.process(order);
+        orderProcessor.process(order);
+        orderProcessor.process(order);
+        orderProcessor.process(order1);
     }
 
 }

@@ -4,9 +4,9 @@ public class Order {
 
     private final Item item;
     private final Buyer buyer;
-    private final double quantity;
+    private final int quantity;
 
-    public Order(Item item, Buyer buyer, double quantity) {
+    public Order(Item item, Buyer buyer, int quantity) {
         this.item = item;
         this.buyer = buyer;
         this.quantity = quantity;
@@ -16,7 +16,7 @@ public class Order {
         return item;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 

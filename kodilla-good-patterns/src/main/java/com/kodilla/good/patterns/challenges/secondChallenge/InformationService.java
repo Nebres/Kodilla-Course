@@ -1,23 +1,20 @@
 package com.kodilla.good.patterns.challenges.secondChallenge;
 
-import java.util.Set;
-
-import static com.kodilla.good.patterns.challenges.secondChallenge.OrderCommunicates.ACTUAL_QUANTITY;
-
 public class InformationService {
 
-    public void printInfoAboutBuyer(Order order, Set<Item> itemsSet) {
-        System.out.println(order.getBuyer().toString());
+    private static final String INFORMATION_FOR_BUYER = "You buy %d of %s";
+    private static final String REJECTED_INFORMATION = "Order Rejected";
 
-        String theItem = order.getItem().getItemName();
+    public void inform(Order order, boolean isOrdered) {
 
-        double actualOnStock = itemsSet
-                .stream()
-                .filter(item -> item.equals(order.getItem()))
-                .mapToDouble(Item::getItemQuantity)
-                .sum();
-
-        System.out.println(String.format(ACTUAL_QUANTITY, theItem, actualOnStock));
+        if (isOrdered) {
+            System.out.println(order.getBuyer().toString());
+            String theItem = order.getItem().getItemName();
+            int theNumber = order.getQuantity();
+            System.out.println(String.format(INFORMATION_FOR_BUYER, theNumber, theItem));
+        } else {
+            System.out.println(REJECTED_INFORMATION);
+        }
     }
 
 }
