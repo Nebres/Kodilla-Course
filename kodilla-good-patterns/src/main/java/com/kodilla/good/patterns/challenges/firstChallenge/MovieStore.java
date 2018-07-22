@@ -1,4 +1,4 @@
-package com.kodilla.spring.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.firstChallenge;
 
 import java.util.ArrayList;
 import java.util.HashMap;
