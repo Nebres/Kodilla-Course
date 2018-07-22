@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public final class Flight {
 
-    private final String endAirport;
     private final String startAirport;
+    private final String endAirport;
 
     public Flight(String startAirport, String endAirport) {
-        this.endAirport = endAirport;
         this.startAirport = startAirport;
+        this.endAirport = endAirport;
     }
 
     public String getEndAirport() {
@@ -37,7 +37,7 @@ public final class Flight {
 
     @Override
     public String toString() {
-        return "[ start Airport: " + startAirport + " | end Airport: " + endAirport + " ]";
+        return String.format("[Departure: %s | Arrival: %s]", startAirport, endAirport);
     }
 
 }

@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.kodilla.good.patterns.challenges.thirdChallenge.InformationOfAirports.printListOfEndAirports;
-import static com.kodilla.good.patterns.challenges.thirdChallenge.InformationOfAirports.printListOfStartAirports;
-
 public class FlightFinder {
 
     private final Map<Integer, Flight> mapOfFlights;
@@ -15,46 +12,25 @@ public class FlightFinder {
         this.mapOfFlights = mapOfFlights;
     }
 
-    public void printAirportsInUse() {
-        printListOfStartAirports(mapOfFlights);
-        printListOfEndAirports(mapOfFlights);
-    }
+    public List<Flight>  findFrom(String startAirport) {
 
-    private boolean isListContainsFlights(List<Flight> airportsList) {
-        return airportsList.size() > 0;
-    }
-
-    public void findFrom(String startAirport) {
-
-        List<Flight> startAirports = mapOfFlights
+        return mapOfFlights
                 .values()
                 .stream()
                 .filter(flight -> flight.getStartAirport().equals(startAirport))
                 .collect(Collectors.toList());
-
-        if (isListContainsFlights(startAirports)) {
-            startAirports.forEach(System.out::println);
-        } else {
-            System.out.println(FlightFinderCommunicates.WRONG_AIRPORT);
-        }
     }
 
-    public void findTo(String endAirport) {
+    public List<Flight> findTo(String endAirport) {
 
-        List<Flight> endAirports = mapOfFlights
-                        .values()
-                        .stream()
-                        .filter(flight -> flight.getEndAirport().equals(endAirport))
-                        .collect(Collectors.toList());
-
-        if (isListContainsFlights(endAirports)) {
-            endAirports.forEach(System.out::println);
-        } else {
-            System.out.println(FlightFinderCommunicates.WRONG_AIRPORT);
-        }
+        return mapOfFlights
+                .values()
+                .stream()
+                .filter(flight -> flight.getEndAirport().equals(endAirport))
+                .collect(Collectors.toList());
     }
 
-    public void findFromToVia(String startAirport, String endAirport, String interAirport) {
+    public FlightsPair findFromToVia(String startAirport, String endAirport, String interAirport) {
 
         List<Flight> interlandingAirports = mapOfFlights
                 .values()
@@ -70,14 +46,15 @@ public class FlightFinder {
                         && flight.getEndAirport().equals(endAirport))
                 .collect(Collectors.toList());
 
-        if (isListContainsFlights(interlandingAirports) && isListContainsFlights(endAirports)) {
-            interlandingAirports.forEach(System.out::println);
-            endAirports.forEach(System.out::println);
-        } else {
-            System.out.println(String
-                    .format(FlightFinderCommunicates.WRONG_FLIGHT_WITH_INTERLADNING,
-                            startAirport, endAirport, interAirport));
-        }
+        return new FlightsPair(interlandingAirports, endAirports);
+    }
+
+    public void printSimplySearch(List<Flight> flights) {
+        flights.forEach(System.out::println);
+    }
+
+    public void printAdvanceSearch(FlightsPair flight) {
+        System.out.println(flight.toString());
     }
 
 }

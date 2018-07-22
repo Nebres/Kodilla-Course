@@ -29,7 +29,7 @@ public class FlightDB {
        return new Flight("Warszawa", "Szymany");
     }
 
-    public static Map<Integer, Flight> initMap() {
+    public static Map<Integer, Flight> init() {
 
         Map<Integer, Flight> flights = new HashMap<>();
         flights.put(1, initFlight1());
