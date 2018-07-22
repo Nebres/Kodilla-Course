@@ -14,6 +14,9 @@ import java.util.List;
 @SpringBootTest
 public class BoardTestSuite {
 
+    private static final StringBuilder STRING_BUILDER = new StringBuilder();
+    private static final String SEPARATOR = " ";
+
     @Test
     public void testBoardHaveToDoListBean() {
         //Given
@@ -50,51 +53,62 @@ public class BoardTestSuite {
         Assert.assertTrue(actual);
     }
 
+    @Test
+    public void testBoardHaveBoard() {
+        //Given
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext(BoardConfig.class, Board.class);
+        context.getBean(Board.class);
+        //When
+        boolean actual = context.containsBean("board");
+        //Than
+        Assert.assertTrue(actual);
+    }
 
     @Test
-    public void testAddToDoTask() {
+    public void testTaskListToString() {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext(BoardConfig.class, Board.class);
         Board board = context.getBean(Board.class);
-        TaskList task = board.getToDoList();
-        List<String> theTask = task.getTasks();
-        theTask.add("task to do");
-        String expected = "task to do";
+        TaskList tasksDone = board.getDoneList();
+        List<String> theTaskDone = tasksDone.getTasks();
+        theTaskDone.add("done task");
+        String expected = "done task\n";
         //When
-        String actual = theTask.get(0);
+        String actual = tasksDone.toString();
         //Than
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testAddInProgressTask() {
+    public void testTaskAdd() {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext(BoardConfig.class, Board.class);
         Board board = context.getBean(Board.class);
-        TaskList task = board.getInProgressList();
-        List<String> theTask = task.getTasks();
-        theTask.add("task in progress");
-        String expected = "task in progress";
-        //When
-        String actual = theTask.get(0);
-        //Than
-        Assert.assertEquals(expected, actual);
-    }
 
-    @Test
-    public void testAddDoneTask() {
-        //Given
-        ApplicationContext context =
-                new AnnotationConfigApplicationContext(BoardConfig.class, Board.class);
-        Board board = context.getBean(Board.class);
-        TaskList task = board.getDoneList();
-        List<String> theTask = task.getTasks();
-        theTask.add("done task");
-        String expected = "done task";
+        TaskList tasksTodo = board.getToDoList();
+        List<String> theTaskToDo = tasksTodo.getTasks();
+        theTaskToDo.add("task to do");
+
+        TaskList tasksInProgress = board.getInProgressList();
+        List<String> theTaskInProgress = tasksInProgress.getTasks();
+        theTaskInProgress.add("task in progress");
+
+        TaskList tasksDone = board.getDoneList();
+        List<String> theTaskDone = tasksDone.getTasks();
+        theTaskDone.add("done task");
+
+        String expected = "task to do task in progress done task";
         //When
-        String actual = theTask.get(0);
+        String actual = STRING_BUILDER
+                .append(theTaskToDo.get(0))
+                .append(SEPARATOR)
+                .append(theTaskInProgress.get(0))
+                .append(SEPARATOR)
+                .append(theTaskDone.get(0))
+                .toString();
         //Than
         Assert.assertEquals(expected, actual);
     }

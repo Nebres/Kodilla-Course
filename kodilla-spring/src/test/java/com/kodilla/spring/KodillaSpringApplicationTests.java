@@ -11,6 +11,8 @@ public class KodillaSpringApplicationTests {
 
     @Test
     public void contextLoads() {
+
+
     }
 
 }
