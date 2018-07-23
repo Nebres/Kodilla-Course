@@ -11,8 +11,8 @@ public class MainThirdChallenge {
         FlightFinder finder = new FlightFinder(mapOfFlights);
         List<Flight> simpleSearch = finder.findFrom("Londyn");
         List<Flight> simpleSearch2 = finder.findTo("Warszawa");
-        FlightsPair advanceSearch = finder.findFromToVia("Szymany","Berlin", "Warszawa");
-        FlightsPair advanceSearch2 = finder.findFromToVia("Szymany","Warszawa", "Berlin");
+        List<FlightsPair> advanceSearch = finder.findFromToVia("Szymany","Berlin", "Warszawa");
+        List<FlightsPair> advanceSearch2 = finder.findFromToVia("Szymany","Warszawa", "Berlin");
 
         finder.printSimplySearch(simpleSearch);
         finder.printSimplySearch(simpleSearch2);

@@ -1,5 +1,6 @@
 package com.kodilla.good.patterns.challenges.thirdChallenge;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ public class FlightFinder {
         return mapOfFlights
                 .values()
                 .stream()
+                .filter(flight -> flight.getStartAirport()!= null)
                 .filter(flight -> flight.getStartAirport().equals(startAirport))
                 .collect(Collectors.toList());
     }
@@ -26,15 +28,17 @@ public class FlightFinder {
         return mapOfFlights
                 .values()
                 .stream()
+                .filter(flight -> flight.getStartAirport()!= null)
                 .filter(flight -> flight.getEndAirport().equals(endAirport))
                 .collect(Collectors.toList());
     }
 
-    public FlightsPair findFromToVia(String startAirport, String endAirport, String interAirport) {
+    public List<FlightsPair> findFromToVia(String startAirport, String endAirport, String interAirport) {
 
         List<Flight> interlandingAirports = mapOfFlights
                 .values()
                 .stream()
+                .filter(flight -> flight.getStartAirport()!= null)
                 .filter(flight -> flight.getStartAirport().equals(startAirport)
                         && flight.getEndAirport().equals(interAirport))
                 .collect(Collectors.toList());
@@ -42,19 +46,30 @@ public class FlightFinder {
         List<Flight> endAirports = mapOfFlights
                 .values()
                 .stream()
+                .filter(flight -> flight.getStartAirport()!= null)
                 .filter(flight -> flight.getStartAirport().equals(interAirport)
                         && flight.getEndAirport().equals(endAirport))
                 .collect(Collectors.toList());
 
-        return new FlightsPair(interlandingAirports, endAirports);
+        List<FlightsPair> flightsPairs = new ArrayList<>();
+
+        if (interlandingAirports.size() > 0
+                && endAirports.size() > 0
+                && interlandingAirports.size() == endAirports.size()) {
+            for (int i = 0; i < interlandingAirports.size(); i++) {
+                flightsPairs.add(new FlightsPair(interlandingAirports.get(i), endAirports.get(i)));
+            }
+        }
+
+        return flightsPairs;
     }
 
     public void printSimplySearch(List<Flight> flights) {
         flights.forEach(System.out::println);
     }
 
-    public void printAdvanceSearch(FlightsPair flight) {
-        System.out.println(flight.toString());
+    public void printAdvanceSearch(List<FlightsPair> flightsPairs) {
+        flightsPairs.forEach(System.out::println);
     }
 
 }
