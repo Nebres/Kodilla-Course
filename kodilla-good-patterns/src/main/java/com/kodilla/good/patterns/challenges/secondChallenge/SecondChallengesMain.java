@@ -4,7 +4,8 @@ public class SecondChallengesMain {
 
     private static void initRepository(ProductRepository productRepository) {
         productRepository.add(new Item("TV"), 4);
-        productRepository.add(new Item("Fan"), 21);
+        productRepository.add(new Item("Fan"), 10);
+        productRepository.add(new Item("Fan"), 11);
         productRepository.add(new Item("T-Shirt"), 56);
     }
 
