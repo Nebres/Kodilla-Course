@@ -34,4 +34,12 @@ public class Board {
         return doneList;
     }
 
+    @Override
+    public String toString() {
+        return "Board:\n" +
+                "To Do List: " + "\n" + toDoList.toString() +
+                "In Progress List: " + "\n" + inProgressList.toString() +
+                "Done List: " + "\n" + doneList.toString();
+    }
+
 }

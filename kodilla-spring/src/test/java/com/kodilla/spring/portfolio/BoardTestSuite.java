@@ -8,14 +8,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BoardTestSuite {
-
-    private static final StringBuilder STRING_BUILDER = new StringBuilder();
-    private static final String SEPARATOR = " ";
 
     @Test
     public void testBoardHaveToDoListBean() {
@@ -72,13 +67,13 @@ public class BoardTestSuite {
                 new AnnotationConfigApplicationContext(BoardConfig.class, Board.class);
         Board board = context.getBean(Board.class);
         TaskList tasksDone = board.getDoneList();
-        List<String> theTaskDone = tasksDone.getTasks();
-        theTaskDone.add("done task");
+        tasksDone.getTasks().add("done task");
         String expected = "done task\n";
         //When
         String actual = tasksDone.toString();
         //Than
         Assert.assertEquals(expected, actual);
+        System.out.println(board.toString());
     }
 
     @Test
@@ -88,27 +83,20 @@ public class BoardTestSuite {
                 new AnnotationConfigApplicationContext(BoardConfig.class, Board.class);
         Board board = context.getBean(Board.class);
 
-        TaskList tasksTodo = board.getToDoList();
-        List<String> theTaskToDo = tasksTodo.getTasks();
-        theTaskToDo.add("task to do");
+        board.getToDoList().getTasks().add("task to do");
+        board.getInProgressList().getTasks().add("task in progress");
+        board.getDoneList().getTasks().add("done task");
 
-        TaskList tasksInProgress = board.getInProgressList();
-        List<String> theTaskInProgress = tasksInProgress.getTasks();
-        theTaskInProgress.add("task in progress");
-
-        TaskList tasksDone = board.getDoneList();
-        List<String> theTaskDone = tasksDone.getTasks();
-        theTaskDone.add("done task");
-
-        String expected = "task to do task in progress done task";
+        String expected = "Board:" +
+                "\nTo Do List: " +
+                "\ntask to do" +
+                "\nIn Progress List: " +
+                "\ntask in progress" +
+                "\nDone List: " +
+                "\ndone task" +
+                "\n";
         //When
-        String actual = STRING_BUILDER
-                .append(theTaskToDo.get(0))
-                .append(SEPARATOR)
-                .append(theTaskInProgress.get(0))
-                .append(SEPARATOR)
-                .append(theTaskDone.get(0))
-                .toString();
+        String actual = board.toString();
         //Than
         Assert.assertEquals(expected, actual);
     }

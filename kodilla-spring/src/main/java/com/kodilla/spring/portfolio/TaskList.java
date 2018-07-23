@@ -5,8 +5,6 @@ import java.util.List;
 
 public class TaskList {
 
-    private final static String NEW_LINE = "\n";
-    private final static StringBuilder STRING_BUILDER = new StringBuilder();
     private final List<String> tasks;
 
     public TaskList() {
@@ -20,11 +18,11 @@ public class TaskList {
     @Override
     public String toString() {
 
+        StringBuilder stringBuilder = new StringBuilder();
         for (String id : tasks) {
-            STRING_BUILDER.append(id).append(NEW_LINE);
+            stringBuilder.append(id).append("\n");
         }
-        return STRING_BUILDER.toString();
+        return stringBuilder.toString();
     }
-
 
 }
