@@ -18,10 +18,9 @@ public class ProductRepository {
     public void remove(Item item, Integer quantity) {
 
         int actualOnStock = products.get(item);
-        this.products.remove(item);
 
         if (actualOnStock == quantity) {
-            this.products.put(item, 0);
+            this.products.remove(item);
         } else {
             int result = actualOnStock - quantity;
             this.products.put(item, result);
