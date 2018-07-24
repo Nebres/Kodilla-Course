@@ -10,7 +10,7 @@ public class OrderService {
 
     public boolean order(Order order) {
        if (productRepository.check(order.getItem(), order.getQuantity())) {
-           productRepository.replace(order.getItem(), order.getQuantity());
+           productRepository.remove(order.getItem(), order.getQuantity());
            return true;
        } else {
            return false;

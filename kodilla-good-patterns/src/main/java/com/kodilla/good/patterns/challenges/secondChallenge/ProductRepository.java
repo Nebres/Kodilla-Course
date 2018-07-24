@@ -21,18 +21,9 @@ public class ProductRepository {
     }
 
     public void remove(Item item, Integer quantity) {
-            this.products.remove(item, quantity);
-    }
 
-    public void replace(Item item, Integer quantity) {
-
-        int actualOnStock = products.get(item);
-        int result = actualOnStock - quantity;
-
-        if (actualOnStock == result) {
-            remove(item, quantity);
-        } else {
-            this.products.put(item, result);
+        if (products.get(item) >= quantity) {
+            products.put(item, products.get(item) - quantity);
         }
     }
 
