@@ -37,9 +37,9 @@ public class Board {
     @Override
     public String toString() {
         return "Board:\n" +
-                "To Do List: " + "\n" + toDoList.toString() +
-                "In Progress List: " + "\n" + inProgressList.toString() +
-                "Done List: " + "\n" + doneList.toString();
+                "To Do List: " + "\n" + toDoList +
+                "In Progress List: " + "\n" + inProgressList +
+                "Done List: " + "\n" + doneList;
     }
 
 }
