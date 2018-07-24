@@ -9,22 +9,18 @@ public class LoggerTestSuite {
     public void testLog() {
         //Given
         Logger logger = Logger.getInstance();
-        logger.log("First Log");
-        String expected = "First Log";
         //When
-        String actual = logger.getLastLog();
-        //Than
-        Assert.assertEquals(expected, actual);
+        logger.log("First Log");
     }
 
     @Test
     public void testGetLastLog() {
         //Given
         Logger logger = Logger.getInstance();
-        String expected = "First Log";
+        String expected = "";
         //When
         String actual = logger.getLastLog();
-        //Than
+        //Then
         Assert.assertEquals(expected, actual);
     }
 
