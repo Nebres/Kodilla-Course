@@ -3,6 +3,7 @@ package com.kodilla.patterns.prototype.library;
 import org.junit.Assert;
 import org.junit.Test;
 import java.time.LocalDate;
+import java.util.Set;
 
 public class LibraryTestSuite {
 
@@ -18,6 +19,7 @@ public class LibraryTestSuite {
                 LocalDate.of(1954, 12, 1)));
         library.getBooks().add(new Book("Pieklo Pocztowe", "Terry Prachett",
                 LocalDate.of(2011, 1, 18)));
+
         Library shallowClonedLibrary = null;
         try {
             shallowClonedLibrary = library.shallowCopy();
@@ -32,13 +34,15 @@ public class LibraryTestSuite {
             e.printStackTrace();
         }
 
-        int expected  = library.getBooks().size() * 2;
+        Set<Book> expected  = library.getBooks();
         //When
-        assert shallowClonedLibrary != null;
-        assert deepClonedLibrary != null;
-        int actual = shallowClonedLibrary.getBooks().size() + deepClonedLibrary.getBooks().size();
+        Assert.assertNotNull(shallowClonedLibrary);
+        Assert.assertNotNull(deepClonedLibrary);
+        Set<Book> actualShallowCopy = shallowClonedLibrary.getBooks();
+        Set<Book> actualDeepCopy  = deepClonedLibrary.getBooks();
         //Than
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actualShallowCopy);
+        Assert.assertEquals(expected, actualDeepCopy);
     }
 
 }
