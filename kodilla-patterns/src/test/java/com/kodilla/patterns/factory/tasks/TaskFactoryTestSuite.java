@@ -13,9 +13,9 @@ public class TaskFactoryTestSuite {
         Task expectedShoppingTask = new ShoppingTask("Buy supplies", "Paints", 30.0);
         Task expectedPaintingTask = new PaintingTask("Paint School", "White","Classroom 4");
         //When
-        Task actualDrivingTask =  taskFactory.createTask(TaskFactory.DRIVING_TASK_FOR_JHON);
-        Task actualShoppingTask = taskFactory.createTask(TaskFactory.SHOPPING_TASK_FOR_GREGOR);
-        Task actualPaintingTask = taskFactory.createTask(TaskFactory.PAINTING_TASK_FOR_ELLEN);
+        Task actualDrivingTask =  taskFactory.createTask(TaskFactory.DRIVING_TASK);
+        Task actualShoppingTask = taskFactory.createTask(TaskFactory.SHOPPING_TASK);
+        Task actualPaintingTask = taskFactory.createTask(TaskFactory.PAINTING_TASK);
         //Then
         Assert.assertEquals(expectedDrivingTask, actualDrivingTask);
         Assert.assertEquals(expectedShoppingTask, actualShoppingTask);
@@ -26,7 +26,7 @@ public class TaskFactoryTestSuite {
     public void testExecuteTask() {
         //Given
         TaskFactory taskFactory = new TaskFactory();
-        Task task = taskFactory.createTask(TaskFactory.PAINTING_TASK_FOR_ELLEN);
+        Task task = taskFactory.createTask(TaskFactory.PAINTING_TASK);
         //When
         Assert.assertNotNull(task);
         task.executeTask();
