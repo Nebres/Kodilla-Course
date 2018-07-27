@@ -1,10 +1,9 @@
 package com.kodilla.good.patterns.challenges.thirdChallenge;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class FlightFinder {
 
@@ -52,11 +51,15 @@ public class FlightFinder {
                         && flight.getEndAirport().equals(endAirport))
                 .collect(Collectors.toList());
 
-        return interlandingAirports.size() != endAirports.size() ? Collections.emptyList():
-                IntStream.range(0, interlandingAirports.size())
-                .boxed()
-                .map((i) -> new FlightsPair(interlandingAirports.get(i), endAirports.get(i)))
-                .collect(Collectors.toList());
+        List<FlightsPair> flights = new ArrayList<>();
+
+        for(Flight flightFromVia : interlandingAirports) {
+            for (Flight flightViaTo : endAirports )
+                if(flightViaTo.getStartAirport().equals(flightFromVia.getEndAirport())) {
+                    flights.add(new FlightsPair(flightFromVia, flightViaTo));
+                }
+        }
+        return flights;
     }
 
     public void printSimplySearch(List<Flight> flights) {

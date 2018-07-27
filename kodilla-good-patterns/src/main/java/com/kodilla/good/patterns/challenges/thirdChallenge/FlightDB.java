@@ -29,6 +29,28 @@ public class FlightDB {
        return new Flight("Warszawa", "Szymany");
     }
 
+    private static Flight initFlight7() {
+        return new Flight("Warszawa", "Szymany");
+    }
+
+    private static Flight initFlight8() {
+        return new Flight("Berlin", "Londyn");
+    }
+
+    private static Flight initFlight9() {
+        return new Flight("Londyn","Berlin");
+    }
+
+    private static Flight initFlight10() {
+        return new Flight("Warszawa", "Berlin");
+    }
+
+    private static Flight initFlight11() {
+        return new Flight("Berlin", "Warszawa");
+    }
+
+
+
     public static Map<Integer, Flight> init() {
 
         Map<Integer, Flight> flights = new HashMap<>();
@@ -38,6 +60,11 @@ public class FlightDB {
         flights.put(4, initFlight4());
         flights.put(5, initFlight5());
         flights.put(6, initFlight6());
+        flights.put(7, initFlight7());
+        flights.put(8, initFlight8());
+        flights.put(9, initFlight9());
+        flights.put(10, initFlight10());
+        flights.put(11, initFlight11());
 
         return flights;
     }
