@@ -21,16 +21,16 @@ public class Bigmac {
 
         public BigmacBuldier bun(int chosen) {
             switch (chosen) {
-                default:
-                    this.bun = null;
-                    break;
-
                 case 1:
                     this.bun = Components.BUN_WITH_SESAME;
                     break;
 
                 case 2:
                     this.bun = Components.BUN_WITHOUT_SESAME;
+                    break;
+
+                default:
+                    this.bun = null;
                     break;
             }
             return this;
@@ -43,10 +43,6 @@ public class Bigmac {
 
         public BigmacBuldier sauce(int chosen) {
             switch (chosen) {
-                default:
-                    this.sauce = null;
-                    break;
-
                 case 1:
                     this.sauce = Components.STANDARD_SAUCE;
                     break;
@@ -58,6 +54,10 @@ public class Bigmac {
                 case 3:
                     this.sauce = Components.BARBECUE_SAUCE;
                     break;
+
+                default:
+                    this.sauce = null;
+                    break;
             }
             return this;
         }
@@ -66,10 +66,6 @@ public class Bigmac {
 
             for (int chosen : chosenIngredients) {
                 switch (chosen) {
-                    default:
-                        ingredients.add(null);
-                        break;
-
                     case 1:
                         ingredients.add(Components.LETTUCE);
                         break;
@@ -101,6 +97,10 @@ public class Bigmac {
                     case 8:
                         ingredients.add(Components.CHEESE);
                         break;
+
+                    default:
+                        ingredients.add(null);
+                        break;
                 }
             }
             return this;
@@ -111,7 +111,7 @@ public class Bigmac {
         }
     }
 
-    public Bigmac(String bun, int burgers, String sauce, List<String> ingredients) {
+    private Bigmac(String bun, int burgers, String sauce, List<String> ingredients) {
         this.bun = bun;
         this.burgers = burgers;
         this.sauce = sauce;
