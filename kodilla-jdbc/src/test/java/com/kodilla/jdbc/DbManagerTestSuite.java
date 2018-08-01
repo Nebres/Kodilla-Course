@@ -61,7 +61,7 @@ public class DbManagerTestSuite {
         int actual = counter;
         rs.close();
         statement.close();
-        Assert.assertEquals(expected, counter);
+        Assert.assertEquals(expected, actual);
     }
 
 }
