@@ -1,19 +1,29 @@
 package com.kodilla.patterns.builder.bigmac;
 
-public interface Components {
+public enum Components {
 
-    String BUN_WITH_SESAME = "With sesame";
-    String BUN_WITHOUT_SESAME = "Without sesame";
-    String STANDARD_SAUCE = "Standard";
-    String THOUSAND_ISLAND_SAUCE = "Thousand Island";
-    String BARBECUE_SAUCE = "Barbecue";
-    String LETTUCE = "Lettuce";
-    String ONION = "Onion";
-    String BACON = "Bacon";
-    String PICKLE = "Pickle";
-    String CHILLI = "Chilli";
-    String MUSHROOMS = "Mushrooms";
-    String SHRIMPS = "Shrimps";
-    String CHEESE = "Cheese";
+    BUN_WITH_SESAME("With sesame"),
+    BUN_WITHOUT_SESAME("Without sesame"),
+    STANDARD_SAUCE("Standard"),
+    THOUSAND_ISLAND_SAUCE("Thousand Island"),
+    BARBECUE_SAUCE("Barbecue"),
+    LETTUCE("Lettuce"),
+    ONION("Onion"),
+    BACON("Bacon"),
+    PICKLE("Pickle"),
+    CHILLI("Chilli"),
+    MUSHROOMS("Mushrooms"),
+    SHRIMPS("Shrimps"),
+    CHEESE("Cheese");
+
+    private final String component;
+
+    Components(String component) {
+        this.component = component;
+    }
+
+    public String getComponent() {
+        return component;
+    }
 
 }

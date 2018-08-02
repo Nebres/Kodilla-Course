@@ -4,22 +4,34 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class BigmacTestSuite {
 
     @Test
-    public void testBigmacBuldierwithAllIngredients() {
+    public void testGetComponentFromEnumComponents() {
         //Given
-        List<Integer> chosenIngredientsForActual = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+        String expected = "With sesame";
+        //When
+        String actual = Components.BUN_WITH_SESAME.getComponent();
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testBigmacBuldierWithAllIngredients() {
+        //Given
+        List<Components> chosenIngredientsForActual = Arrays.asList(Components.LETTUCE, Components.ONION,Components.BACON,
+                Components.PICKLE, Components.CHILLI,  Components.MUSHROOMS, Components.SHRIMPS, Components.CHEESE);
         List<String> chosenIngredientsForExpected = Arrays.asList("Lettuce", "Onion", "Bacon", "Pickle", "Chilli",
                    "Mushrooms", "Shrimps", "Cheese");
         Bigmac expected = new Bigmac("With sesame", 2, "Barbecue", chosenIngredientsForExpected);
         //When
         Bigmac actual = new Bigmac.BigmacBuldier()
-                    .bun(1)
+                    .bun(Components.BUN_WITH_SESAME)
                     .burgers(2)
-                    .sauce(3)
+                    .sauce(Components.BARBECUE_SAUCE)
                     .ingredients(chosenIngredientsForActual)
                     .build();
         //Then
@@ -27,16 +39,17 @@ public class BigmacTestSuite {
     }
 
     @Test
-    public void testBigmacBuldierWithNull() {
+    public void testDeflautBigmacBuldier() {
         //Given
-        List<String> chosenIngredientsForExpected = Arrays.asList(null, null);
-        List<Integer> chosenIngredientsForActual = Arrays.asList(0, 12);
-        Bigmac expected = new Bigmac(null, 0, null, chosenIngredientsForExpected);
+        List<String> chosenIngredientsForExpected = Collections.singletonList(Components.CHEESE.getComponent());
+        List<Components> chosenIngredientsForActual = Collections.singletonList(Components.BUN_WITHOUT_SESAME);
+        Bigmac expected = new Bigmac(Components.BUN_WITHOUT_SESAME.getComponent(), 0,
+                Components.STANDARD_SAUCE.getComponent(), chosenIngredientsForExpected);
         //When
         Bigmac actual = new Bigmac.BigmacBuldier()
-                .bun(3)
+                .bun(Components.BARBECUE_SAUCE)
                 .burgers(-3)
-                .sauce(9)
+                .sauce(Components.ONION)
                 .ingredients(chosenIngredientsForActual)
                 .build();
         //Then

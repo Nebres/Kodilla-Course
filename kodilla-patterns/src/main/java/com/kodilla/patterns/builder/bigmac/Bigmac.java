@@ -19,18 +19,18 @@ public class Bigmac {
         private String sauce;
         private List<String> ingredients = new ArrayList<>();
 
-        public BigmacBuldier bun(int chosen) {
-            switch (chosen) {
-                case 1:
-                    this.bun = Components.BUN_WITH_SESAME;
+        public BigmacBuldier bun(Components components) {
+            switch (components) {
+                case BUN_WITH_SESAME:
+                    this.bun = Components.BUN_WITH_SESAME.getComponent();
                     break;
 
-                case 2:
-                    this.bun = Components.BUN_WITHOUT_SESAME;
+                case BUN_WITHOUT_SESAME:
+                    this.bun = Components.BUN_WITHOUT_SESAME.getComponent();
                     break;
 
                 default:
-                    this.bun = null;
+                    this.bun = Components.BUN_WITHOUT_SESAME.getComponent();
                     break;
             }
             return this;
@@ -41,65 +41,65 @@ public class Bigmac {
             return this;
         }
 
-        public BigmacBuldier sauce(int chosen) {
-            switch (chosen) {
-                case 1:
-                    this.sauce = Components.STANDARD_SAUCE;
+        public BigmacBuldier sauce(Components components) {
+            switch (components) {
+                case STANDARD_SAUCE:
+                    this.sauce = Components.STANDARD_SAUCE.getComponent();
                     break;
 
-                case 2:
-                    this.sauce = Components.THOUSAND_ISLAND_SAUCE;
+                case THOUSAND_ISLAND_SAUCE:
+                    this.sauce = Components.THOUSAND_ISLAND_SAUCE.getComponent();
                     break;
 
-                case 3:
-                    this.sauce = Components.BARBECUE_SAUCE;
+                case BARBECUE_SAUCE:
+                    this.sauce = Components.BARBECUE_SAUCE.getComponent();
                     break;
 
                 default:
-                    this.sauce = null;
+                    this.sauce = Components.STANDARD_SAUCE.getComponent();
                     break;
             }
             return this;
         }
 
-        public BigmacBuldier ingredients(List<Integer> chosenIngredients) {
+        public BigmacBuldier ingredients(List<Components> chosenIngredients) {
 
-            for (int chosen : chosenIngredients) {
+            for (Components chosen : chosenIngredients) {
                 switch (chosen) {
-                    case 1:
-                        ingredients.add(Components.LETTUCE);
+                    case LETTUCE:
+                        ingredients.add(Components.LETTUCE.getComponent());
                         break;
 
-                    case 2:
-                        ingredients.add(Components.ONION);
+                    case ONION:
+                        ingredients.add(Components.ONION.getComponent());
                         break;
 
-                    case 3:
-                        ingredients.add(Components.BACON);
+                    case BACON:
+                        ingredients.add(Components.BACON.getComponent());
                         break;
 
-                    case 4:
-                        ingredients.add(Components.PICKLE);
+                    case PICKLE:
+                        ingredients.add(Components.PICKLE.getComponent());
                         break;
 
-                    case 5:
-                        ingredients.add(Components.CHILLI);
+                    case CHILLI:
+                        ingredients.add(Components.CHILLI.getComponent());
                         break;
 
-                    case 6:
-                        ingredients.add(Components.MUSHROOMS);
+                    case MUSHROOMS:
+                        ingredients.add(Components.MUSHROOMS.getComponent());
                         break;
 
-                    case 7:
-                        ingredients.add(Components.SHRIMPS);
+                    case SHRIMPS:
+                        ingredients.add(Components.SHRIMPS.getComponent());
                         break;
 
-                    case 8:
-                        ingredients.add(Components.CHEESE);
+                    case CHEESE:
+                        ingredients.add(Components.CHEESE.getComponent());
                         break;
 
                     default:
-                        ingredients.add(null);
+                        ingredients.add(Components.CHEESE.getComponent());
                         break;
                 }
             }
@@ -111,7 +111,7 @@ public class Bigmac {
         }
     }
 
-    private Bigmac(String bun, int burgers, String sauce, List<String> ingredients) {
+    protected Bigmac(String bun, int burgers, String sauce, List<String> ingredients) {
         this.bun = bun;
         this.burgers = burgers;
         this.sauce = sauce;
