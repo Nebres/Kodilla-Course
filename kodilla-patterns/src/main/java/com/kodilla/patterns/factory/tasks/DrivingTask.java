@@ -29,12 +29,12 @@ public class DrivingTask implements Task {
 
     @Override
     public void executeTask() {
-        this.done = true;
+        done = true;
     }
 
     @Override
     public boolean isTaskExecuted() {
-        return this.done;
+        return done;
     }
 
     @Override
