@@ -1,4 +1,4 @@
-import com.kodilla.stream.person.People;
+import com.kodilla.spring.stream.person.People;
 
 public class StreamMain {
 
@@ -12,4 +12,5 @@ public class StreamMain {
                 .filter(s -> s.substring(0, 1).equals("M"))
                 .forEach(System.out::println);
     }
+
 }

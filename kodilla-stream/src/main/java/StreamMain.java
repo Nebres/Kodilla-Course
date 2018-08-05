@@ -1,13 +1,13 @@
-import com.kodilla.stream.forumuser.ForumUser;
-import com.kodilla.stream.forumuser.Forum;
-import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.spring.stream.beautifier.PoemBeautifier;
+import com.kodilla.spring.stream.forumuser.Forum;
+import com.kodilla.spring.stream.forumuser.ForumUser;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
 
@@ -45,16 +45,20 @@ public class StreamMain {
         PoemBeautifier beautifier = new PoemBeautifier();
 
         beautifier.beautify("example text", text -> text.toUpperCase());
-        beautifier.beautify("another text", text -> text.substring(text.length() < 3 ? 0 : text.length()/ 2 + 2).replace('t', 'T'));
+        beautifier.beautify("another text", text -> text
+                .substring(text.length() < 3 ? 0 : text.length()/ 2 + 2)
+                .replace('t', 'T'));
         beautifier.beautify("one more time", text -> "".concat("..::||" ).concat(text).concat("||::.."));
 
         // task 7.4
         Forum forum = new Forum(initList());
 
-        Map<Integer, ForumUser> theResultOfFilteringForumUsers = forum.getUsersList().stream()
+        Map<Integer, ForumUser> theResultOfFilteringForumUsers = forum.getUsersList()
+                .stream()
                 .filter(forumUser -> forumUser.getSex() == 'M')
                 .filter(forumUser -> forumUser.getPublicatedPosts() >= 1)
-                .filter(forumUser -> forumUser.getBirthDate().isBefore(LocalDate.now().minus(20, ChronoUnit.YEARS)))
+                .filter(forumUser -> forumUser.getBirthDate()
+                        .isBefore(LocalDate.now().minus(20, ChronoUnit.YEARS)))
                 .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser));
 
         System.out.println("# elements: " + theResultOfFilteringForumUsers.size());
