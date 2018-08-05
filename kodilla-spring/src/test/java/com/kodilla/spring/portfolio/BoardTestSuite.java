@@ -73,7 +73,6 @@ public class BoardTestSuite {
         String actual = tasksDone.toString();
         //Than
         Assert.assertEquals(expected, actual);
-        System.out.println(board.toString());
     }
 
     @Test
