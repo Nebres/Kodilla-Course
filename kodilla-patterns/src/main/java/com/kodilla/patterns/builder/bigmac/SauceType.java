@@ -6,14 +6,14 @@ public enum SauceType {
     THOUSAND_ISLAND_SAUCE("Thousand Island"),
     BARBECUE_SAUCE("Barbecue");
 
-    private final String sauceType;
+    private final String description;
 
     SauceType(String sauceType) {
-        this.sauceType = sauceType;
+        this.description = sauceType;
     }
 
-    public String getSauceType() {
-        return sauceType;
+    public String getDescription() {
+        return description;
     }
 
 }

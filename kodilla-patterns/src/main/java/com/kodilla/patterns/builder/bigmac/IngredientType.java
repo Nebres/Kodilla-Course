@@ -11,14 +11,14 @@ public enum IngredientType {
     SHRIMPS("Shrimps"),
     CHEESE("Cheese");
 
-    private final String ingredient;
+    private final String description;
 
     IngredientType(String ingredient) {
-        this.ingredient = ingredient;
+        this.description = ingredient;
     }
 
-    public String getIngredient() {
-        return ingredient;
+    public String getDescryption() {
+        return description;
     }
 
 }

@@ -7,20 +7,20 @@ import java.util.stream.Collectors;
 
 public class Bigmac {
 
-    private final String bun;
+    private final BunType bun;
     private final int burgers;
-    private final String sauce;
-    private final List<String> ingredients;
+    private final SauceType sauce;
+    private final List<IngredientType> ingredients;
 
     public static class BigmacBuldier {
 
-        private String bun;
+        private BunType bun;
         private int burgers;
-        private String sauce;
-        private List<String> ingredients = new ArrayList<>();
+        private SauceType sauce;
+        private List<IngredientType> ingredients = new ArrayList<>();
 
         public BigmacBuldier bun(BunType bunType) {
-           this.bun = bunType.getBunType();
+           this.bun = bunType;
            return this;
         }
 
@@ -30,16 +30,15 @@ public class Bigmac {
         }
 
         public BigmacBuldier sauce(SauceType sauceType) {
-            this.sauce = sauceType.getSauceType();
+            this.sauce = sauceType;
             return this;
+
         }
 
         public BigmacBuldier ingredients(List<IngredientType> chosenIngredients) {
 
             this.ingredients = new ArrayList<>();
-            for (IngredientType chosen : chosenIngredients) {
-              ingredients.add(chosen.getIngredient());
-            }
+            ingredients.addAll(chosenIngredients);
             return this;
         }
 
@@ -48,14 +47,14 @@ public class Bigmac {
         }
     }
 
-    protected Bigmac(String bun, int burgers, String sauce, List<String> ingredients) {
+    protected Bigmac(BunType bun, int burgers, SauceType sauce, List<IngredientType> ingredients) {
         this.bun = bun;
         this.burgers = burgers;
         this.sauce = sauce;
         this.ingredients = ingredients;
     }
 
-    public String getBun() {
+    public BunType getBun() {
         return bun;
     }
 
@@ -63,16 +62,18 @@ public class Bigmac {
         return burgers;
     }
 
-    public String getSauce() {
+    public SauceType getSauce() {
         return sauce;
     }
 
-    public List<String> getIngredients() {
+    public List<IngredientType> getIngredients() {
         return ingredients;
     }
 
-    public String printIngredients() {
-        return ingredients.stream().collect(Collectors.joining("\n"));
+    private String printIngredients() {
+        return ingredients.stream()
+                .map(IngredientType::getDescryption)
+                .collect(Collectors.joining("\n"));
     }
 
     @Override
@@ -80,20 +81,21 @@ public class Bigmac {
         if (this == o) return true;
         if (!(o instanceof Bigmac)) return false;
         Bigmac bigmac = (Bigmac) o;
-        return Objects.equals(getBun(), bigmac.getBun()) &&
-                Objects.equals(getSauce(), bigmac.getSauce()) &&
+        return getBurgers() == bigmac.getBurgers() &&
+                getBun() == bigmac.getBun() &&
+                getSauce() == bigmac.getSauce() &&
                 Objects.equals(getIngredients(), bigmac.getIngredients());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getBun(), getSauce(), getIngredients());
+        return Objects.hash(getBun(), getBurgers(), getSauce(), getIngredients());
     }
 
     @Override
     public String toString() {
-        return String.format("Bigmac \nBun: %s \nBurgers %d \nSauce: %s \nIngredients: \n%s ", getBun(),
-                getBurgers(), getSauce(), printIngredients());
+        return String.format("Bigmac \nBun: %s \nBurgers %d \nSauce: %s \nIngredients: \n%s ", getBun().getDescription(),
+                getBurgers(), getSauce().getDescription(), printIngredients());
     }
 
 }

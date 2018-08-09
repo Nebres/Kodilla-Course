@@ -5,14 +5,14 @@ public enum BunType {
     BUN_WITH_SESAME("With sesame"),
     BUN_WITHOUT_SESAME("Without sesame");
 
-    private final String bunType;
+    private final String description;
 
     BunType (String bunType) {
-        this.bunType = bunType;
+        this.description = bunType;
     }
 
-    public String getBunType() {
-        return bunType;
+    public String getDescription() {
+        return description;
     }
 
 }
