@@ -17,7 +17,7 @@ public enum IngredientType {
         this.description = ingredient;
     }
 
-    public String getDescryption() {
+    public String getDescription() {
         return description;
     }
 

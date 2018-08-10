@@ -32,7 +32,6 @@ public class Bigmac {
         public BigmacBuldier sauce(SauceType sauceType) {
             this.sauce = sauceType;
             return this;
-
         }
 
         public BigmacBuldier ingredients(List<IngredientType> chosenIngredients) {
@@ -72,7 +71,7 @@ public class Bigmac {
 
     private String printIngredients() {
         return ingredients.stream()
-                .map(IngredientType::getDescryption)
+                .map(IngredientType::getDescription)
                 .collect(Collectors.joining("\n"));
     }
 
