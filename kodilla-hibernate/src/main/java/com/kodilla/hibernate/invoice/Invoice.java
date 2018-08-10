@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table (name = "INVOICES")
@@ -32,7 +33,7 @@ public class Invoice {
         this.id = id;
     }
 
-    @Column(name = "INVOICE_NUMBER", unique = true)
+    @Column(name = "INVOICE_NUMBER")
     public String getNumber() {
         return number;
     }
@@ -45,7 +46,7 @@ public class Invoice {
             targetEntity = Item.class,
             mappedBy = "invoice",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     public List<Item> getItems() {
         return items;
@@ -53,6 +54,20 @@ public class Invoice {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Invoice)) return false;
+        Invoice invoice = (Invoice) o;
+        return Objects.equals(getNumber(), invoice.getNumber()) &&
+                Objects.equals(getItems(), invoice.getItems());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNumber(), getItems());
     }
 
 }
