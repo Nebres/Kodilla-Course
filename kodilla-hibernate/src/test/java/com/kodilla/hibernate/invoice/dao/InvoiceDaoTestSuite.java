@@ -18,6 +18,10 @@ public class InvoiceDaoTestSuite {
 
     @Autowired
     private InvoiceDao invoiceDao;
+    @Autowired
+    private ProductDao productDao;
+    @Autowired
+    private ItemDao itemDao;
 
     @Test
     public void testInvoiceDaoSave() {
@@ -55,12 +59,34 @@ public class InvoiceDaoTestSuite {
         invoice.getItems().add(item3);
         int unexpected = 0;
         //When
+        productDao.save(product);
+        productDao.save(product1);
+        productDao.save(product2);
+        productDao.save(product3);
+        itemDao.save(item);
+        itemDao.save(item1);
+        itemDao.save(item2);
+        itemDao.save(item3);
+        itemDao.save(item4);
         invoiceDao.save(invoice);
         int actual = invoice.getId();
         //Then
         Assert.assertNotEquals(unexpected, actual);
         //CleanUp
-        invoiceDao.delete(invoice);
+        try {
+            productDao.delete(product);
+            productDao.delete(product1);
+            productDao.delete(product2);
+            productDao.delete(product3);
+            itemDao.delete(item);
+            itemDao.delete(item1);
+            itemDao.delete(item2);
+            itemDao.delete(item3);
+            itemDao.delete(item4);
+            invoiceDao.delete(invoice);
+        } catch (Exception e) {
+            //no action
+        }
     }
 
 }

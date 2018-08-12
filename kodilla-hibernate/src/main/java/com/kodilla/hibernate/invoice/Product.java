@@ -34,7 +34,7 @@ public class Product {
     }
 
     @NotNull
-    @Column(name = "PRODUCT_NAME")
+    @Column(name = "NAME")
     public String getName() {
         return name;
     }

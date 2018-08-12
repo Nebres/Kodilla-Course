@@ -33,7 +33,7 @@ public class Invoice {
         this.id = id;
     }
 
-    @Column(name = "INVOICE_NUMBER")
+    @Column(name = "NUMBER")
     public String getNumber() {
         return number;
     }
