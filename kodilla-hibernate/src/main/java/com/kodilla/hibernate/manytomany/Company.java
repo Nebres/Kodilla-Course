@@ -8,7 +8,7 @@ import java.util.Objects;
 
 
 @NamedQuery(
-        name = "Company.retrieveSearchedCompany",
+        name = "Company.retrieveCompanyByBeginning",
         query ="FROM Company WHERE name LIKE CONCAT(:LETTER1, :LETTER2, :LETTER3, '%')"
 )
 @Entity

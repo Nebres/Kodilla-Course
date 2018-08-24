@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @NamedQuery(
-        name = "Employee.retrieveSpecifiedEmployee",
+        name = "Employee.retrieveEmployeeByLastname",
         query = "FROM Employee WHERE lastname = :LASTNAME"
 )
 @Entity

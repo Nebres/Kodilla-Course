@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
@@ -77,12 +79,11 @@ public class CompanyDaoTestSuite {
         jhonSmith.getCompanies().add(dataMaesters);
         softwareMachine.getEmployees().add(jhonSmith);
         dataMaesters.getEmployees().add(jhonSmith);
-        String expected = "Smith";
         //When
         employeeDao.save(jhonSmith);
-        String actual = employeeDao.retrieveSpecifiedEmployee("Smith").getLastname();
+        List<Employee> actual = employeeDao.retrieveEmployeeByLastname("Smith");
         //Than
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(actual.contains(jhonSmith));
         //CleanUp
         try {
             employeeDao.delete(jhonSmith);
@@ -104,13 +105,12 @@ public class CompanyDaoTestSuite {
         jhonSmith.getCompanies().add(dataMaesters);
         softwareMachine.getEmployees().add(jhonSmith);
         dataMaesters.getEmployees().add(jhonSmith);
-        String expected = "Software Machine";
         //When
         companyDao.save(softwareMachine);
         companyDao.save(dataMaesters);
-        String actual = companyDao.retrieveSearchedCompany('S', 'o', 'f').getName();
+        List<Company> actual = companyDao.retrieveCompanyByBeginning('S', 'o', 'f');
         //Than
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(actual.contains(softwareMachine));
         //CleanUp
         try {
             companyDao.delete(softwareMachine);
