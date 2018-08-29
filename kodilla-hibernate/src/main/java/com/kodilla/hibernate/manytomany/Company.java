@@ -9,11 +9,12 @@ import java.util.Objects;
 
 @NamedQuery(
         name = "Company.retrieveCompanyByBeginning",
-        query ="FROM Company WHERE name LIKE CONCAT(:LETTER1, :LETTER2, :LETTER3, '%')"
+        query ="FROM Company WHERE SUBSTR(name, 0, 3) = :LETTER1"
 )
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
+
     private int id;
     private String name;
     private List<Employee> employees = new ArrayList<>();
