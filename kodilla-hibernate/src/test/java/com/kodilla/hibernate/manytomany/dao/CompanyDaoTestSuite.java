@@ -68,7 +68,8 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testFindSpecifiedEmployee() {
+    public void testRetrieveEmployeeByLastname() {
+
         //Given
         Employee jhonSmith = new Employee("John", "Smith");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
@@ -80,11 +81,18 @@ public class CompanyDaoTestSuite {
         jhonSmith.getCompanies().add(dataMaesters);
         softwareMachine.getEmployees().add(jhonSmith);
         dataMaesters.getEmployees().add(jhonSmith);
+        String expected = "Smith";
+
         //When
         employeeDao.save(jhonSmith);
-        List<Employee> actual = employeeDao.retrieveEmployeeByLastname("Smith");
+        List<Employee> employeeList = employeeDao.retrieveEmployeeByLastname("Smith");
+
         //Than
-        Assert.assertTrue(actual.contains(jhonSmith));
+        for (Employee employee:employeeList) {
+            String actual = employee.getLastname();
+            Assert.assertEquals(expected, actual);
+        }
+
         //CleanUp
         try {
             employeeDao.delete(jhonSmith);
@@ -97,7 +105,8 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testFindSpecifiedCompany() {
+    public void testRetrieveCompanyByBeginning() {
+
         //Given
         Employee jhonSmith = new Employee("John", "Smith");
         Company softwareMachine = new Company("Software Machine");
@@ -106,12 +115,15 @@ public class CompanyDaoTestSuite {
         jhonSmith.getCompanies().add(dataMaesters);
         softwareMachine.getEmployees().add(jhonSmith);
         dataMaesters.getEmployees().add(jhonSmith);
+
         //When
         companyDao.save(softwareMachine);
         companyDao.save(dataMaesters);
-        List<Company> actual = companyDao.retrieveCompanyByBeginning('S', 'o', 'f');
+        List<Company> companyList = companyDao.retrieveCompanyByBeginning("Sof");
+
         //Than
-        Assert.assertTrue(actual.contains(softwareMachine));
+        for (Company company:companyList) {Assert.assertTrue(company.getName().startsWith("Sof"));}
+
         //CleanUp
         try {
             companyDao.delete(softwareMachine);

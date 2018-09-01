@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @NamedQuery(
         name = "Company.retrieveCompanyByBeginning",
-        query ="FROM Company WHERE SUBSTR(name, 0, 3) = :LETTER1"
+        query ="FROM Company WHERE SUBSTR(name, 0, 3) = :SEARCHED"
 )
 @Entity
 @Table(name = "COMPANIES")
