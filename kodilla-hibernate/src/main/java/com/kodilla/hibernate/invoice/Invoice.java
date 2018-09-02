@@ -7,45 +7,44 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "PRODUCTS")
-public class Product {
+@Table (name = "INVOICES")
+public class Invoice {
 
     private int id;
-    private String name;
+    private String number;
     private List<Item> items;
 
-    public Product(String name) {
-        this.name = name;
+    public Invoice(String number) {
+        this.number = number;
         this.items = new ArrayList<>();
     }
 
-    public Product(){}
+    public Invoice(){}
 
     @Id
     @GeneratedValue
     @NotNull
     @Column(name= "ID", unique = true)
-    protected int getId() {
+    public int getId() {
         return id;
     }
 
-    protected void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    @NotNull
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
+    @Column(name = "NUMBER")
+    public String getNumber() {
+        return number;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    @OneToMany(
+    @OneToMany (
             targetEntity = Item.class,
-            mappedBy = "product",
+            mappedBy = "invoice",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
@@ -60,15 +59,15 @@ public class Product {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-        Product product = (Product) o;
-        return getId() == product.getId() &&
-                Objects.equals(getName(), product.getName());
+        if (!(o instanceof Invoice)) return false;
+        Invoice invoice = (Invoice) o;
+        return Objects.equals(getNumber(), invoice.getNumber()) &&
+                Objects.equals(getItems(), invoice.getItems());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName());
+        return Objects.hash(getNumber(), getItems());
     }
 
 }
