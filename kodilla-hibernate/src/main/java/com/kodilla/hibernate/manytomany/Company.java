@@ -6,11 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
-@NamedQuery(
-        name = "Company.retrieveCompanyByBeginning",
-        query ="FROM Company WHERE SUBSTR(name, 0, 3) = :SEARCHED"
-)
+@NamedQueries({
+        @NamedQuery(
+                name="Company.retrieveCompanyByBeginning",
+                query = "FROM Company WHERE SUBSTR(name, 0, 3) = :SEARCHED"
+        ),
+        @NamedQuery(
+                name="Company.retrieveCompanyByContextSearch",
+                query = "FROM Company WHERE name LIKE CONCAT('%', :CONTEXT, '%')"
+        )
+})
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

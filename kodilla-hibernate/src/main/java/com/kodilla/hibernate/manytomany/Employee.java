@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@NamedQuery(
-        name = "Employee.retrieveEmployeeByLastname",
-        query = "FROM Employee WHERE lastname = :LASTNAME"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.retrieveEmployeeByLastname",
+                query = "FROM Employee WHERE lastname = :LASTNAME"),
+        @NamedQuery(
+                name="Employee.retrieveEmployeeByContextSearch",
+                query = "FROM Employee WHERE lastname LIKE CONCAT('%', :CONTEXT, '%')"
+        )
+})
+
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
