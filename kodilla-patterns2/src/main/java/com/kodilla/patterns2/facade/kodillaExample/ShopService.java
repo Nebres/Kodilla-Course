@@ -1,4 +1,4 @@
-package com.kodilla.patterns2.facade;
+package com.kodilla.patterns2.facade.kodillaExample;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

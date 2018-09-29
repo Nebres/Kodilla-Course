@@ -12,8 +12,8 @@ import java.util.Objects;
                 query = "FROM Company WHERE SUBSTR(name, 0, 3) = :SEARCHED"
         ),
         @NamedQuery(
-                name="Company.retrieveCompanyByContextSearch",
-                query = "FROM Company WHERE name LIKE CONCAT('%', :CONTEXT, '%')"
+                name="Company.retrieveCompanyByParmSearch",
+                query = "FROM Company WHERE name LIKE CONCAT('%', :ARG, '%')"
         )
 })
 @Entity

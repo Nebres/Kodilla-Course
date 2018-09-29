@@ -11,8 +11,8 @@ import java.util.Objects;
                 name = "Employee.retrieveEmployeeByLastname",
                 query = "FROM Employee WHERE lastname = :LASTNAME"),
         @NamedQuery(
-                name="Employee.retrieveEmployeeByContextSearch",
-                query = "FROM Employee WHERE lastname LIKE CONCAT('%', :CONTEXT, '%')"
+                name="Employee.retrieveEmployeeByParmSearch",
+                query = "FROM Employee WHERE lastname LIKE CONCAT('%', :ARG, '%')"
         )
 })
 

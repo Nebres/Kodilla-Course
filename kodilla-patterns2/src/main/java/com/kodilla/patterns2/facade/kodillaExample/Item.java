@@ -1,4 +1,4 @@
-package com.kodilla.patterns2.facade;
+package com.kodilla.patterns2.facade.kodillaExample;
 
 public class Item {
 

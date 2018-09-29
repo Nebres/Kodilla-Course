@@ -2,9 +2,9 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
-import com.kodilla.hibernate.manytomany.dao.facade.ApiExpections;
-import com.kodilla.hibernate.manytomany.dao.facade.ApiFacade;
-import com.kodilla.hibernate.manytomany.dao.facade.Context;
+import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacade;
+import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacadeExpection;
+import com.kodilla.hibernate.manytomany.dao.facade.ResultDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,9 +23,7 @@ public class CompanyDaoTestSuite {
     @Autowired
     EmployeeDao employeeDao;
     @Autowired
-    ApiFacade apiFacade;
-    @Autowired
-    Context context;
+    CompanyFacade companyFacade;
 
     @Test
     public void testSaveManyToMany(){
@@ -142,54 +140,20 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testRetrieveCompanyByContextSearch() throws ApiExpections {
+    public void testSearchWithParm() throws CompanyFacadeExpection {
         //Using data from local DB
         //Given
-        context.setContext("Ma");
+        String parm = "Ma";
         //When
-            List<Company> actual = apiFacade.companyContextSearch(context);
+        ResultDto result = companyFacade.search(parm);
         //Than
-            for (Company company : actual) {
+            for (Company company : result.getCompanyResult()) {
                 Assert.assertTrue(company.getName().contains("Ma"));
             }
-    }
 
-    @Test
-    public void testRetrieveCompanyByContextSearchWithNoMatch() throws ApiExpections {
-        //Using data from local DB
-        //Given
-        context.setContext("xy");
-        int expected = 0;
-        //When
-        List<Company> companyList = apiFacade.companyContextSearch(context);
-        int actual = companyList.size();
-        //Than
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testRetrieveEmployeeByContextSearch() throws ApiExpections {
-        //Using data from local DB
-        //Given
-        context.setContext("i");
-        //When
-        List<Employee> actual = apiFacade.employeeContextSearch(context);
-        //Than
-        for (Employee employee : actual) {
-            Assert.assertTrue(employee.getLastname().contains("S"));
-        }
-    }
-    @Test
-    public void testRetrieveEmployeeByContextSearchNoMatch() throws ApiExpections {
-        //Using data from local DB
-        //Given
-        context.setContext("xy");
-        int expected = 0;
-        //When
-        List<Employee> companyList = apiFacade.employeeContextSearch(context);
-        int actual = companyList.size();
-        //Than
-        Assert.assertEquals(expected, actual);
+            for (Employee employee : result.getEmployeesResult()) {
+                Assert.assertTrue(employee.getLastname().contains("Ma"));
+            }
     }
 
 }
