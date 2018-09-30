@@ -1,5 +1,6 @@
-package com.kodilla.patterns2.aop.calculator;
+package com.kodilla.patterns2.facade.shopFacade;
 
+import com.kodilla.patterns2.facade.kodillaExample.Order;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -8,28 +9,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-
-@Aspect
 @Component
+@Aspect
 public class Watcher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Watcher.class);
 
-     /*
-    @Before("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
-    public void logEvent() {
-        LOGGER.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    }
-   */
-    @Before("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))" +
-    "&& args(theNumber) && target(object)")
-    public void logEvent(BigDecimal theNumber, Object object) {
-        LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + theNumber);
+    @Before("execution(* com.kodilla.patterns2.facade.shopFacade.OrderFacade.processOrder(..)) && args(order)" +
+            " && args(orderId) && target(object)")
+    public void logEvent(Order order, Long orderId, Object object) {
+        LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + order.toString() + " " + orderId);
+
     }
 
-    @Around("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
-    public Object messureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    @Around("execution(* com.kodilla.patterns2.facade.shopFacade.OrderFacade.processOrder(..))")
+    public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object result;
         try {
             long begin = System.currentTimeMillis();
@@ -40,7 +34,7 @@ public class Watcher {
             LOGGER.error(throwable.getMessage());
             throw throwable;
         }
-    return result;
+        return result;
     }
 
 }
