@@ -4,6 +4,7 @@ include 'kodilla-stream'
 include 'kodilla-examples'
 include 'kodilla-exception'
 include 'kodilla-good-patterns'
-include 'kodilla-patterns'
-include 'kodilla-jdbc'
+include 'kodilla-patterns' 
+//include 'kodilla-jdbc'
+
 
