@@ -3,7 +3,7 @@ package com.kodilla.hibernate.manytomany.dao;
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
 import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacade;
-import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacadeExpection;
+import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacadeException;
 import com.kodilla.hibernate.manytomany.dao.facade.ResultDto;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,7 +27,6 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testSaveManyToMany(){
-
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -48,7 +47,6 @@ public class CompanyDaoTestSuite {
         stephanieClarckson.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
-
         //When
         companyDao.save(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
@@ -56,12 +54,10 @@ public class CompanyDaoTestSuite {
         int dataMaestersId = dataMaesters.getId();
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
-
         //Then
         Assert.assertNotEquals(0, softwareMachineId);
         Assert.assertNotEquals(0, dataMaestersId);
         Assert.assertNotEquals(0, greyMatterId);
-
         //CleanUp
         try {
             companyDao.delete(softwareMachineId);
@@ -74,7 +70,6 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testRetrieveEmployeeByLastname() {
-
         //Given
         Employee jhonSmith = new Employee("John", "Smith");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
@@ -87,17 +82,14 @@ public class CompanyDaoTestSuite {
         softwareMachine.getEmployees().add(jhonSmith);
         dataMaesters.getEmployees().add(jhonSmith);
         String expected = "Smith";
-
         //When
         employeeDao.save(jhonSmith);
         List<Employee> employeeList = employeeDao.retrieveEmployeeByLastname("Smith");
-
         //Than
         for (Employee employee:employeeList) {
             String actual = employee.getLastname();
             Assert.assertEquals(expected, actual);
         }
-
         //CleanUp
         try {
             employeeDao.delete(jhonSmith);
@@ -111,7 +103,6 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testRetrieveCompanyByBeginning() {
-
         //Given
         Employee jhonSmith = new Employee("John", "Smith");
         Company softwareMachine = new Company("Software Machine");
@@ -120,15 +111,12 @@ public class CompanyDaoTestSuite {
         jhonSmith.getCompanies().add(dataMaesters);
         softwareMachine.getEmployees().add(jhonSmith);
         dataMaesters.getEmployees().add(jhonSmith);
-
         //When
         companyDao.save(softwareMachine);
         companyDao.save(dataMaesters);
         List<Company> companyList = companyDao.retrieveCompanyByBeginning("Sof");
-
         //Than
         for (Company company:companyList) {Assert.assertTrue(company.getName().startsWith("Sof"));}
-
         //CleanUp
         try {
             companyDao.delete(softwareMachine);
@@ -140,12 +128,12 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testSearchWithParm() throws CompanyFacadeExpection {
+    public void testSearchWithParm() throws CompanyFacadeException {
         //Using data from local DB
         //Given
-        String parm = "Ma";
+        String searched = "Ma";
         //When
-        ResultDto result = companyFacade.search(parm);
+        ResultDto result = companyFacade.search(searched);
         //Than
             for (Company company : result.getCompanyResult()) {
                 Assert.assertTrue(company.getName().contains("Ma"));

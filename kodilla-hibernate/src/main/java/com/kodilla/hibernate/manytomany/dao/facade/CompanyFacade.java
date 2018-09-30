@@ -29,40 +29,32 @@ public class CompanyFacade {
     CompanyFacade() {
     }
 
-    public ResultDto search(String parm) throws CompanyFacadeExpection {
-        if (StringUtils.isBlank(parm)) {
-            LOGGER.error(CompanyFacadeExpection.ERR_NULL_SEARCH);
-            throw new CompanyFacadeExpection(CompanyFacadeExpection.ERR_NULL_SEARCH);
+    public ResultDto search(String searched) throws CompanyFacadeException {
+        if (StringUtils.isBlank(searched)) {
+            LOGGER.error(CompanyFacadeException.ERR_NULL_SEARCH);
+            throw new CompanyFacadeException(CompanyFacadeException.ERR_NULL_SEARCH);
         }
 
-        List<Employee> employeeResultList = employeeDao.retrieveEmployeeByParmSearch(parm);
-        List<Company> companyResultList = companyDao.retrieveCompanyByParmSearch(parm);
+        List<Employee> employeeResultList = employeeDao.retrieveEmployeeByArgSearch(searched);
+        List<Company> companyResultList = companyDao.retrieveCompanyByArgSearch(searched);
 
-        try {
-            if (employeeResultList.size() == 0) {
-                LOGGER.info("No Employee find with this parameter");
-            } else {
-                for (Employee employee : employeeResultList) {
-                    LOGGER.info("Employee: " + employee.getLastname());
-                }
+        if (employeeResultList.size() == 0) {
+            LOGGER.info("No Employee find with this parameter");
+        } else {
+            for (Employee employee : employeeResultList) {
+                LOGGER.info("Employee: " + employee.getLastname()); }
+        }
+        resultDto.setEmployeesResult(employeeResultList);
+
+        if (companyResultList.size() == 0) {
+            LOGGER.info("No Company find with this parameter");
+        } else {
+            for (Company company : companyResultList) {
+                LOGGER.info("Company: " + company.getName());
             }
-        }finally {
-            resultDto.setEmployeesResult(employeeResultList);
         }
-
-        try {
-            if (companyResultList.size() == 0) {
-                LOGGER.info("No Company find with this parameter");
-            } else {
-                for (Company company : companyResultList) {
-                    LOGGER.info("Company: " + company.getName());
-                }
-            }
-        }finally {
-            resultDto.setCompanyResult(companyResultList);
-        }
+        resultDto.setCompanyResult(companyResultList);
         return resultDto;
     }
-
 
 }

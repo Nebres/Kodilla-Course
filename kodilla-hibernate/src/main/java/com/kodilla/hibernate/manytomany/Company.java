@@ -12,7 +12,7 @@ import java.util.Objects;
                 query = "FROM Company WHERE SUBSTR(name, 0, 3) = :SEARCHED"
         ),
         @NamedQuery(
-                name="Company.retrieveCompanyByParmSearch",
+                name="Company.retrieveCompanyByArgSearch",
                 query = "FROM Company WHERE name LIKE CONCAT('%', :ARG, '%')"
         )
 })
