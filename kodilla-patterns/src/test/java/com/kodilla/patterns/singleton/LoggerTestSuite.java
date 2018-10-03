@@ -17,7 +17,7 @@ public class LoggerTestSuite {
     public void testGetLastLog() {
         //Given
         Logger logger = Logger.getInstance();
-        String expected = "";
+        String expected = "First Log";
         //When
         String actual = logger.getLastLog();
         //Then

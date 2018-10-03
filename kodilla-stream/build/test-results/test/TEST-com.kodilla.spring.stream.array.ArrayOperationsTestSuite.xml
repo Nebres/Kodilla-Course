@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kodilla.spring.stream.array.ArrayOperationsTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-10-03T20:18:04" hostname="Przemek-Laptop" time="0.01">
+  <properties/>
+  <testcase name="testGetAverage" classname="com.kodilla.spring.stream.array.ArrayOperationsTestSuite" time="0.01"/>
+  <system-out><![CDATA[2
+55
+31
+22
+16
+14
+88
+23
+56
+72
+62
+33
+84
+90
+12
+45
+56
+31
+74
+19
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
