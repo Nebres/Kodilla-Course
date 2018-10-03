@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 
 @Aspect
 @Component
-public class Watcher {
+public class WatcherSecond {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Watcher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WatcherSecond.class);
 
      /*
     @Before("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
