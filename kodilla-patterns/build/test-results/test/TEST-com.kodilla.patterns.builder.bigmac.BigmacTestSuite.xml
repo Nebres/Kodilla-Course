@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.kodilla.patterns.builder.bigmac.BigmacTestSuite" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-10-03T20:19:55" hostname="Przemek-Laptop" time="0.005">
+<testsuite name="com.kodilla.patterns.builder.bigmac.BigmacTestSuite" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-10-03T21:04:29" hostname="Przemek-Laptop" time="0.004">
   <properties/>
   <testcase name="testGetStringFromEnum" classname="com.kodilla.patterns.builder.bigmac.BigmacTestSuite" time="0.002"/>
   <testcase name="testBigmacBuldierWithAllIngredients" classname="com.kodilla.patterns.builder.bigmac.BigmacTestSuite" time="0.002"/>
