@@ -1,6 +1,5 @@
 package com.kodilla.patterns2.facade.shopFacade;
 
-import com.kodilla.patterns2.facade.kodillaExample.ShopService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

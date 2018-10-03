@@ -1,6 +1,5 @@
 package com.kodilla.patterns2.facade.shopFacade;
 
-import com.kodilla.patterns2.facade.kodillaExample.Order;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,9 +10,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-public class Watcher {
+public class ProcessOrderWatcher {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Watcher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessOrderWatcher.class);
 
     @Before("execution(* com.kodilla.patterns2.facade.shopFacade.OrderFacade.processOrder(..)) && args(order)" +
             " && args(orderId) && target(object)")

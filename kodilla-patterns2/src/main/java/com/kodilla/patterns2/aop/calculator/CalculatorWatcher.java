@@ -12,16 +12,10 @@ import java.math.BigDecimal;
 
 @Aspect
 @Component
-public class WatcherSecond {
+public class CalculatorWatcher {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WatcherSecond.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CalculatorWatcher.class);
 
-     /*
-    @Before("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
-    public void logEvent() {
-        LOGGER.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    }
-   */
     @Before("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))" +
     "&& args(theNumber) && target(object)")
     public void logEvent(BigDecimal theNumber, Object object) {
