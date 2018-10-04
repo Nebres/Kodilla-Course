@@ -3,7 +3,7 @@ package com.kodilla.hibernate.manytomany.dao;
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
 import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacade;
-import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacadeException;
+import com.kodilla.hibernate.manytomany.dao.facade.SearchException;
 import com.kodilla.hibernate.manytomany.dao.facade.ResultDto;
 import org.junit.Assert;
 import org.junit.Test;
@@ -128,7 +128,7 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testSearchWithParm() throws CompanyFacadeException {
+    public void testSearchWithParm() throws SearchException {
         //Using data from local DB
         //Given
         String searched = "Ma";

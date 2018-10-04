@@ -29,10 +29,10 @@ public class CompanyFacade {
     CompanyFacade() {
     }
 
-    public ResultDto search(String searched) throws CompanyFacadeException {
+    public ResultDto search(String searched) throws SearchException {
         if (StringUtils.isBlank(searched)) {
-            LOGGER.error(CompanyFacadeException.ERR_NULL_SEARCH);
-            throw new CompanyFacadeException(CompanyFacadeException.ERR_NULL_SEARCH);
+            LOGGER.error(SearchException.ERR_NULL_SEARCH);
+            throw new SearchException(SearchException.ERR_NULL_SEARCH);
         }
 
         List<Employee> employeeResultList = employeeDao.retrieveEmployeeByArgSearch(searched);
@@ -40,20 +40,21 @@ public class CompanyFacade {
 
         if (employeeResultList.size() == 0) {
             LOGGER.info("No Employee find with this parameter");
-        } else {
-            for (Employee employee : employeeResultList) {
-                LOGGER.info("Employee: " + employee.getLastname()); }
         }
         resultDto.setEmployeesResult(employeeResultList);
 
+        if (employeeResultList.size() > 0) {
+            LOGGER.info("Find " + employeeResultList.size() + " matches");
+        }
+
         if (companyResultList.size() == 0) {
             LOGGER.info("No Company find with this parameter");
-        } else {
-            for (Company company : companyResultList) {
-                LOGGER.info("Company: " + company.getName());
-            }
         }
         resultDto.setCompanyResult(companyResultList);
+
+        if (companyResultList.size() > 0) {
+            LOGGER.info("Find " + companyResultList.size() + " matches");
+        }
         return resultDto;
     }
 
