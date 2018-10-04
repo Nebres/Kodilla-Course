@@ -23,8 +23,6 @@ public class SalaryAdapter extends SalaryAdaptee implements SalaryCalculator {
         }
         return calculateSalaries(employees).doubleValue();
 
-
-
     }
 
 }
