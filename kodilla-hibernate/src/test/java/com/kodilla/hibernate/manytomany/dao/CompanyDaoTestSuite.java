@@ -3,7 +3,6 @@ package com.kodilla.hibernate.manytomany.dao;
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
 import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacade;
-import com.kodilla.hibernate.manytomany.dao.facade.SearchException;
 import com.kodilla.hibernate.manytomany.dao.facade.ResultDto;
 import org.junit.Assert;
 import org.junit.Test;
@@ -128,7 +127,7 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testSearchWithParm() throws SearchException {
+    public void testSearchWithParm() {
         //Using data from local DB
         //Given
         String searched = "Ma";
@@ -142,6 +141,34 @@ public class CompanyDaoTestSuite {
             for (Employee employee : result.getEmployeesResult()) {
                 Assert.assertTrue(employee.getLastname().contains("Ma"));
             }
+    }
+
+    @Test
+    public void testSearchWithoutParm() {
+        //Using data from local DB
+        //Given
+        String searched = "";
+        //When
+        ResultDto result = companyFacade.search(searched);
+        int expectedResultSize = 0;
+
+        //Than
+        Assert.assertEquals(result.getCompanyResult().size(), expectedResultSize);
+        Assert.assertEquals(result.getEmployeesResult().size(), expectedResultSize);
+    }
+
+    @Test
+    public void testSearchWithNull() {
+        //Using data from local DB
+        //Given
+        String searched = null;
+        //When
+        ResultDto result = companyFacade.search(searched);
+        int expectedCompanyResultSize = 0;
+        int expectedEmployeeResultSize = 0;
+        //Than
+        Assert.assertEquals(result.getCompanyResult().size(), expectedCompanyResultSize);
+        Assert.assertEquals(result.getEmployeesResult().size(), expectedEmployeeResultSize);
     }
 
 }

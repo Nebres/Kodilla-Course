@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -29,31 +30,34 @@ public class CompanyFacade {
     CompanyFacade() {
     }
 
-    public ResultDto search(String searched) throws SearchException {
-        if (StringUtils.isBlank(searched)) {
-            LOGGER.error(SearchException.ERR_NULL_SEARCH);
-            throw new SearchException(SearchException.ERR_NULL_SEARCH);
-        }
+    public ResultDto search(String searched){
 
+        boolean isBlank = StringUtils.isBlank(searched);
         List<Employee> employeeResultList = employeeDao.retrieveEmployeeByArgSearch(searched);
         List<Company> companyResultList = companyDao.retrieveCompanyByArgSearch(searched);
 
-        if (employeeResultList.size() == 0) {
+        if (isBlank) {
+            LOGGER.info("Search with no parameter declared");
+            resultDto.setCompanyResult(Collections.emptyList());
+            resultDto.setEmployeesResult(Collections.emptyList());
+        }
+
+        if (employeeResultList.size() == 0 && !isBlank) {
             LOGGER.info("No Employee find with this parameter");
         }
-        resultDto.setEmployeesResult(employeeResultList);
 
-        if (employeeResultList.size() > 0) {
+        if (employeeResultList.size() > 0 && !isBlank) {
             LOGGER.info("Find " + employeeResultList.size() + " matches");
+            resultDto.setEmployeesResult(employeeResultList);
         }
 
-        if (companyResultList.size() == 0) {
+        if (companyResultList.size() == 0 && !isBlank) {
             LOGGER.info("No Company find with this parameter");
         }
-        resultDto.setCompanyResult(companyResultList);
 
-        if (companyResultList.size() > 0) {
+        if (companyResultList.size() > 0 && !isBlank) {
             LOGGER.info("Find " + companyResultList.size() + " matches");
+            resultDto.setCompanyResult(companyResultList);
         }
         return resultDto;
     }
