@@ -134,13 +134,13 @@ public class CompanyDaoTestSuite {
         //When
         ResultDto result = companyFacade.search(searched);
         //Than
-            for (Company company : result.getCompanyResult()) {
-                Assert.assertTrue(company.getName().contains("Ma"));
-            }
+        for (Company company : result.getCompanyResult()) {
+            Assert.assertTrue(company.getName().contains("Ma"));
+        }
 
-            for (Employee employee : result.getEmployeesResult()) {
-                Assert.assertTrue(employee.getLastname().contains("Ma"));
-            }
+        for (Employee employee : result.getEmployeesResult()) {
+            Assert.assertTrue(employee.getLastname().contains("Ma"));
+        }
     }
 
     @Test
@@ -170,5 +170,4 @@ public class CompanyDaoTestSuite {
         Assert.assertEquals(result.getCompanyResult().size(), expectedCompanyResultSize);
         Assert.assertEquals(result.getEmployeesResult().size(), expectedEmployeeResultSize);
     }
-
 }
