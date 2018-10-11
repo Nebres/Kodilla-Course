@@ -2,7 +2,6 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
-import com.kodilla.hibernate.manytomany.dao.facade.CompanyFacade;
 import com.kodilla.hibernate.manytomany.dao.facade.ResultDto;
 import org.junit.Assert;
 import org.junit.Test;
