@@ -33,7 +33,6 @@ public class CompanyFacade {
     public ResultDto search(String searched){
 
         boolean isBlank = StringUtils.isBlank(searched);
-
         List<Employee> employeeResultList = employeeDao.retrieveEmployeeByArgSearch(searched);
         List<Company> companyResultList = companyDao.retrieveCompanyByArgSearch(searched);
 
