@@ -69,6 +69,7 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testRetrieveEmployeeByLastname() {
+
         //Given
         Employee jhonSmith = new Employee("John", "Smith");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
@@ -102,6 +103,7 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testRetrieveCompanyByBeginning() {
+
         //Given
         Employee jhonSmith = new Employee("John", "Smith");
         Company softwareMachine = new Company("Software Machine");
@@ -128,6 +130,7 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testSearchWithParm() {
+
         //Using data from local DB
         //Given
         String searched = "Ma";
@@ -145,6 +148,7 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testSearchWithoutParm() {
+
         //Using data from local DB
         //Given
         String searched = "";
@@ -159,6 +163,7 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testSearchWithNull() {
+
         //Using data from local DB
         //Given
         String searched = null;
