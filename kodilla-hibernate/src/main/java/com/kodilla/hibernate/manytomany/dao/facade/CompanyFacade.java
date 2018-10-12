@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -32,30 +31,28 @@ public class CompanyFacade {
 
     public ResultDto search(String searched){
 
-        boolean isBlank = StringUtils.isBlank(searched);
+        if (StringUtils.isBlank(searched)) {
+            LOGGER.info("Search with no parameter declared");
+           return resultDto;
+        }
+
         List<Employee> employeeResultList = employeeDao.retrieveEmployeeByArgSearch(searched);
         List<Company> companyResultList = companyDao.retrieveCompanyByArgSearch(searched);
 
-        if (isBlank) {
-            LOGGER.info("Search with no parameter declared");
-            resultDto.setCompanyResult(Collections.emptyList());
-            resultDto.setEmployeesResult(Collections.emptyList());
-        }
-
-        if (employeeResultList.size() == 0 && !isBlank) {
+        if (employeeResultList.size() == 0) {
             LOGGER.info("No Employee find with this parameter");
         }
 
-        if (employeeResultList.size() > 0 && !isBlank) {
+        if (employeeResultList.size() > 0) {
             LOGGER.info("Find " + employeeResultList.size() + " matches");
             resultDto.setEmployeesResult(employeeResultList);
         }
 
-        if (companyResultList.size() == 0 && !isBlank) {
+        if (companyResultList.size() == 0) {
             LOGGER.info("No Company find with this parameter");
         }
 
-        if (companyResultList.size() > 0 && !isBlank) {
+        if (companyResultList.size() > 0) {
             LOGGER.info("Find " + companyResultList.size() + " matches");
             resultDto.setCompanyResult(companyResultList);
         }
