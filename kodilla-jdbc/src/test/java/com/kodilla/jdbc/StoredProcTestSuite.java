@@ -22,7 +22,7 @@ public class StoredProcTestSuite {
         //Then
         String sqlCheckTable ="SELECT COUNT(*) AS HOW_MANY FROM READERS WHERE VIP_LEVEL=\"NOT set\"";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
-        int howMany = -1;
+        int howMany = 0;
         if (rs.next()) {
             howMany = rs.getInt("HOW_MANY");
         }
@@ -40,13 +40,14 @@ public class StoredProcTestSuite {
         String sqlProcedureCall = "CALL updateBestsellers()";
         statement.execute(sqlProcedureCall);
         //Then
-        String sqlCheckTable ="SELECT COUNT(*) AS HOW_MANY FROM Books WHERE BESTSELLER = null";
+        String sqlCheckTable ="SELECT COUNT(*) AS HOW_MANY FROM Books WHERE BESTSELLER = true";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
-        int howMany = -1;
+        int actual = 0;
+        int expected = 1;
         if (rs.next()) {
-            howMany = rs.getInt("HOW_MANY");
+            actual = rs.getInt("HOW_MANY");
         }
-        Assert.assertEquals(0, howMany);
+        Assert.assertEquals(expected, actual);
     }
 
 }
