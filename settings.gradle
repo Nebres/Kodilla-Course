@@ -11,4 +11,5 @@ include 'kodilla-hibernate'
 include 'kodilla-spring'
 include 'kodilla-spring-web'
 include 'kodilla-testing2'
+include 'kodilla-basics'
 
