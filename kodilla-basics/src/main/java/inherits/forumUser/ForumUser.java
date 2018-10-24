@@ -1,4 +1,4 @@
-package inherits;
+package inherits.forumUser;
 
 public class ForumUser extends User {
 
