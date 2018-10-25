@@ -1,4 +1,4 @@
-package helloWorld.conditions;
+package essentials.conditions;
 
 public class Conditions {
     public static void main (String[] args) {

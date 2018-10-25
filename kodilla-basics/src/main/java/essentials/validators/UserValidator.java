@@ -1,4 +1,4 @@
-package helloWorld.validators;
+package essentials.validators;
 
 public class UserValidator {
     public static void main (String[] args) {

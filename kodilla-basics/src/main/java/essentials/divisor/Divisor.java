@@ -1,4 +1,4 @@
-package helloWorld.divisor;
+package essentials.divisor;
 
 public class Divisor {
     public static void main(String[] args) {
