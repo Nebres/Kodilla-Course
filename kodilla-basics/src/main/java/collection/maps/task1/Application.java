@@ -1,4 +1,4 @@
-package collection.maps;
+package collection.maps.task1;
 
 import java.util.Arrays;
 import java.util.LinkedList;

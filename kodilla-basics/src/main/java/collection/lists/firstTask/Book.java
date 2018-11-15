@@ -1,4 +1,4 @@
-package collection.lists;
+package collection.lists.firstTask;
 
 public class Book {
 
