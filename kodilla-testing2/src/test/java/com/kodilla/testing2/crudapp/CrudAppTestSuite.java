@@ -92,7 +92,6 @@ public class CrudAppTestSuite {
         return webTexts.size() > 0;
     }
 
-
     private void deleteTestTaskFromCrud(String taskName) throws InterruptedException {
         driver = WebDriverConfig.getDriver(WebDriverConfig.FIREFOX);
         driver.get(BASE_URL);
